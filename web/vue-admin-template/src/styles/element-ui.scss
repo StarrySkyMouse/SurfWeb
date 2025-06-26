@@ -1,0 +1,76 @@
+// cover some element-ui styles
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+// to fix el-date-picker css style
+.el-range-separator {
+  box-sizing: content-box;
+}
+
+//自定义配色
+.el-card__header {
+  background-color: #3d3f48;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.el-radio-button__orig-radio:checked+.el-radio-button__inner {
+  background-color: #3d3f48;
+  border-color: #3d3f48;
+}
+
+//数据卡片高度设置
+.data-card {
+  .el-card__body {
+    display: flex;
+    flex-direction: column;
+    min-height: 668.75px;
+
+    .el-pagination {
+      margin-top: auto;
+      text-align: right;
+    }
+  }
+}
