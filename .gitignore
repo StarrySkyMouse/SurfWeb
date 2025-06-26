@@ -1,0 +1,12 @@
+/service/SurfWeb/GrabData/bin
+/service/SurfWeb/Core/bin
+/service/SurfWeb/Client/bin
+/service/SurfWeb/Service/bin
+/service/SurfWeb/Service/obj
+/service/SurfWeb/Client/obj
+/service/SurfWeb/GrabData/obj
+/service/SurfWeb/Core/obj
+/service/SurfWeb/Client/appsettings.Development.json
+/service/SurfWeb/GrabData/appsettings.Development.json
+/service/SurfWeb/Service/appsettings.Development.json
+/service/SurfWeb/.vs
