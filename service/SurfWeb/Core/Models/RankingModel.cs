@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Models
+﻿namespace Core.Models
 {
     public enum RankingTypeEnum
     {
@@ -49,6 +43,6 @@ namespace Core.Models
         /// <summary>
         /// 数值
         /// </summary>
-        public int Value { get; set; }
+        public decimal Value { get; set; }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Utils.Cahces
+﻿namespace Core.Utils.Cahces
 {
     public class MapMainCache
     {
@@ -16,5 +10,9 @@ namespace Core.Utils.Cahces
         /// 地图名称
         /// </summary>
         public required string Name { get; set; }
+        /// <summary>
+        /// 难度
+        /// </summary>
+        public required string Difficulty { get; set; }
     }
 }

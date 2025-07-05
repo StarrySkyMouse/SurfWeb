@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dto.Maps
+﻿namespace Core.Dto.Maps
 {
     public class MapTop100Dto
     {
@@ -24,7 +17,7 @@ namespace Core.Dto.Maps
         /// <summary>
         /// 通关时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
         /// <summary>
         /// 日期
         /// </summary>

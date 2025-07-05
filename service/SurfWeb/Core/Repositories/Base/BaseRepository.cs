@@ -1,16 +1,10 @@
-﻿using Core.IRepository;
-using Core.IRepository.Base;
+﻿using Core.IRepository.Base;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Core.Repositories
 {
@@ -64,6 +58,15 @@ namespace Core.Repositories
             _dbContext.Set<TEntity>().Add(entity);
             return entity;
         }
+        public List<TEntity> Inserts(IEnumerable<TEntity> entitys)
+        {
+            var result = new List<TEntity>();
+            foreach (var entity in entitys)
+            {
+                result.Add(Insert(entity));
+            }
+            return result;
+        }
         /// <summary>
         /// 修改
         /// </summary>
@@ -87,6 +90,20 @@ namespace Core.Repositories
             }
             formerEntity.UpDateTime = DateTime.Now;
         }
+        public void Updates(IEnumerable<TEntity> entitys)
+        {
+            var list = _dbContext.Set<TEntity>().IgnoreQueryFilters().Where(t => t.IsDelete == 0 && entitys.Select(a => a.Id).Contains(t.Id)).ToList();
+            foreach (var formerEntity in list)
+            {
+                var entity = entitys.First(t => t.Id == formerEntity.Id);
+                foreach (var property in formerEntity.GetType().GetProperties())
+                {
+                    object value2 = property.GetValue(entity);
+                    property.SetValue(formerEntity, value2);
+                }
+                formerEntity.UpDateTime = DateTime.Now;
+            }
+        }
         /// <summary>
         /// 标记删除
         /// </summary>
@@ -102,9 +119,28 @@ namespace Core.Repositories
             formerEntity.IsDelete = 1;
 
         }
+        public void DeleteAll()
+        {
+            var listAll = _dbContext.Set<TEntity>().ToList();
+            if (listAll.Any())
+            {
+                listAll.ForEach(t =>
+                {
+                    t.UpDateTime = DateTime.Now;
+                    t.IsDelete = 1;
+                });
+            }
+        }
         public int SaveChanges()
         {
             return _dbContext.SaveChanges();
+        }
+        /// <summary>
+        /// 数据库事务
+        /// </summary>
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _dbContext.Database.BeginTransaction();
         }
         #endregion
     }

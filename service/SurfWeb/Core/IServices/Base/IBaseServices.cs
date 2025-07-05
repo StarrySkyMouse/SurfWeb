@@ -1,9 +1,4 @@
 ﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.IServices.Base
 {
@@ -15,7 +10,9 @@ namespace Core.IServices.Base
     {
         TEntity? GetById(string id, Func<TEntity, TEntity>? select = null);
         string Insert(TEntity entity);
+        IEnumerable<string> Inserts(IEnumerable<TEntity> entities);
         void UpDate(TEntity entity);
+        void Updates(IEnumerable<TEntity> entities);
         void Delete(string id);
     }
 }

@@ -1,12 +1,6 @@
-﻿using Core.IRepository;
-using Core.IRepository.Base;
+﻿using Core.IRepository.Base;
 using Core.IServices.Base;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Services.Base
 {
@@ -38,9 +32,20 @@ namespace Core.Services.Base
             _repository.SaveChanges();
             return result.Id;
         }
+        public IEnumerable<string> Inserts(IEnumerable<TEntity> entities)
+        {
+            _repository.Inserts(entities);
+            _repository.SaveChanges();
+            return entities.Select(e => e.Id);
+        }
         public void UpDate(TEntity entity)
         {
             _repository.Update(entity);
+            _repository.SaveChanges();
+        }
+        public void Updates(IEnumerable<TEntity> entities)
+        {
+            _repository.Updates(entities);
             _repository.SaveChanges();
         }
         public void Delete(string id)

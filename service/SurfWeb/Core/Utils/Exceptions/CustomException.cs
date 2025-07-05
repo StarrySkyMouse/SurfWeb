@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Utils.Exceptions
+﻿namespace Core.Utils.Exceptions
 {
     /// <summary>
     /// 自定义异常

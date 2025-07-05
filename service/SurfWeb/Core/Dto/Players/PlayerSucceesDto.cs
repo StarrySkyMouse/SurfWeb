@@ -1,12 +1,4 @@
-﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dto.Players
+﻿namespace Core.Dto.Players
 {
     public class PlayerSucceesDto
     {
@@ -25,10 +17,14 @@ namespace Core.Dto.Players
         /// <summary>
         /// 通关时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
         /// <summary>
         /// 日期
         /// </summary>
         public DateTime Date { get; set; }
+        /// <summary>
+        /// 难度
+        /// </summary>
+        public required string Difficulty { get; set; }
     }
 }

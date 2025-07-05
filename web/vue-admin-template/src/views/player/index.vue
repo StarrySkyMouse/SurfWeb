@@ -18,7 +18,7 @@
               {{ playerInfo.integralRanking }}({{ playerInfo.integral }})
             </el-descriptions-item>
             <el-descriptions-item label="主线完成排名">
-              {{ playerInfo.succeesRanking }}/({{ playerInfo.swrNumber }})
+              {{ playerInfo.succeesRanking }}/({{ playerInfo.succeesNumber }})
             </el-descriptions-item>
             <el-descriptions-item label="主线WR排名">
               {{ playerInfo.wrRanking }}({{ playerInfo.wrNumber }})
@@ -52,7 +52,7 @@
             <el-col :span="24">
               <el-table v-loading="playerWRListLoading" :data="playerWRList" element-loading-text="Loading"
                 borderfithighlight-current-row>
-                <el-table-column align="center" label="#">
+                <el-table-column align="center" label="#" width="100">
                   <template slot-scope="scope">
                     {{ scope.$index + 1 }}
                   </template>
@@ -98,14 +98,19 @@
             <el-col :span="24">
               <el-table v-loading="succeesListLoading" :data="succeesList" element-loading-text="Loading"
                 borderfithighlight-current-row>
-                <el-table-column align="center" label="#">
+                <el-table-column align="center" label="#" width="100">
                   <template slot-scope="scope">
                     {{ scope.$index + 1 }}
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="地图">
+                <el-table-column align="center" label="地图/难度">
                   <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}</el-link>
+                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty }})</el-link>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="阶段" v-if="succeessRecordType != 0" width="100">
+                  <template slot-scope="scope">
+                    {{ scope.row.stage }}
                   </template>
                 </el-table-column>
                 <el-table-column align="center" label="时间">
@@ -144,17 +149,17 @@
             <el-col :span="24">
               <el-table v-loading="failListLoading" :data="failList" element-loading-text="Loading"
                 borderfithighlight-current-row>
-                <el-table-column align="center" label="#">
+                <el-table-column align="center" label="#" width="100">
                   <template slot-scope="scope">
                     {{ scope.$index + 1 }}
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="地图">
+                <el-table-column align="center" label="地图/难度">
                   <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}</el-link>
+                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty }})</el-link>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="阶段" v-if="failRecordType != 0">
+                <el-table-column align="center" label="阶段" v-if="failRecordType != 0" width="100">
                   <template slot-scope="scope">
                     {{ scope.row.stage }}
                   </template>
@@ -182,16 +187,6 @@ import {
 } from '@/api/player'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       isMobile: window.innerWidth < 768,

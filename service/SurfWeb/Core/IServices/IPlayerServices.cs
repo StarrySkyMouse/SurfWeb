@@ -1,12 +1,6 @@
-﻿using Core.Dto;
-using Core.Dto.Players;
+﻿using Core.Dto.Players;
 using Core.IServices.Base;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.IServices
 {
@@ -19,11 +13,11 @@ namespace Core.IServices
         /// <summary>
         /// 获取玩家WRCount
         /// </summary>
-        Task<int> GetPlayerWRCount(string id, RecordTypeEnum recordType);
+        int GetPlayerWRCount(string id, RecordTypeEnum recordType);
         /// <summary>
         /// 获取玩家WRList
         /// </summary>
-        Task<List<PlayerWRDto>> GetPlayerWRList(string id, RecordTypeEnum recordType, int pageIndex);
+        List<PlayerWRDto> GetPlayerWRList(string id, RecordTypeEnum recordType, int pageIndex);
         /// <summary>
         /// 获取玩家已完成Count
         /// </summary>
@@ -40,5 +34,21 @@ namespace Core.IServices
         /// 获取玩家未完成List
         /// </summary>
         Task<List<PlayerFailDto>> GetPlayerFailList(string id, RecordTypeEnum recordType, int pageIndex);
+        /// <summary>
+        /// 获取玩家列表分页数据
+        /// </summary>
+        Task<List<PlayerModel>> GetPlayerPageList(int pageIndex, int pageSize);
+        /// <summary>
+        /// 通过Auth获取(玩家Id,玩家名称)列表
+        /// </summary>
+        Task<Dictionary<int, (string, string)>> GetPlayerInfoListByAuth(List<int> authList);
+        /// <summary>
+        /// 更新玩家信息
+        /// </summary>
+        Task UpdateStatsNumber();
+        /// <summary>
+        /// 修改信息
+        /// </summary>
+        Task ChangeInfo(List<PlayerModel> changeList);
     }
 }

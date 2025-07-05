@@ -1,12 +1,7 @@
-﻿using Core.Dto;
-using Core.Dto.Maps;
+﻿using Core.Dto.Maps;
 using Core.IServices.Base;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Utils.Cahces;
 
 namespace Core.IServices
 {
@@ -15,7 +10,8 @@ namespace Core.IServices
         /// <summary>
         /// 获取地图信息
         /// </summary>
-        Task<MapDto?> GetMapInfo(string id);
+        Task<MapDto?> GetMapInfoById(string id);
+        Task<List<MapModel>> GetMapInfoByNameList(IEnumerable<string> names);
         /// <summary>
         /// 获取地图列表
         /// </summary>
@@ -36,5 +32,17 @@ namespace Core.IServices
         /// 获取地图缓存列表
         /// </summary>
         Task<List<MapCacheDto>> GetMapCacheList();
+        /// <summary>
+        /// 获取地图WR缓存列表
+        /// </summary>
+        Task<List<MapWrCache>> GetMapWrCacheList();
+        /// <summary>
+        /// 通过地图名称获取地图ID列表
+        /// </summary>
+        Task<Dictionary<string, string>> GetMapIdListByName(List<string> mapNameList);
+        /// <summary>
+        /// 统计地图完成人数
+        /// </summary>
+        Task UpdateSucceesNumber();
     }
 }

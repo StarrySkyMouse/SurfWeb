@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dto.Players
+﻿namespace Core.Dto.Players
 {
     public class PlayerWRDto
     {
@@ -19,7 +13,7 @@ namespace Core.Dto.Players
         /// <summary>
         /// 时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
         /// <summary>
         /// 日期
         /// </summary>

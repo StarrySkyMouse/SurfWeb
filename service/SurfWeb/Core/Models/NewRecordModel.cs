@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
@@ -63,6 +58,10 @@ namespace Core.Models
         /// <summary>
         /// 通关时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
+        /// <summary>
+        /// 日期
+        /// </summary>
+        public DateTime Date { get; set; }
     }
 }

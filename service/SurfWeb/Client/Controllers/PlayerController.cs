@@ -1,4 +1,3 @@
-using Core.Dto;
 using Core.Dto.Players;
 using Core.IServices;
 using Core.Models;
@@ -34,17 +33,17 @@ namespace Client.Controllers
         /// 获取玩家WRCount
         /// </summary>
         [HttpGet("GetPlayerWRCount")]
-        public async Task<int> GetPlayerWRCount(string id, RecordTypeEnum recordType)
+        public int GetPlayerWRCount(string id, RecordTypeEnum recordType)
         {
-            return await _playerServices.GetPlayerWRCount(id, recordType);
+            return _playerServices.GetPlayerWRCount(id, recordType);
         }
         /// <summary>
         /// 获取玩家WRList
         /// </summary>
         [HttpGet("GetPlayerWRList")]
-        public async Task<List<PlayerWRDto>> GetPlayerWRList(string id, RecordTypeEnum recordType,int pageIndex)
+        public List<PlayerWRDto> GetPlayerWRList(string id, RecordTypeEnum recordType, int pageIndex)
         {
-            return await _playerServices.GetPlayerWRList(id, recordType, pageIndex);
+            return _playerServices.GetPlayerWRList(id, recordType, pageIndex);
         }
         /// <summary>
         /// 获取玩家已完成Count
@@ -75,7 +74,7 @@ namespace Client.Controllers
         /// 获取玩家未完成List
         /// </summary>
         [HttpGet("GetPlayerFailList")]
-        public async Task<List<PlayerFailDto>> GetPlayerFailList(string id, RecordTypeEnum recordType, int pageIndex) 
+        public async Task<List<PlayerFailDto>> GetPlayerFailList(string id, RecordTypeEnum recordType, int pageIndex)
         {
             return await _playerServices.GetPlayerFailList(id, recordType, pageIndex);
         }

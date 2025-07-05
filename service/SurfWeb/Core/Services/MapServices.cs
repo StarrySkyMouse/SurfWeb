@@ -1,17 +1,11 @@
-﻿using Core.Dto;
+﻿using Core.Dto.Maps;
 using Core.IRepository;
-using Core.IRepository.Base;
 using Core.IServices;
 using Core.Models;
 using Core.Services.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Core.Dto.Maps;
+using Core.Utils.Cahces;
 using Core.Utils.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Services
 {
@@ -35,17 +29,13 @@ namespace Core.Services
         /// <summary>
         /// 获取地图信息
         /// </summary>
-        public async Task<MapDto?> GetMapInfo(string id)
+        public async Task<MapDto?> GetMapInfoById(string id)
         {
             return await _repository
                 .Select(
                     t => new MapDto()
                     {
                         Id = t.Id,
-                        WRPlayerId = t.WRPlayerId,
-                        WRPlayerName = t.WRPlayerName,
-                        WRTime = t.WRTime,
-                        WRDate = t.WRDate,
                         Name = t.Name,
                         Difficulty = t.Difficulty,
                         Img = t.Img,
@@ -72,6 +62,7 @@ namespace Core.Services
         private IQueryable<MapModel> GetMapQueryable(string? difficulty, string? search)
         {
             return _repository
+                .OrderBy(t => t.Name)
                 .WhereIf(!string.IsNullOrWhiteSpace(difficulty), t => t.Difficulty.ToUpper() == difficulty.ToUpper().Trim())
                 .WhereIf(!string.IsNullOrWhiteSpace(search), t => t.Name.ToUpper().Contains(search.ToUpper()));
         }
@@ -90,6 +81,7 @@ namespace Core.Services
         public async Task<List<MapTop100Dto>> GetMapTop100List(string id, RecordTypeEnum recordType, int pageIndex)
         {
             return await GetMapTop100Queryable(id, recordType)
+                .OrderBy(t => t.Time)
                 .PageData(pageIndex, 10)
                 .Select(t => new MapTop100Dto()
                 {
@@ -102,7 +94,8 @@ namespace Core.Services
         }
         private IQueryable<PlayerCompleteModel> GetMapTop100Queryable(string id, RecordTypeEnum recordType)
         {
-            return _playerCompleteRepository.Where(t => t.MapId == id && t.Type == recordType);
+            return _playerCompleteRepository
+                .Where(t => t.MapId == id && t.Type == recordType);
         }
         /// <summary>
         /// 获取地图缓存列表
@@ -114,9 +107,82 @@ namespace Core.Services
             {
                 Id = t.Id,
                 Name = t.Name,
+                Difficulty = t.Difficulty,
                 BonusNumber = t.BonusNumber,
                 StageNumber = t.StageNumber,
             }).ToListAsync();
+        }
+        /// <summary>
+        /// 获取地图WR缓存列表
+        /// </summary>
+        public async Task<List<MapWrCache>> GetMapWrCacheList()
+        {
+            return (await _playerCompleteRepository
+                .GroupBy(t => new
+                {
+                    t.MapId,
+                    t.Type,
+                    t.Stage
+                })
+                .Select(t => new
+                {
+                    t.Key,
+                    WR = t.OrderBy(a => a.Time).First()
+                }).ToListAsync())
+                .Select(t => new MapWrCache()
+                {
+                    PlayerId = t.WR.PlayerId,
+                    PlayerName = t.WR.PlayerName,
+                    MapId = t.Key.MapId,
+                    MapName = t.WR.MapName,
+                    Type = t.Key.Type,
+                    Stage = t.Key.Stage,
+                    Time = t.WR.Time,
+                    Date = t.WR.Date
+                }).ToList();
+        }
+        /// <summary>
+        /// 通过地图名称获取地图ID列表
+        /// </summary>
+        public async Task<Dictionary<string, string>> GetMapIdListByName(List<string> mapNameList)
+        {
+            return (await _repository
+               .Where(t => mapNameList.Select(a => a.Trim()).Contains(t.Name))
+               .Select(t => new
+               {
+                   t.Id,
+                   t.Name
+               }).ToListAsync()).ToDictionary(t => t.Name, t => t.Id);
+        }
+        /// <summary>
+        /// 统计地图完成人数
+        /// </summary>
+        public async Task UpdateSucceesNumber()
+        {
+            //_repository 本身虽然实现了 IQueryable<MapModel>，
+            //但它并不一定直接是由 Entity Framework Core 的 DbSet<MapModel> 实例化的，
+            //而可能是自定义仓储实现或经过扩展方法包装，
+            //导致其类型不是 EF Core 能识别的 IQueryable 源。
+
+            //•	加上 .Select(t => t) 后，LINQ 会生成一个新的 IQueryable，
+            //其 Provider 变成了 EF Core 能识别的类型（通常是 EntityQueryProvider），
+            //此时 ToListAsync() 就能正常工作。
+            var mapList = await _repository.Select(t => t).ToListAsync();
+            foreach (var item in mapList)
+            {
+                var succeesNumber = await _playerCompleteRepository
+                    .Where(t => t.PlayerId != null && t.MapId == item.Id && t.Type == RecordTypeEnum.Main)
+                    .Select(t => t.PlayerId).Distinct().CountAsync();
+                item.SurcessNumber = succeesNumber;
+                _repository.Update(item);
+                _repository.SaveChanges();
+            }
+        }
+        public async Task<List<MapModel>> GetMapInfoByNameList(IEnumerable<string> names)
+        {
+            return await _repository
+                .Where(t => names.Select(a => a.Trim()).Contains(t.Name))
+                .ToListAsync();
         }
     }
 }

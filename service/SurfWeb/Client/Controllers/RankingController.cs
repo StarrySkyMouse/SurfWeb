@@ -2,7 +2,6 @@ using Core.Dto;
 using Core.IServices;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Client.Controllers
 {

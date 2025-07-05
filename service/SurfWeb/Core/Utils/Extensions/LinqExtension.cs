@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Utils.Extensions
 {
@@ -19,6 +14,12 @@ namespace Core.Utils.Extensions
             return query.Where(predicate);
         }
         public static IQueryable<T> PageData<T>([NotNull] this IQueryable<T> query, int pageIndex, int pageSize)
+        {
+            return query
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize);
+        }
+        public static IEnumerable<T> PageData<T>([NotNull] this IEnumerable<T> query, int pageIndex, int pageSize)
         {
             return query
                 .Skip((pageIndex - 1) * pageSize)

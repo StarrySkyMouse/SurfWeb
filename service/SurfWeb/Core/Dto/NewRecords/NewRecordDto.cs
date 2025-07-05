@@ -1,12 +1,6 @@
 ﻿using Core.Models;
 using Core.Utils.Formattings;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Core.Dto.NewRecords
 {
@@ -39,7 +33,7 @@ namespace Core.Dto.NewRecords
         /// <summary>
         /// 通关时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
         /// <summary>
         /// 日期
         /// </summary>

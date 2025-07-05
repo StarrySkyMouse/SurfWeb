@@ -38,9 +38,9 @@
                 {{ scope.$index + 1 }}
               </template>
             </el-table-column>
-            <el-table-column align="center" label="玩家">
+            <el-table-column align="center" :label="'玩家'+(recordType!=0?'/阶段':'')">
               <template slot-scope="scope">
-                <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}</el-link>
+                <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}<template v-if="recordType!=0">({{ scope.row.stage }})</template></el-link>
               </template>
             </el-table-column>
             <el-table-column align="center" label="时间">
@@ -68,16 +68,6 @@
 import { getMapTop100Count, getMapTop100List, getMapInfo } from '@/api/maps'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       recordType: 0,

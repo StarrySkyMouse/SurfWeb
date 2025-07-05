@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.Migrations
 {
     [DbContext(typeof(SurfWebDbContext))]
-    [Migration("20250618092955_CreateDb")]
+    [Migration("20250703092307_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
@@ -61,22 +61,11 @@ namespace Core.Migrations
                     b.Property<int>("SurcessNumber")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("SyncDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime>("UpDateTime")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<DateTime?>("WRDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("WRPlayerId")
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
-
-                    b.Property<string>("WRPlayerName")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.Property<TimeSpan?>("WRTime")
-                        .HasColumnType("time(6)");
 
                     b.HasKey("Id");
 
@@ -121,8 +110,8 @@ namespace Core.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)");
 
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("time(6)");
+                    b.Property<float>("Time")
+                        .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasMaxLength(1)
@@ -142,6 +131,9 @@ namespace Core.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
+                    b.Property<int>("Auth")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
@@ -152,26 +144,19 @@ namespace Core.Migrations
                         .HasMaxLength(1)
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsWR")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("MapId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
                     b.Property<string>("MapName")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)");
 
                     b.Property<string>("PlayerId")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
                     b.Property<string>("PlayerName")
-                        .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("varchar(128)");
 
@@ -179,8 +164,8 @@ namespace Core.Migrations
                         .HasMaxLength(2)
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("Time")
-                        .HasColumnType("time(6)");
+                    b.Property<float>("Time")
+                        .HasColumnType("float");
 
                     b.Property<int>("Type")
                         .HasMaxLength(1)
@@ -199,6 +184,9 @@ namespace Core.Migrations
                     b.Property<string>("Id")
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
+
+                    b.Property<int>("Auth")
+                        .HasColumnType("int");
 
                     b.Property<int>("BWRNumber")
                         .HasColumnType("int");
@@ -265,8 +253,8 @@ namespace Core.Migrations
                     b.Property<DateTime>("UpDateTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 

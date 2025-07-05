@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
@@ -13,25 +8,29 @@ namespace Core.Models
     public class PlayerCompleteModel : BaseEntity
     {
         /// <summary>
+        /// 腐竹玩家id
+        /// </summary>
+        public int Auth { get; set; }
+        /// <summary>
         /// 玩家id
         /// </summary>
         [MaxLength(64)]
-        public required string PlayerId { get; set; }
+        public string? PlayerId { get; set; }
         /// <summary>
         /// 玩家名
         /// </summary>
         [MaxLength(128)]
-        public required string PlayerName { get; set; }
+        public string? PlayerName { get; set; }
         /// <summary>
         /// 地图id
         /// </summary>
         [MaxLength(64)]
-        public required string MapId { get; set; }
+        public string? MapId { get; set; }
         /// <summary>
         /// 地图名称
         /// </summary>
         [MaxLength(128)]
-        public required string MapName { get; set; }
+        public string? MapName { get; set; }
         /// <summary>
         /// 通关类型(主线，奖励，阶段)
         /// </summary>
@@ -45,14 +44,14 @@ namespace Core.Models
         /// <summary>
         /// 通关时间
         /// </summary>
-        public TimeSpan Time { get; set; }
+        public float Time { get; set; }
         /// <summary>
         /// 日期
         /// </summary>
         public DateTime Date { get; set; }
         /// <summary>
-        /// 是否为WR
+        /// 是否隐藏
         /// </summary>
-        public bool IsWR { get; set; }
+        public bool Hide { get; set; }
     }
 }

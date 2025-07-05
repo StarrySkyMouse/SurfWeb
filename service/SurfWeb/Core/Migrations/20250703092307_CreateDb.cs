@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -20,12 +19,6 @@ namespace Core.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    WRPlayerId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    WRPlayerName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    WRTime = table.Column<TimeSpan>(type: "time(6)", nullable: true),
-                    WRDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Difficulty = table.Column<string>(type: "varchar(16)", maxLength: 16, nullable: false)
@@ -33,6 +26,7 @@ namespace Core.Migrations
                     Img = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SurcessNumber = table.Column<int>(type: "int", nullable: false),
+                    SyncDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     BonusNumber = table.Column<int>(type: "int", nullable: false),
                     StageNumber = table.Column<int>(type: "int", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -62,7 +56,7 @@ namespace Core.Migrations
                     Type = table.Column<int>(type: "int", maxLength: 1, nullable: false),
                     Notes = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Time = table.Column<TimeSpan>(type: "time(6)", nullable: false),
+                    Time = table.Column<float>(type: "float", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDelete = table.Column<int>(type: "int", maxLength: 1, nullable: false)
@@ -79,6 +73,7 @@ namespace Core.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Auth = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Integral = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
@@ -102,19 +97,19 @@ namespace Core.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PlayerId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                    Auth = table.Column<int>(type: "int", nullable: false),
+                    PlayerId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PlayerName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
+                    PlayerName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MapId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
+                    MapId = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MapName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
+                    MapName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Type = table.Column<int>(type: "int", maxLength: 1, nullable: false),
                     Stage = table.Column<int>(type: "int", maxLength: 2, nullable: true),
-                    Time = table.Column<TimeSpan>(type: "time(6)", nullable: false),
+                    Time = table.Column<float>(type: "float", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IsWR = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDelete = table.Column<int>(type: "int", maxLength: 1, nullable: false)
@@ -137,7 +132,7 @@ namespace Core.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PlayerName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Value = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpDateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDelete = table.Column<int>(type: "int", maxLength: 1, nullable: false)

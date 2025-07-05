@@ -1,9 +1,4 @@
 ﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Dto
 {
@@ -26,9 +21,9 @@ namespace Core.Dto
         /// </summary>
         public required string PlayerName { get; set; }
         /// <summary>
-        /// 积分
+        /// 数值
         /// </summary>
-        public int Integral { get; set; }
+        public decimal Value { get; set; }
         /// <summary>
         /// 进度
         /// </summary>

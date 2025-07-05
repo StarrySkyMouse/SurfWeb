@@ -1,6 +1,5 @@
 ﻿using Aliyun.OSS;
 using Aliyun.OSS.Common;
-using System.Net;
 
 namespace Core.Utils.OSS
 {

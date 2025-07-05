@@ -20,7 +20,7 @@
             </el-table-column>
             <el-table-column align="center" label="积分" width="100">
               <template slot-scope="scope">
-                {{ scope.row.integral }}
+                {{ scope.row.value }}
               </template>
             </el-table-column>
             <el-table-column align="center" label="地图完成度" width="100">
@@ -63,7 +63,7 @@
                 </el-table-column>
                 <el-table-column align="center" label="数量" width="100">
                   <template slot-scope="scope">
-                    {{ scope.row.integral }}
+                    {{ scope.row.value | intValue }}
                   </template>
                 </el-table-column>
               </el-table></el-col>
@@ -79,13 +79,9 @@ import { getRankingList } from '@/api/ranking'
 
 export default {
   filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+    intValue(val) {
+      // 转为整数
+      return parseInt(val, 10)
     }
   },
   data() {

@@ -1,8 +1,6 @@
-using Core.Dto;
 using Core.Dto.Maps;
 using Core.IServices;
 using Core.Models;
-using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Client.Controllers
@@ -28,7 +26,7 @@ namespace Client.Controllers
         [HttpGet("GetMapInfo")]
         public async Task<MapDto?> GetMapInfo(string id)
         {
-            return await _mapServices.GetMapInfo(id);
+            return await _mapServices.GetMapInfoById(id);
         }
         /// <summary>
         /// 获取地图列表Count

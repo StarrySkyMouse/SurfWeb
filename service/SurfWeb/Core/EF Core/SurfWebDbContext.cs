@@ -1,15 +1,7 @@
 ﻿using Bogus;
-using Bogus.Bson;
-using Core.Utils.Extensions;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core
 {
@@ -46,6 +38,9 @@ namespace Core
                 var lambda = Expression.Lambda(body, param);
                 entityBuilder.HasQueryFilter(lambda);
             }
+            modelBuilder
+                .Entity<PlayerCompleteModel>()
+                .HasQueryFilter(t => t.Hide == false);
         }
         /// <summary>
         /// 配置数据库连接
@@ -80,12 +75,6 @@ namespace Core
                     var mapDifficulty = new List<string>() { "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T0" };
                     var fakerMapModel = new Faker<MapModel>()
                         .RuleFor(m => m.Id, f => mapId++.ToString())
-                        //从1~100中随机一个整数，可能为null，概率为0.2
-                        .RuleFor(m => m.WRPlayerId, f => f.Random.Int(0, 99).OrNull(f, .2f)?.ToString())
-                        //根据是否生成了WRPlayerId来决定后面的值
-                        .RuleFor(m => m.WRPlayerName, (f, m) => m.WRPlayerId != null ? "玩家" + m.WRPlayerId : null)
-                        .RuleFor(m => m.WRTime, (f, m) => m.WRPlayerId != null ? new TimeSpan(0, 0, f.Random.Int(1, 2), f.Random.Int(0, 60), f.Random.Int(0, 1000)) : null)
-                        .RuleFor(m => m.WRDate, (f, m) => m.WRPlayerId != null ? f.Date.Past() : null)
                         .RuleFor(m => m.Name, f => "surf_" + f.Address.City())
                         .RuleFor(m => m.Difficulty, f => f.PickRandom(mapDifficulty))
                         .RuleFor(m => m.Img, f => f.Image.PicsumUrl())
@@ -180,7 +169,7 @@ namespace Core
                                 return f.Random.Int(1, 5).ToString();
                             }
                         })
-                        .RuleFor(m => m.Time, f => new TimeSpan(0, 0, f.Random.Int(1, 2), f.Random.Int(0, 60), f.Random.Int(0, 1000)))
+                        .RuleFor(m => m.Time, f => f.Random.Float(100, 1000))
                         .RuleFor(m => m.CreateTime, f => DateTime.Now)
                         .RuleFor(m => m.UpDateTime, f => DateTime.Now)
                         .RuleFor(m => m.IsDelete, f => 0)
@@ -196,9 +185,8 @@ namespace Core
                         .RuleFor(m => m.MapName, (f, m) => fakerMapModel.Where(t => t.Id == m.MapId).First().Name)
                         .RuleFor(m => m.Type, f => (RecordTypeEnum)f.Random.Int(0, 2))
                         .RuleFor(m => m.Stage, (f, m) => m.Type != RecordTypeEnum.Main ? f.Random.Int(1, 5) : null)
-                        .RuleFor(m => m.Time, f => new TimeSpan(0, 0, f.Random.Int(0, 2), f.Random.Int(0, 60), f.Random.Int(0, 1000)))
+                        .RuleFor(m => m.Time, f => f.Random.Float(100, 1000))
                         .RuleFor(m => m.Date, f => f.Date.Past())
-                        .RuleFor(m => m.IsWR, f => f.Random.Bool(0.5f))
                         .RuleFor(m => m.CreateTime, f => DateTime.Now)
                         .RuleFor(m => m.UpDateTime, f => DateTime.Now)
                         .RuleFor(m => m.IsDelete, f => 0)
@@ -227,9 +215,9 @@ namespace Core
                             }
                         })
                         .RuleFor(m => m.Stage, (f, m) => m.Type != RecordTypeEnum.Main ? f.Random.Int(1, 5) : null)
-                        .RuleFor(m => m.Time, f => new TimeSpan(0, 0, f.Random.Int(0, 2), f.Random.Int(0, 60), f.Random.Int(0, 1000)))
+                        .RuleFor(m => m.Time, f => f.Random.Float(100, 1000))
                         .RuleFor(m => m.Date, f => f.Date.Past())
-                        .RuleFor(m => m.IsWR, f => f.Random.Bool(0.5f))
+                        .RuleFor(m => m.Hide, false)
                         .RuleFor(m => m.CreateTime, f => DateTime.Now)
                         .RuleFor(m => m.UpDateTime, f => DateTime.Now)
                         .RuleFor(m => m.IsDelete, f => 0)

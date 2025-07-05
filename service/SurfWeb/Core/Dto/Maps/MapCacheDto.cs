@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Dto.Maps
+﻿namespace Core.Dto.Maps
 {
     public class MapCacheDto
     {
@@ -16,6 +10,10 @@ namespace Core.Dto.Maps
         /// 地图名称
         /// </summary>
         public required string Name { get; set; }
+        /// <summary>
+        /// 难度
+        /// </summary>
+        public required string Difficulty { get; set; }
         /// <summary>
         /// 地图奖励关数量
         /// </summary>

@@ -24,14 +24,9 @@
                     {{ scope.$index + 1 }}
                   </template>
                 </el-table-column>
-                <el-table-column align="center" :label="recordType == 0 ? '难度' : '阶段'" width="80">
+                <el-table-column align="center" :label="'地图/'+(recordType == 0 ? '难度' : '阶段')">
                   <template slot-scope="scope">
-                    {{ scope.row.notes }}
-                  </template>
-                </el-table-column>
-                <el-table-column align="center" label="地图">
-                  <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row.mapId,scope.row.mapName)">{{ scope.row.mapName }}</el-link>
+                    <el-link type="primary" @click="openMap(scope.row.mapId,scope.row.mapName)">{{ scope.row.mapName }}({{ scope.row.notes }})</el-link>
                   </template>
                 </el-table-column>
                 <el-table-column align="center" label="玩家">
@@ -67,14 +62,9 @@
                 {{ scope.$index + 1 }}
               </template>
             </el-table-column>
-            <el-table-column align="center" label="难度" width="100">
+            <el-table-column align="center" label="名称/难度">
               <template slot-scope="scope">
-                {{ scope.row.difficulty }}
-              </template>
-            </el-table-column>
-            <el-table-column align="center" label="名称">
-              <template slot-scope="scope">
-                <el-link type="primary" @click="openMap(scope.row.id,scope.row.name)">{{ scope.row.name }}</el-link>
+                <el-link type="primary" @click="openMap(scope.row.id,scope.row.name)">{{ scope.row.name }}({{ scope.row.difficulty }})</el-link>
               </template>
             </el-table-column>
             <el-table-column align="center" label="日期" width="180">
@@ -99,14 +89,9 @@
                 {{ scope.$index + 1 }}
               </template>
             </el-table-column>
-            <el-table-column align="center" label="难度" width="120">
+            <el-table-column align="center" label="名称/难度">
               <template slot-scope="scope">
-                {{ scope.row.difficulty }}
-              </template>
-            </el-table-column>
-            <el-table-column align="center" label="名称">
-              <template slot-scope="scope">
-                <el-link type="primary" @click="openMap(scope.row.id,scope.row.name)">{{ scope.row.name }}</el-link>
+                <el-link type="primary" @click="openMap(scope.row.id,scope.row.name)">{{ scope.row.name }}({{ scope.row.difficulty }})</el-link>
               </template>
             </el-table-column>
             <el-table-column align="center" label="完成人数" width="200">
@@ -125,16 +110,6 @@
 import { getNewRecordList, getNewMapList, getPopularMapList } from '@/api/news'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       recordType: 0,

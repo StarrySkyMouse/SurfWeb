@@ -1,12 +1,6 @@
-﻿using Core.Dto;
-using Core.Dto.NewRecords;
+﻿using Core.Dto.NewRecords;
 using Core.IServices.Base;
 using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.IServices
 {
@@ -24,5 +18,7 @@ namespace Core.IServices
         /// 获取热门地图
         /// </summary>
         Task<List<PopularMapDto>> GetPopularMapList();
+        //更新新的
+        Task UpdateNewRecord();
     }
 }

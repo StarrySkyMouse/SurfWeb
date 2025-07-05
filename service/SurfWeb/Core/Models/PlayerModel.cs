@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
@@ -12,6 +7,10 @@ namespace Core.Models
     /// </summary>
     public class PlayerModel : BaseEntity
     {
+        /// <summary>
+        /// 腐竹玩家id
+        /// </summary>
+        public int Auth { get; set; }
         /// <summary>
         /// 玩家名
         /// </summary>
