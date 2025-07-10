@@ -1,0 +1,65 @@
+﻿using System.Reflection;
+using Configurations.JsonConverters;
+using Configurations.Middlewares;
+using Microsoft.Extensions.Hosting;
+
+namespace Configurations;
+
+/// <summary>
+/// </summary>
+public static class WebApiConfiguration
+{
+    /// <summary>
+    ///     配置Web API相关服务
+    /// </summary>
+    public static void AddWebApiConfiguration(this WebApplicationBuilder builder)
+    {
+        // 注册Swagger
+        builder.Services.AddEndpointsApiExplorer();
+        //当swagger无法使用时请尝试清除浏览器缓存！！！！！！！！！！！！
+        builder.Services.AddSwaggerGen(options =>
+        {
+            var xmlFile = $"{Assembly.GetEntryAssembly()?.GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath, true);
+        });
+        // 注册控制器和数据格式化
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new DateTiemConverter());
+                options.JsonSerializerOptions.Converters.Add(new FloatConverter());
+                options.JsonSerializerOptions.Converters.Add(new DecimalConverter());
+            });
+        //注册CORS策略 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+        builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+        });
+    }
+
+    /// <summary>
+    ///     使用Web API中间件
+    /// </summary>
+    /// <param name="app"></param>
+    public static void UseAppMiddleware(this WebApplication app)
+    {
+        // 调试环境下启用Swagger
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+        //Cors中间件
+        app.UseCors("AllowAllOrigins");
+        //api响应中间件
+        app.UseMiddleware<ApiResponseMiddleware>();
+        app.UseAuthorization();
+        app.MapControllers();
+    }
+}

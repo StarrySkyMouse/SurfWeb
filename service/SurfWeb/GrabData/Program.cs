@@ -1,20 +1,20 @@
 ﻿using ClosedXML.Excel;
-using Core;
-using Core.Models;
-using Core.Utils.OSS;
 using GrabData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Model.Entitys;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using Repositories;
+using Utils.OSS;
 
-AliyunOSSUtil _aliyunOSSUtil;
-AliyunOSSConfig _aliyunOSSConfig;
 IWebDriver _driver;
-SurfWebDbContext _dbContext;
 string _scanPath;
 int _suspendTime;
+AliyunOSSConfig _aliyunOSSConfig;
+AliyunOSSUtil _aliyunOSSUtil;
+SurfWebDbContext _dbContext;
 
 Init();
 await Scan();

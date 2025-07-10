@@ -57,9 +57,15 @@
                     {{ scope.$index + 1 }}
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="地图">
+                <el-table-column align="center" label="地图/难度">
                   <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}</el-link>
+                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty
+                      }})</el-link>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" :label="wrRecordType != 0 ? '阶段' : ''" width="100">
+                  <template slot-scope="scope">
+                    {{ scope.row.stage }}
                   </template>
                 </el-table-column>
                 <el-table-column align="center" label="时间">
@@ -105,10 +111,11 @@
                 </el-table-column>
                 <el-table-column align="center" label="地图/难度">
                   <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty }})</el-link>
+                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty
+                      }})</el-link>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="阶段" v-if="succeessRecordType != 0" width="100">
+                <el-table-column align="center" :label="succeessRecordType != 0 ? '阶段' : ''" width="100">
                   <template slot-scope="scope">
                     {{ scope.row.stage }}
                   </template>
@@ -156,10 +163,11 @@
                 </el-table-column>
                 <el-table-column align="center" label="地图/难度">
                   <template slot-scope="scope">
-                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty }})</el-link>
+                    <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{ scope.row.difficulty
+                      }})</el-link>
                   </template>
                 </el-table-column>
-                <el-table-column align="center" label="阶段" v-if="failRecordType != 0" width="100">
+                <el-table-column align="center" :label="failRecordType != 0 ? '阶段' : ''" width="100">
                   <template slot-scope="scope">
                     {{ scope.row.stage }}
                   </template>

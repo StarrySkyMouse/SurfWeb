@@ -37,6 +37,17 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/serverList',
+    component: Layout,
+    redirect: '/serverList',
+    children: [{
+      path: '',
+      name: 'serverList',
+      component: () => import('@/views/serverList/index'),
+      meta: { title: '服务器', icon: 'serverList', affix: true }
+    }]
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/ranking',

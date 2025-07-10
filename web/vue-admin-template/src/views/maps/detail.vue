@@ -38,9 +38,14 @@
                 {{ scope.$index + 1 }}
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="'玩家'+(recordType!=0?'/阶段':'')">
+            <el-table-column align="center" label="玩家">
               <template slot-scope="scope">
-                <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}<template v-if="recordType!=0">({{ scope.row.stage }})</template></el-link>
+                <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}</el-link>
+              </template>
+            </el-table-column>
+            <el-table-column align="center" :label="recordType!=0?'阶段':''" width="60">
+              <template slot-scope="scope">
+                {{ scope.row.stage }}
               </template>
             </el-table-column>
             <el-table-column align="center" label="时间">
