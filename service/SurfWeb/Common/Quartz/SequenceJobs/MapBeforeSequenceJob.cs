@@ -1,10 +1,9 @@
-﻿using Common.Quartz;
-using Model.ExteriorEntitys;
+﻿using Model.ExteriorEntitys;
 using Quartz;
 using Repositories.Exterior;
 using Services.IServices;
 
-namespace Services.SequenceJobs
+namespace Common.Quartz.SequenceJobs
 {
     /// <summary>
     /// 地图同步

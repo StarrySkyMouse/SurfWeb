@@ -1,12 +1,11 @@
-﻿using Common.Quartz;
-using Model.Entitys;
+﻿using Model.Entitys;
 using Model.ExteriorEntitys;
 using Quartz;
 using Repositories.Exterior;
 using Services.IServices;
 using Utils.DateTime;
 
-namespace Services.SequenceJobs
+namespace Common.Quartz.SequenceJobs
 {
     /// <summary>
     /// 记录同步
@@ -45,7 +44,6 @@ namespace Services.SequenceJobs
                 authList.AddRange(syncData1.Select(t => t.auth));
                 authList.AddRange(syncData2.Select(t => t.auth));
                 authList = authList.Distinct().ToList();
-                var mapList = new List<string>();
                 //通过Auth获取PlayerId
                 var authDic = await _playerServices.GetPlayerInfoListByAuth(authList);
                 //通过mapName获取MapId

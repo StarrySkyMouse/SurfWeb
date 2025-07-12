@@ -1,4 +1,5 @@
-﻿using Services.Caches;
+﻿using Common.Caches;
+using Model.Cahces;
 
 namespace Configurations;
 
@@ -12,7 +13,9 @@ public static class CacheConfiguration
     /// <param name="builder"></param>
     public static void AddCacheConfiguration(this WebApplicationBuilder builder)
     {
-        //注册缓存
+        //注册缓存存储对象
         builder.Services.AddSingleton<DataCache>();
+        //注册缓存管理对象
+        builder.Services.AddScoped<CacheManage>();
     }
 }

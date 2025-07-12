@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Common.Quartz;
+using Common.Quartz.SequenceJobs;
 using Quartz;
-using Services.SequenceJobs;
 
 namespace Configurations;
 
@@ -54,14 +54,22 @@ public static class JobConfiguration
         builder.Services.AddQuartz(q =>
         {
             q.AddJob<SequenceJob>(opts => opts.WithIdentity("SequenceJob"));
-            var jobInterval = builder.Configuration.GetSection("JobInterval").Get<int?>();
-            if (jobInterval == null) throw new InvalidOperationException("注册定时任务配置JobInterval部分缺失");
+            q.AddJob<ServerInfoCacheJob>(opts => opts.WithIdentity("ServerInfoCacheJob"));
+            var jobConfig = builder.Configuration.GetSection("JobConfig").Get<JobConfig>();
+            if (jobConfig == null) throw new InvalidOperationException("注册定时任务配置JobInterval部分缺失");
             q.AddTrigger(opts => opts
                     .ForJob("SequenceJob") // 关联到名为 "CacheJob" 的 Job
                     .WithIdentity("SequenceJob_Trigger") // 触发器的唯一标识名
                     .WithSimpleSchedule(x => x //简单调度计划
-                        .WithIntervalInMinutes(jobInterval.Value) // 每xx分钟执行一次
+                        .WithIntervalInMinutes(jobConfig.SequenceJobMinute) // 每xx分钟执行一次
                         .RepeatForever()) // 永久重复执行
+            );
+            q.AddTrigger(opts => opts
+                    .ForJob("ServerInfoCacheJob") 
+                    .WithIdentity("ServerInfoCacheJob_Trigger")
+                    .WithSimpleSchedule(x => x
+                        .WithIntervalInSeconds(jobConfig.ServerInfoCacheJobSecond) 
+                        .RepeatForever())
             );
         });
         //添加Quartz到HostedService服务

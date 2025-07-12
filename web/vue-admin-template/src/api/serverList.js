@@ -6,9 +6,3 @@ export function getServerInfo() {
     method: 'get'
   })
 }
-export function getServerPlayerList() {
-  return request({
-    url: '/Steam/GetServerPlayerList',
-    method: 'get'
-  })
-}

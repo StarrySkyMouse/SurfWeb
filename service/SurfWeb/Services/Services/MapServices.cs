@@ -189,6 +189,14 @@ namespace Services.Services
                 _repository.SaveChanges();
             }
         }
+
+        public async Task<MapModel?> GetMapInfoByName(string names)
+        {
+            return await _repository
+                .Where(t => t.Name.Trim().ToUpper() == names.Trim().ToUpper())
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<List<MapModel>> GetMapInfoByNameList(IEnumerable<string> names)
         {
             return await _repository

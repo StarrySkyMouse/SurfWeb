@@ -26,11 +26,11 @@ namespace Services.Services
         /// <returns></returns>
         public (DateTime?, DateTime?) GetFinallyDateTime()
         {
-            var MainOrBountyDateTime = _repository
+            var MainOrBountyDateTime = _repository.IgnoreQueryFilters()
                 .Where(t => t.Type == RecordTypeEnum.Main || t.Type == RecordTypeEnum.Bounty)
                 .OrderByDescending(t => t.Date)
                 .FirstOrDefault()?.Date;
-            var StageDateTime = _repository
+            var StageDateTime = _repository.IgnoreQueryFilters()
                 .Where(t => t.Type == RecordTypeEnum.Stage)
                 .OrderByDescending(t => t.Date)
                 .FirstOrDefault()?.Date;
@@ -42,6 +42,7 @@ namespace Services.Services
         public async Task<List<PlayerCompleteModel>> GetByDate(DateTime date, List<RecordTypeEnum> typeList)
         {
             return await _repository
+                .IgnoreQueryFilters()
                 .Where(t => typeList.Contains(t.Type) && t.Date >= date)
                 .ToListAsync();
         }
@@ -142,7 +143,8 @@ namespace Services.Services
                         )
                     );
                 }
-                var subResult = await _repository.Where(predicate).ToListAsync();
+                var subResult = await _repository
+                    .IgnoreQueryFilters().Where(predicate).ToListAsync();
                 result.AddRange(subResult);
             }
             return result;
@@ -169,7 +171,8 @@ namespace Services.Services
                         t.Stage == item.stage
                     );
                 }
-                var subResult = await _repository.Where(predicate).ToListAsync();
+                var subResult = await _repository
+                    .IgnoreQueryFilters().Where(predicate).ToListAsync();
                 result.AddRange(subResult);
             }
             return result;

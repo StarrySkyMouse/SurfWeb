@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Model.Cahces;
 using Model.Dtos.Rankings;
 using Model.Entitys;
 using Repositories.IRepository;
 using Services.Base;
-using Services.Caches;
 using Services.IServices;
 
 namespace Services.Services
@@ -50,7 +50,7 @@ namespace Services.Services
                         SucceedNumber = t.Count()
                     })
                     .ToListAsync();
-                var sumMap = _dataCache.Snapshot.MapMainList.Count();
+                var sumMap = _dataCache.MapSnapshot.MapMainList.Count();
                 foreach (var item in ranKingList)
                 {
                     var playerComplete = playerCompleteList.FirstOrDefault(t => t.PlayerId == item.PlayerId);

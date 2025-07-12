@@ -2,30 +2,23 @@
 {
     public class DateTimeUtil
     {
+        private static readonly TimeZoneInfo ChinaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("China Standard Time");
         /// <summary>
-        /// 获取当前时间的Unix时间戳
-        /// </summary>
-        public static long GetCurrentUnixTimestamp()
-        {
-            return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        }
-        /// <summary>
-        /// 将Unix时间戳转换为DateTime
+        /// 将Unix时间戳转换为北京时间
         /// </summary>
         public static System.DateTime FromUnixTimestamp(long unixTimeStamp)
         {
-            return DateTimeOffset.FromUnixTimeSeconds(unixTimeStamp).UtcDateTime;
+            var utcTime = DateTimeOffset.FromUnixTimeSeconds(unixTimeStamp).UtcDateTime;
+            return TimeZoneInfo.ConvertTimeFromUtc(utcTime, ChinaTimeZone);
         }
         /// <summary>
-        /// 将DateTime时间戳转换为Unix
+        /// 将DateTime时间戳（本地或UTC）转换为北京时间的Unix
         /// </summary>
         public static long ToUnixTimestamp(System.DateTime? dateTime)
         {
-            if (dateTime == null)
-            {
-                return 0;
-            }
-            return new DateTimeOffset(((System.DateTime)dateTime).ToUniversalTime()).ToUnixTimeSeconds();
+            if (dateTime == null) return 0;
+            var beijingTime = TimeZoneInfo.ConvertTime(((System.DateTime)dateTime), ChinaTimeZone);
+            return new DateTimeOffset(beijingTime).ToUnixTimeSeconds();
         }
     }
 }

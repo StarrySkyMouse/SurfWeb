@@ -1,16 +1,20 @@
 <template>
   <div class="app-container">
     <div class="card">
-      <img class="img" :src="serverInfo.mapInfo.img" alt="未收录地图图片" @click="openMap()" style="cursor: pointer;" />
+      <div v-if="serverInfo.mapInfo == null" class="img"
+        style="display: flex; justify-content: center;align-items: center;">
+        网站暂未收录地图信息
+      </div>
+      <img v-else class="img" :src="serverInfo.mapInfo.img" alt="未收录地图图片" @click="openMap()" style="cursor: pointer;" />
       <div class="info">
         <div class="info-item">
-          <span>地图:{{ serverInfo.map }}</span>
+          <span>地图:<span class="map-name" :title="serverInfo.map">{{ serverInfo.map }}</span></span>
         </div>
         <div class="info-item">
-          <span>难度:{{ serverInfo.mapInfo.difficulty }}</span>
+          <span>难度:{{ serverInfo.mapInfo == null ? '' : serverInfo.mapInfo.difficulty }}</span>
         </div>
         <div class="info-item">
-          <span>玩家: <el-link type="primary" @click="dialogVisible = true">{{ serverPlayerList.length }}/{{
+          <span>玩家: <el-link type="primary" @click="dialogVisible = true">{{ serverInfo.playerInfos.length }}/{{
             serverInfo.maxPlayers }}</el-link></span>
         </div>
         <div class="info-item-button">
@@ -19,7 +23,7 @@
       </div>
     </div>
     <el-dialog title="查看玩家" :visible.sync="dialogVisible" width="30%">
-      <el-table :data="serverPlayerList" borderfithighlight-current-row>
+      <el-table :data="serverInfo.playerInfos" borderfithighlight-current-row>
         <el-table-column align="center" label="#" width="120">
           <template slot-scope="scope">
             {{ scope.$index + 1 }}
@@ -41,39 +45,30 @@
 </template>
 <script>
 
-import { getServerInfo, getServerPlayerList } from '@/api/serverList'
+import { getServerInfo } from '@/api/serverList'
 
 export default {
   data() {
     return {
-      isMobile: window.innerWidth < 768,
+      intervalId: null,
       dialogVisible: false,
-      serverInfo: {},
-      serverPlayerList: []
+      serverInfo: {}
     }
   },
   created() {
     this.loadData()
   },
   mounted() {
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
-    this.$nextTick(() => {
-      const scrollBody = this.$el.querySelector('.scroll-body')
-      if (scrollBody) {
-        scrollBody.addEventListener('scroll', this.handleScroll)
-      }
-      window.addEventListener('resize', this.handleResize)
-    })
+  },
+  deactivated() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
+    }
   },
   beforeDestroy() {
-    document.body.style.overflow = ''
-    document.documentElement.style.overflow = ''
-    const scrollBody = this.$el.querySelector('.scroll-body')
-    if (scrollBody) {
-      scrollBody.removeEventListener('scroll', this.handleScroll)
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
     }
-    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     openMap() {
@@ -84,26 +79,17 @@ export default {
         })
       }
     },
-    handleScroll(e) {
-      const target = e.target
-      if (target.scrollTop + target.clientHeight >= target.scrollHeight - 10) {
-        this.loadData()
-      }
-    },
-    handleResize() {
-      this.isMobile = window.innerWidth < 768
-    },
     fetchData() {
       getServerInfo().then(response => {
         this.serverInfo = response.data
       })
-      getServerPlayerList().then(response => {
-        this.serverPlayerList = response.data
-      })
     },
     loadData() {
-      setInterval(this.fetchData, 10000)
+      if (this.intervalId) {
+        clearInterval(this.intervalId)
+      }
       this.fetchData()
+      this.intervalId = setInterval(this.fetchData, 10000)
     }
   }
 }
@@ -127,7 +113,7 @@ export default {
 }
 
 .img {
-  flex: 2;
+  flex: 3;
   height: 100%;
   object-fit: cover;
   border-top-left-radius: 12px;
@@ -136,7 +122,7 @@ export default {
 }
 
 .info {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -178,5 +164,20 @@ export default {
 .info-item-button button:hover {
   background: #6a6e81;
   box-shadow: 0 2px 8px rgba(64, 158, 255, 0.15);
+}
+
+.map-name {
+  max-width: 160px;
+  /* 限制最大宽度，可按需求调整 */
+  overflow: hidden;
+  /* 溢出隐藏 */
+  text-overflow: ellipsis;
+  /* 超出部分显示省略号 */
+  white-space: nowrap;
+  /* 不换行 */
+  display: inline-block;
+  /* 必须设置为inline-block或block */
+  vertical-align: middle;
+  /* 和文本对齐 */
 }
 </style>

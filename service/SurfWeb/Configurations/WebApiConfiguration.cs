@@ -47,6 +47,7 @@ public static class WebApiConfiguration
     /// <param name="app"></param>
     public static void UseAppMiddleware(this WebApplication app)
     {
+        app.Services.CreateAsyncScope(); //启用AspectCore依赖注入
         // 调试环境下启用Swagger
         if (app.Environment.IsDevelopment())
         {

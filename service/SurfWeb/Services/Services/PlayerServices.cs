@@ -4,7 +4,6 @@ using Model.Dtos.Players;
 using Model.Entitys;
 using Repositories.IRepository;
 using Services.Base;
-using Services.Caches;
 using Services.IServices;
 using Utils.Extensions;
 
@@ -95,7 +94,7 @@ namespace Services.Services
         }
         private IEnumerable<MapWrCache> GetPlayerWRQueryable(string id, RecordTypeEnum recordType)
         {
-            return _dataCache.Snapshot.MapWrCaches.OrderByDescending(t => t.Date).Where(t => t.PlayerId == id && t.Type == recordType);
+            return _dataCache.MapSnapshot.MapWrCaches.OrderByDescending(t => t.Date).Where(t => t.PlayerId == id && t.Type == recordType);
         }
         /// <summary>
         /// 获取玩家已完成Count
@@ -174,7 +173,7 @@ namespace Services.Services
                 var list = await _playerCompleteRepository
                         .Where(a => a.PlayerId == id && a.Type == recordType)
                         .Select(a => a.MapId).ToListAsync();
-                return _dataCache.Snapshot.MapMainList
+                return _dataCache.MapSnapshot.MapMainList
                     .Where(t => !list.Contains(t.Id))
                     .OrderBy(t => t.Name)
                     .Skip((pageIndex - 1) * 10)
@@ -191,7 +190,7 @@ namespace Services.Services
                 var list = await _playerCompleteRepository
                             .Where(a => a.PlayerId == id && a.Type == recordType)
                             .Select(a => a.MapId + "@@" + a.Stage).ToListAsync();
-                return _dataCache.Snapshot.MapBountyList
+                return _dataCache.MapSnapshot.MapBountyList
                     //获取未完成的阶段
                     .Where(t => !list.Contains(t.Id + "@@" + t.Stage))
                     .OrderBy(t => t.Name)
@@ -210,7 +209,7 @@ namespace Services.Services
                 var list = await _playerCompleteRepository
                             .Where(a => a.PlayerId == id && a.Type == recordType)
                             .Select(a => a.MapId + "@@" + a.Stage).ToListAsync();
-                return _dataCache.Snapshot.MapStageList
+                return _dataCache.MapSnapshot.MapStageList
                     //获取未完成的阶段
                     .Where(t => !list.Contains(t.Id + "@@" + t.Stage))
                     .OrderBy(t => t.Name)

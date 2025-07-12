@@ -11,6 +11,7 @@ namespace Services.IServices
         /// 获取地图信息
         /// </summary>
         Task<MapDto?> GetMapInfoById(string id);
+        Task<MapModel?> GetMapInfoByName(string names);
         Task<List<MapModel>> GetMapInfoByNameList(IEnumerable<string> names);
         /// <summary>
         /// 获取地图列表

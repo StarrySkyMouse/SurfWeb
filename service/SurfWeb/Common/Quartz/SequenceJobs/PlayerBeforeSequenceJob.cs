@@ -1,11 +1,10 @@
-﻿using Common.Quartz;
-using Model.Entitys;
+﻿using Model.Entitys;
 using Model.ExteriorEntitys;
 using Quartz;
 using Repositories.Exterior;
 using Services.IServices;
 
-namespace Services.SequenceJobs
+namespace Common.Quartz.SequenceJobs
 {
     /// <summary>
     /// 用户数据同步前

@@ -1,8 +1,7 @@
-﻿using Common.Quartz;
-using Quartz;
+﻿using Quartz;
 using Services.IServices;
 
-namespace Services.SequenceJobs
+namespace Common.Quartz.SequenceJobs
 {
     /// <summary>
     /// 用户数据同步后
