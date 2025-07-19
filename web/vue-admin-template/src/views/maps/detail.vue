@@ -32,40 +32,53 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-table v-loading="listLoading" :data="data" element-loading-text="Loading" borderfithighlight-current-row>
-            <el-table-column align="center" label="#" width="80">
-              <template slot-scope="scope">
-                {{ scope.$index + 1 }}
-              </template>
-            </el-table-column>
-            <el-table-column align="center" label="玩家">
-              <template slot-scope="scope">
-                <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}</el-link>
-              </template>
-            </el-table-column>
-            <el-table-column align="center" :label="recordType!=0?'阶段':''" width="60">
-              <template slot-scope="scope">
-                {{ scope.row.stage }}
-              </template>
-            </el-table-column>
-            <el-table-column align="center" label="时间">
-              <template slot-scope="scope">
-                {{ scope.row.time }}
-              </template>
-            </el-table-column>
-            <el-table-column align="center" label="日期">
-              <template slot-scope="scope">
-                {{ scope.row.date }}
-              </template>
-            </el-table-column>
-          </el-table>
+          <div class="tabs-wrapper">
+            <div class="tabs-header">
+              <teleport v-for="(item, idx) in tabs" :key="idx">
+                <div class="tab-item" :class="{ active: idx === 0 }" @click="showTab(idx)">{{ item }}</div>
+              </teleport>
+            </div>
+            <div class="tabs-content" id="tab-content">
+              <el-table v-loading="listLoading" :data="data" element-loading-text="Loading"
+                borderfithighlight-current-row>
+                <el-table-column align="center" label="#" width="80">
+                  <template slot-scope="scope">
+                    {{ scope.row.ranking }}
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="玩家">
+                  <template slot-scope="scope">
+                    <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.playerName }}</el-link>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" :label="recordType != 0 ? '阶段' : ''" width="60">
+                  <template slot-scope="scope">
+                    {{ scope.row.stage }}
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="时间">
+                  <template slot-scope="scope">
+                    {{ scope.row.time | FormattingTime }}<template v-if="scope.row.ranking != 1">(+{{ scope.row.gapTime
+                      |
+                      FormattingTime
+                    }})</template>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" label="日期">
+                  <template slot-scope="scope">
+                    {{ scope.row.date }}
+                  </template>
+                </el-table-column>
+              </el-table>
+              <el-pagination v-show="!isMobile" layout="total, sizes, prev, pager, next, jumper"
+                :current-page="pageIndex" :page-sizes="[10]" :total="total" @current-change="handleCurrentChange" />
+              <el-pagination style="text-align: center;" v-show="isMobile" :current-page="pageIndex" small
+                :page-sizes="[10]" layout="prev, pager, next" :total="total" @current-change="handleCurrentChange">
+              </el-pagination>
+            </div>
+          </div>
         </el-col>
       </el-row>
-      <el-pagination v-show="!isMobile" layout="total, sizes, prev, pager, next, jumper" :current-page="pageIndex"
-        :page-sizes="[10]" :total="total" @current-change="handleCurrentChange" />
-      <el-pagination style="text-align: center;" v-show="isMobile" :current-page="pageIndex" small :page-sizes="[10]"
-        layout="prev, pager, next" :total="total" @current-change="handleCurrentChange">
-      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -73,12 +86,18 @@
 import { getMapTop100Count, getMapTop100List, getMapInfo } from '@/api/maps'
 
 export default {
+  filters: {
+    FormattingTime(val) {
+      return val.toString().replace('00:', '').replace('00:', '')
+    }
+  },
   data() {
     return {
-      recordType: 0,
+      recordType: '0',
       mapInfo: null,
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      input3: '123',
+      data: [],
+      tabs: [1],
+      tabActive: 1,
       isMobile: window.innerWidth < 768,
       radio1: '全部',
       list: null,
@@ -122,30 +141,95 @@ export default {
       this.isMobile = window.innerWidth < 768
     },
     getTop100Count() {
-      getMapTop100Count({ id: this.mapId, recordType: this.recordType }).then(response => {
+      getMapTop100Count({ id: this.mapId, recordType: this.recordType, stage: this.tabActive }).then(response => {
         this.total = response.data
       })
     },
     getTop100Data() {
       this.listLoading = true
-      getMapTop100List({ id: this.mapId, recordType: this.recordType, pageIndex: this.pageIndex }).then(response => {
+      getMapTop100List({ id: this.mapId, recordType: this.recordType, stage: this.tabActive, pageIndex: this.pageIndex }).then(response => {
         this.data = response.data
         this.listLoading = false
       })
     },
     changeWrBtn() {
-      this.pageIndex = 1
-      this.getTop100Count()
-      this.getTop100Data()
+      if (this.recordType === '0') {
+        this.tabs = [1]
+      } else if (this.recordType === '1') {
+        this.tabs = this.mapInfo.bonusNumber > 0 ? Array.from({ length: this.mapInfo.bonusNumber }, (_, i) => i + 1) : [1]
+      } else {
+        this.tabs = this.mapInfo.stageNumber > 0 ? Array.from({ length: this.mapInfo.stageNumber }, (_, i) => i + 1) : [1]
+      }
+      this.showTab(0)
     },
     handleCurrentChange(val) {
       this.pageIndex = val
+      this.getTop100Data()
+    },
+    showTab(idx) {
+      this.tabActive = idx + 1
+      document.querySelectorAll('.tab-item').forEach((el, i) => {
+        if (i === idx) {
+          el.classList.add('active')
+        } else {
+          el.classList.remove('active')
+        }
+      })
+      this.pageIndex = 1
+      this.getTop100Count()
       this.getTop100Data()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.tabs-wrapper {
+  background: #fff;
+  border-radius: 4px;
+  width: 100%;
+  margin: 30px auto;
+  border: 1px solid #dcdfe6;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+  overflow: hidden;
+}
+
+.tabs-header {
+  display: flex;
+  background: #f7f9fa;
+}
+
+.tab-item {
+  padding: 12px 24px;
+  color: #888;
+  cursor: pointer;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.tab-item.active {
+  color: #3d3f48;
+  background: #fff;
+  font-weight: 800;
+  border-bottom: 2px solid #3d3f48;
+}
+
+.tabs-content {
+  padding: 24px 8px;
+  font-size: 20px;
+  color: #222;
+}
+
+
+
+
+
+
+
+
 ::v-deep {
 
   .el-card {

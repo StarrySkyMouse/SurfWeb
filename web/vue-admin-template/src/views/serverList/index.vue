@@ -5,10 +5,14 @@
         style="display: flex; justify-content: center;align-items: center;">
         网站暂未收录地图信息
       </div>
-      <img v-else class="img" :src="serverInfo.mapInfo.img" alt="未收录地图图片" @click="openMap()" style="cursor: pointer;" />
+      <img v-else class="img" :src="serverInfo.mapInfo.img" alt="未收录地图图片" />
       <div class="info">
         <div class="info-item">
-          <span>地图:<span class="map-name" :title="serverInfo.map">{{ serverInfo.map }}</span></span>
+          <span>地图:
+            <span class="map-name" :title="serverInfo.map" v-if="serverInfo.mapInfo == null">{{ serverInfo.map }}</span>
+            <el-link v-else class="map-name" :title="serverInfo.map" type="primary" @click="openMap()">{{ serverInfo.map
+              }}</el-link>
+          </span>
         </div>
         <div class="info-item">
           <span>难度:{{ serverInfo.mapInfo == null ? '' : serverInfo.mapInfo.difficulty }}</span>
