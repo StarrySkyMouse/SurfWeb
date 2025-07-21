@@ -1,12 +1,7 @@
-﻿using System.Data;
-using System.Linq.Expressions;
-using Model;
-using Model.Models.Base;
-using SqlSugar;
+﻿using Model.Models.Base;
 
-namespace IServices.Base
+namespace IServices.Base;
+
+public interface IBaseServices<TEntity> where TEntity : BaseEntity
 {
-    public interface IBaseServices<TEntity> where TEntity : BaseEntity
-    {
-    }
 }

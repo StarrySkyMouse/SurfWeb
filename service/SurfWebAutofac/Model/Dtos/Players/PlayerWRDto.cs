@@ -1,20 +1,21 @@
-﻿namespace Model.Dtos.Players
-{
-    public class PlayerWRDto
-    {
-        /// <summary>
-        /// 地图Id
-        /// </summary>
-        public required string MapId { get; set; }
-        /// <summary>
-        /// 地图名称
-        /// </summary>
-        public required string MapName { get; set; }
-        /// <summary>
-        /// 难度
-        /// </summary>
-        public required string Difficulty { get; set; }
-        public List<PlayerStageDto> Stages { get; set; } = new List<PlayerStageDto>();
-    }
+﻿namespace Model.Dtos.Players;
 
+public class PlayerWRDto
+{
+    /// <summary>
+    ///     地图Id
+    /// </summary>
+    public  string MapId { get; set; }
+
+    /// <summary>
+    ///     地图名称
+    /// </summary>
+    public  string MapName { get; set; }
+
+    /// <summary>
+    ///     难度
+    /// </summary>
+    public  string Difficulty { get; set; }
+
+    public List<PlayerStageDto> Stages { get; set; } = new();
 }

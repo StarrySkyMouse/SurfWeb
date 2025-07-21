@@ -31,7 +31,7 @@ namespace Common.Caches
         {
             var mapList = await _mapServices.GetMapCacheList();
             var mainList = mapList
-                .Select(m => new MapMainCache { Id = m.Id, Name = m.Name, Difficulty = m.Difficulty })
+                .Select(m => new MapMainCache { Id = m.Id, Name = m.Name, Difficulty = m.Difficulty, Img = m.Img })
                 .ToImmutableList();
             var bountyList = mapList
                 .Where(t => t.BonusNumber != 0)
@@ -42,6 +42,7 @@ namespace Common.Caches
                             Id = t.Id,
                             Name = t.Name,
                             Difficulty = t.Difficulty,
+                            Img = t.Img,
                             Stage = b
                         }))
                 .ToImmutableList();
@@ -54,6 +55,7 @@ namespace Common.Caches
                             Id = t.Id,
                             Name = t.Name,
                             Difficulty = t.Difficulty,
+                            Img = t.Img,
                             Stage = b
                         }))
                 .ToImmutableList();
@@ -66,26 +68,6 @@ namespace Common.Caches
             var serverInfo = SteamUtil.GetServerInfo("124.223.198.48", 27070);
             var playerListInfo = SteamUtil.GetServerPlayerList("124.223.198.48", 27070);
             var mapInfo = await _mapServices.GetMapInfoByName(serverInfo.Map);
-            //获取新加入的玩家
-            var addList = playerListInfo.Where(t => !_dataCache.OldPlayerInfoList.Contains(t.Name));
-            //获取离开的玩家
-            var deleteList= _dataCache.OldPlayerInfoList.Where(t => !playerListInfo.Select(a => a.Name).Contains(t));
-            //获取要监控的玩家
-            var playeInfo= _playerServices.GetById("42bed37b-1f26-4903-851e-658549e8649d");
-            if (playeInfo != null)
-            {
-                //进入游戏
-                if (addList.Any(t => t.Name == playeInfo.Name))
-                {
-                    MailUtil.SendMessage("1422323984@qq.com", "1422323984@qq.com", "ffkmyvqapzyfbafb", "滑翔服玩家提示",$"玩家{playeInfo.Name}正在地狱已满玩滑翔跳转查看http://106.53.86.247/#/serverList");
-                }
-                //离开游戏
-                if (deleteList.Any(t => t == playeInfo.Name))
-                {
-                    MailUtil.SendMessage("1422323984@qq.com", "1422323984@qq.com", "ffkmyvqapzyfbafb", "滑翔服玩家提示", $"玩家{playeInfo.Name}在地狱已满玩滑翔战败了，是个逃兵，快去群里嘲笑一番吧");
-                }
-            }
-            _dataCache.SetOldPlayerInfoList(playerListInfo.Select(t=>t.Name).ToList());
             _dataCache.SetServiceInfoSnapshot(new ServiceInfoCache()
             {
                 Map = serverInfo.Map,
@@ -96,7 +78,7 @@ namespace Common.Caches
                     Img = mapInfo.Img
                 },
                 MaxPlayers = 9,
-                PlayerInfos = playerListInfo.Select(t=>new ServiceInfoPlayerInfoCache()
+                PlayerInfos = playerListInfo.Select(t => new ServiceInfoPlayerInfoCache()
                 {
                     Name = t.Name,
                     Duration = t.Duration

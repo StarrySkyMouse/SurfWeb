@@ -37,81 +37,7 @@
       <el-col :xs="24" :sm="12">
         <el-card class="box-card data-card">
           <div slot="header" class="clearfix">
-            <span>WR</span>
-          </div>
-          <el-row>
-            <el-col :span="24">
-              <el-radio-group v-model="wrRecordType" @input="changeWrBtn()">
-                <el-radio-button label="0">主线</el-radio-button>
-                <el-radio-button label="1">奖励</el-radio-button>
-                <el-radio-button label="2">阶段</el-radio-button>
-              </el-radio-group>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="24">
-              <Tabs :tabs="tabs" @tabChange="wrTabChange">
-                <child-component>
-                  <el-table v-show="wrRecordType == 0" v-loading="playerWRListLoading" :data="playerWRList">
-                    <el-table-column align="center" label="地图">
-                      <template slot-scope="scope">
-                        <div class="map-card" @click="openMap(scope.row)">
-                          <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                          <div class="card-info">
-                            <span class="map-name">{{ scope.row.mapName }}</span>
-                            <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                          </div>
-                        </div>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="时间">
-                      <template slot-scope="scope">
-                        {{ scope.row.stages[0].time }}
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="日期">
-                      <template slot-scope="scope">
-                        {{ scope.row.stages[0].date }}
-                      </template>
-                    </el-table-column>
-                  </el-table>
-
-                  <el-table v-show="wrRecordType != 0" :data="playerWRList" style="width: 100%">
-                    <el-table-column align="center" label="#" width="40">
-                      <template slot-scope="scope">
-                        {{ scope.$index + 1 }}
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="地图/难度">
-                      <template slot-scope="scope">
-                        <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{
-                          scope.row.difficulty
-                        }})</el-link>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="阶段详情" width="480">
-                      <template slot-scope="scope">
-                        <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
-                          <el-table-column prop="stage" label="阶段" width="60" />
-                          <el-table-column prop="time" label="时间" />
-                          <el-table-column prop="date" label="日期" />
-                        </el-table>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-
-                  <el-pagination style="text-align: center;" :current-page="playerWRpageIndex" small :page-sizes="[10]"
-                    layout="prev, pager, next" :total="playerWRTotal" @current-change="handlePlayerWRChange" />
-                </child-component>
-              </Tabs>
-            </el-col>
-          </el-row>
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="12">
-        <el-card class="box-card data-card">
-          <div slot="header" class="clearfix">
-            <span>完成记录</span>
+            <span>已完成</span>
           </div>
           <el-row>
             <el-col :span="24">
@@ -127,7 +53,7 @@
               <Tabs :tabs="tabs" @tabChange="succeessTabChange">
                 <child-component>
                   <el-table v-show="succeessRecordType == 0" v-loading="succeesListLoading" :data="succeesList">
-                    <el-table-column align="center" label="地图">
+                    <el-table-column align="center" label="地图" width="300">
                       <template slot-scope="scope">
                         <div class="map-card" @click="openMap(scope.row)">
                           <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
@@ -156,7 +82,7 @@
                   </el-table>
                   <el-table v-show="succeessRecordType != 0" v-loading="succeesListLoading" :data="succeesList"
                     style="width: 100%">
-                    <el-table-column align="center" label="地图">
+                    <el-table-column align="center" label="地图" width="300">
                       <template slot-scope="scope">
                         <div class="map-card" @click="openMap(scope.row)">
                           <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
@@ -217,23 +143,27 @@
             <el-col :span="24">
               <Tabs :tabs="tabs" @tabChange="failTabChange">
                 <child-component>
-                  <el-table v-loading="failListLoading" :data="failList" element-loading-text="Loading"
-                    borderfithighlight-current-row>
-                    <el-table-column align="center" label="#" width="100">
+                  <el-table v-loading="failListLoading" :data="failList">
+                    <el-table-column align="center" label="地图" width="300">
                       <template slot-scope="scope">
-                        {{ scope.$index + 1 }}
+                        <div class="map-card" @click="openMap(scope.row)">
+                          <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
+                          <div class="card-info">
+                            <span class="map-name">{{ scope.row.mapName }}</span>
+                            <span class="map-difficulty">{{ scope.row.difficulty }}</span>
+                          </div>
+                        </div>
                       </template>
                     </el-table-column>
-                    <el-table-column align="center" label="地图/难度">
-                      <template slot-scope="scope">
-                        <el-link type="primary" @click="openMap(scope.row)">{{ scope.row.mapName }}({{
-                          scope.row.difficulty
-                        }})</el-link>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" :label="failRecordType != 0 ? '阶段' : ''">
+                    <el-table-column align="center" :label="''">
                       <template slot-scope="scope" v-if="failRecordType != 0">
-                        {{ scope.row.stages }}
+                        <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
+                          <el-table-column align="center" label="阶段">
+                            <template slot-scope="scope">
+                              {{ scope.row }}
+                            </template>
+                          </el-table-column>
+                        </el-table>
                       </template>
                     </el-table-column>
                   </el-table>
@@ -252,8 +182,6 @@
 <script>
 import {
   getPlayerInfo,
-  getPlayerWRCount,
-  getPlayerWRList,
   getPlayerSucceesCount,
   getPlayerSucceesList,
   getPlayerFailCount,
@@ -275,25 +203,19 @@ export default {
     return {
       isMobile: window.innerWidth < 768,
       playerInfoLoading: true,
-      playerWRListLoading: true,
-      playerWRList: null,
       succeesListLoading: true,
       succeesList: null,
       failListLoading: true,
       failList: null,
       playerId: null,
       playerInfo: {},
-      wrRecordType: 0,
       succeessRecordType: 0,
       failRecordType: 0,
-      playerWRpageIndex: 1,
-      playerWRTotal: 0,
       succeesPageIndex: 1,
       succeesTotal: 0,
       failPageIndex: 1,
       failTotal: 0,
       tabs: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T0'],
-      wrDifficulty: 'T1',
       succeessDifficulty: 'T1',
       failDifficulty: 'T1'
     }
@@ -309,12 +231,6 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    wrTabChange(index) {
-      this.playerWRpageIndex = 1
-      this.wrDifficulty = this.tabs[index]
-      this.getPlayerWRCount()
-      this.getPlayerWRList()
-    },
     succeessTabChange(index) {
       this.succeesPageIndex = 1
       this.succeessDifficulty = this.tabs[index]
@@ -332,8 +248,6 @@ export default {
     },
     fetchData() {
       this.getPlayerInfo()
-      this.getPlayerWRCount()
-      this.getPlayerWRList()
       this.getPlayerSucceesCount()
       this.getPlayerSucceesList()
       this.getPlayerFailCount()
@@ -344,18 +258,6 @@ export default {
       getPlayerInfo({ id: this.playerId }).then(response => {
         this.playerInfo = response.data
         this.playerInfoLoading = false
-      })
-    },
-    getPlayerWRCount() {
-      getPlayerWRCount({ id: this.playerId, recordType: this.wrRecordType, difficulty: this.wrDifficulty }).then(response => {
-        this.playerWRTotal = response.data
-      })
-    },
-    getPlayerWRList() {
-      this.playerWRListLoading = true
-      getPlayerWRList({ id: this.playerId, recordType: this.wrRecordType, difficulty: this.wrDifficulty, pageIndex: this.playerWRpageIndex }).then(response => {
-        this.playerWRList = response.data
-        this.playerWRListLoading = false
       })
     },
     getPlayerSucceesCount() {
@@ -382,10 +284,6 @@ export default {
         this.failListLoading = false
       })
     },
-    handlePlayerWRChange(val) {
-      this.playerWRpageIndex = val
-      this.getPlayerWRList()
-    },
     handleSucceesChange(val) {
       this.succeesPageIndex = val
       this.getPlayerSucceesList()
@@ -393,11 +291,6 @@ export default {
     handleFailChange(val) {
       this.failPageIndex = val
       this.getPlayerFailList()
-    },
-    changeWrBtn() {
-      this.playerWRpageIndex = 1
-      this.getPlayerWRCount()
-      this.getPlayerWRList()
     },
     changeSucceesBtn() {
       this.succeesPageIndex = 1

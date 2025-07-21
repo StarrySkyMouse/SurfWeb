@@ -170,7 +170,6 @@ namespace Services.Services
         public async Task<int> GetPlayerFailCount(string id, RecordTypeEnum recordType, string difficulty)
         {
 
-
             // 1. 查询目标难度所有地图
             var mapsQuery = _mapRepository
                 .Where(t => t.Difficulty == difficulty)
@@ -208,7 +207,6 @@ namespace Services.Services
                 .CountAsync(x => x.Number != 0);
             return result;
         }
-
         /// <summary>
         /// 获取玩家未完成List
         /// </summary>
@@ -230,6 +228,7 @@ namespace Services.Services
                         MapId = t.Id,
                         MapName = t.Name,
                         Difficulty = t.Difficulty,
+                        Img = t.Img
                     }).ToList();
             }
             else if (recordType == RecordTypeEnum.Bounty)
@@ -249,6 +248,7 @@ namespace Services.Services
                         MapId = t.Key,
                         MapName = t.First().Name,
                         Difficulty = t.First().Difficulty,
+                        Img = t.First().Img,
                         Stages = t.Select(a => a.Stage).ToList()
                     }).ToList();
             }
@@ -269,6 +269,7 @@ namespace Services.Services
                         MapId = t.Key,
                         MapName = t.First().Name,
                         Difficulty = t.First().Difficulty,
+                        Img = t.First().Img,
                         Stages = t.Select(a => a.Stage).ToList()
                     }).ToList();
             }

@@ -1,27 +1,19 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Common.Core;
-using Extensions.Apollo;
-using Extensions.ServiceExtensions;
-using SurfWebAutofac.Filter;
+using Configurations;
+using Configurations.AutofacSetup;
+using Configurations.SqlsugarSetup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host
-    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>(builder =>
-    {
-        builder.RegisterModule(new AutofacModuleRegister());
-        builder.RegisterModule<AutofacPropertityModuleReg>();
-    })
-    .ConfigureAppConfiguration((hostingContext, config) =>
-    {
-        hostingContext.Configuration.ConfigureApplication();
-        config.Sources.Clear();
-        config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: false);
-        config.AddConfigurationApollo("appsettings.apollo.json");
-    });
-builder.ConfigureApplication();
+//配置Autofac
+builder.AddAutofacConfiguration();
+//配置WebApi
+builder.AddWebApiConfiguration();
+//配置数据库
+builder.AddSqlsugarConfiguration();
 
-//SqlSugar
-builder.Services.AddSqlsugarSetup();
+var app = builder.Build();
+
+//WebApi中间件
+app.UseAppMiddleware();
+
+app.Run();

@@ -1,6 +1,0 @@
-@SurfWebAutofac_HostAddress = http://localhost:5212
-
-GET {{SurfWebAutofac_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

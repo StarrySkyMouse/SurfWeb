@@ -132,6 +132,7 @@ namespace Services.Services
                 Id = t.Id,
                 Name = t.Name,
                 Difficulty = t.Difficulty,
+                Img = t.Img,
                 BonusNumber = t.BonusNumber,
                 StageNumber = t.StageNumber,
             }).ToListAsync();

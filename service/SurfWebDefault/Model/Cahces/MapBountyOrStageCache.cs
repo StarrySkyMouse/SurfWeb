@@ -15,6 +15,10 @@
         /// </summary>
         public required string Difficulty { get; set; }
         /// <summary>
+        /// 图片
+        /// </summary>
+        public string Img { get; set; }
+        /// <summary>
         /// 阶段
         /// </summary>
         public int Stage { get; set; }
