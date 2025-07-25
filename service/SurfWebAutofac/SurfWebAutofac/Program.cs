@@ -6,7 +6,6 @@ using Configurations.SqlsugarSetup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 //配置Autofac
 builder.AddAutofacConfiguration();
 //配置WebApi
@@ -21,6 +20,8 @@ builder.AddLoggerConfiguration();
 builder.AddAspNetCoreRateLimitConfiguration();
 //配置AutoMapper
 builder.AddAutoMapperConfiguration();
+//定时任务
+builder.AddQuartzConfiguration();
 
 var app = builder.Build();
 

@@ -13,7 +13,7 @@ public static class QuartzConfiguration
     ///     缓存
     /// </summary>
     /// <param name="builder"></param>
-    public static void AddCacheConfiguration(this WebApplicationBuilder builder)
+    public static void AddQuartzConfiguration(this WebApplicationBuilder builder)
     {
         //注册定时任务
         // 注册 Job（注册的Job必须添加Trigger否则会报错）

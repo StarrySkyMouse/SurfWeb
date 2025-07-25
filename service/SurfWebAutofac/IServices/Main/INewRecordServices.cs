@@ -2,7 +2,7 @@
 using Model.Dtos.NewRecords;
 using Model.Models.Main;
 
-namespace IServices;
+namespace IServices.Main;
 
 public interface INewRecordServices : IBaseServices<NewRecordModel>
 {

@@ -1,10 +1,10 @@
-﻿using IServices;
+﻿using IServices.Main;
 using Model.Dtos.NewRecords;
 using Model.Models.Main;
 using Repository.BASE.MainSqlSugar;
 using Services.Base;
 
-namespace Services;
+namespace Services.Main;
 
 public class NewRecordServices : BaseServices<NewRecordModel>, INewRecordServices
 {

@@ -1,26 +1,28 @@
 ﻿using Common.Logger.Sink;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using IServices.Log;
+using Model.Models.Log;
 using Serilog.Events;
 
-namespace Configurations.LoggerSetup.Sink
-{
-    public class DbLoggerSinkExecute: IDbLoggerSinkExecute
-    {
-        public DbLoggerSinkExecute()
-        {
+namespace Configurations.LoggerSetup.Sink;
 
-        }
-        public void Emit(LogEvent logEvent)
+public class DbLoggerSinkExecute : IDbLoggerSinkExecute
+{
+    private readonly IDbLogServices _dbLogServices;
+
+    public DbLoggerSinkExecute(IDbLogServices dbLogServices)
+    {
+        _dbLogServices = dbLogServices;
+    }
+
+    public void Emit(LogEvent logEvent)
+    {
+        _dbLogServices.Insert(new DbLogModel
         {
-            // 1. 格式化日志数据
-            var message = logEvent.RenderMessage();
-            var level = logEvent.Level.ToString();
-            var timestamp = logEvent.Timestamp.UtcDateTime;
-            var properties = logEvent.Properties; // 结构化属性
-        }
+            Message = logEvent.RenderMessage()
+        });
+        //var message = logEvent.RenderMessage();
+        //var level = logEvent.Level.ToString();
+        //var timestamp = logEvent.Timestamp.UtcDateTime;
+        //var properties = logEvent.Properties; // 结构化属性
     }
 }

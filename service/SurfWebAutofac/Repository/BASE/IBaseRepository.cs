@@ -11,6 +11,16 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity, new()
     ISugarQueryable<TEntity> Queryable();
 
     /// <summary>
+    ///     新增
+    /// </summary>
+    int Insert(TEntity insertObj);
+
+    /// <summary>
+    ///     批量新增
+    /// </summary>
+    int Inserts(List<TEntity> insertObjs);
+
+    /// <summary>
     ///     批量更新
     /// </summary>
     int Update(TEntity updateObj);

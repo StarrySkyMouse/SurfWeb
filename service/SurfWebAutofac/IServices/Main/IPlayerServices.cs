@@ -2,7 +2,7 @@
 using Model.Dtos.Players;
 using Model.Models.Main;
 
-namespace IServices;
+namespace IServices.Main;
 
 public interface IPlayerServices : IBaseServices<PlayerModel>
 {

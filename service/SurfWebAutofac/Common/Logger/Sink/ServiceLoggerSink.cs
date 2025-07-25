@@ -4,14 +4,14 @@ using Serilog.Events;
 namespace Common.Logger.Sink;
 
 /// <summary>
-///     数据库日志
+///     服务端接口日志
 /// </summary>
-public class DbLoggerSink : ILogEventSink
+public class ServiceLoggerSink : ILogEventSink
 {
     /// <summary>
     ///     属性注入
     /// </summary>
-    public IDbLoggerSinkExecute Execute { get; set; }
+    public IServiceLoggerSinkExecute Execute { get; set; }
 
     public void Emit(LogEvent logEvent)
     {
@@ -22,7 +22,7 @@ public class DbLoggerSink : ILogEventSink
 /// <summary>
 ///     对外提供依赖注入的实现
 /// </summary>
-public interface IDbLoggerSinkExecute
+public interface IServiceLoggerSinkExecute
 {
     void Emit(LogEvent logEvent);
 }

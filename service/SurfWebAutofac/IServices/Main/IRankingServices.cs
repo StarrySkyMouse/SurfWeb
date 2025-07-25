@@ -2,7 +2,7 @@
 using Model.Dtos.Rankings;
 using Model.Models.Main;
 
-namespace IServices;
+namespace IServices.Main;
 
 public interface IRankingServices : IBaseServices<RankingModel>
 {

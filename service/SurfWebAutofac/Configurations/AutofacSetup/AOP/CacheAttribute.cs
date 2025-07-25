@@ -6,4 +6,8 @@
 [AttributeUsage(AttributeTargets.Method)]
 internal class CacheAttribute : Attribute
 {
+    /// <summary>
+    ///     缓存时间，单位秒
+    /// </summary>
+    public int CacheTime { get; set; } = 60;
 }

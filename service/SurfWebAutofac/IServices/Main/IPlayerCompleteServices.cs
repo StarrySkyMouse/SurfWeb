@@ -1,7 +1,7 @@
 ﻿using IServices.Base;
 using Model.Models.Main;
 
-namespace IServices;
+namespace IServices.Main;
 
 public interface IPlayerCompleteServices : IBaseServices<PlayerCompleteModel>
 {

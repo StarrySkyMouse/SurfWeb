@@ -23,7 +23,8 @@ public static class LoggerConfiguration
     {
         //依赖注入
         builder.Services.AddLoggerService(builder.Configuration)
-            .AddDbLoggerSinkExecute<DbLoggerSinkExecute>();
+            .AddDbLoggerSinkExecute<DbLoggerSinkExecute>()
+            .AddServiceLoggerSinkExecute<ServiceLoggerSinkExecute>();
         // 替换默认日志为 Serilog
         builder.Host.UseSerilog();
     }

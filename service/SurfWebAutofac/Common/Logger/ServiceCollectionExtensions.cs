@@ -45,21 +45,33 @@ public static class ServiceCollectionExtensions
                     .Filter.ByIncludingOnly(t =>
                         t.Properties.ContainsKey("SourceContext") && t.Properties["SourceContext"].ToString() ==
                         $"\"{typeof(ISeqLoggerSign).FullName}\""))
-            //输出到数据库
+            //数据库Log
             .WhereIf(loggerConfig.IsOpenDb, cfg => cfg.WriteTo.Async(t => t.Sink<DbLoggerSink>())
                 .Filter.ByIncludingOnly(t =>
                     t.Properties.ContainsKey("SourceContext") && t.Properties["SourceContext"].ToString() ==
                     $"\"{typeof(IDbLoggerSign).FullName}\""))
+            //Services层Log
+            .WhereIf(loggerConfig.IsOpenDb, cfg => cfg.WriteTo.Async(t => t.Sink<ServiceLoggerSink>())
+                .Filter.ByIncludingOnly(t =>
+                    t.Properties.ContainsKey("SourceContext") && t.Properties["SourceContext"].ToString() ==
+                    $"\"{typeof(IServiceLoggerSign).FullName}\""))
             .CreateLogger();
         return (ILoggerConfigure)services;
     }
 
-    /// <summary>
-    /// 依赖注入实现
-    /// </summary>
-    public static void AddDbLoggerSinkExecute<T>(this ILoggerConfigure services) where T : class, IDbLoggerSinkExecute
+    //依赖注入实现
+    public static ILoggerConfigure AddDbLoggerSinkExecute<T>(this ILoggerConfigure services)
+        where T : class, IDbLoggerSinkExecute
     {
         services.AddSingleton<IDbLoggerSinkExecute, T>();
+        return services;
+    }
+
+    public static ILoggerConfigure AddServiceLoggerSinkExecute<T>(this ILoggerConfigure services)
+        where T : class, IServiceLoggerSinkExecute
+    {
+        services.AddSingleton<IServiceLoggerSinkExecute, T>();
+        return services;
     }
 }
 

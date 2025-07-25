@@ -1,11 +1,11 @@
-﻿using IServices;
+﻿using IServices.Main;
 using Model.Dtos.Players;
 using Model.Models.Main;
 using Repository.BASE.MainSqlSugar;
 using Services.Base;
 using SqlSugar;
 
-namespace Services;
+namespace Services.Main;
 
 public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 {

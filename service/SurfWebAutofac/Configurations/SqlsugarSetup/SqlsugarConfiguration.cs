@@ -1,4 +1,4 @@
-﻿using Common.Logger.Sink;
+﻿using Common.Logger.Sign;
 using Configurations.SqlsugarSetup.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -53,13 +53,13 @@ public static class SqlsugarConfiguration
             //SQL执行后
             db.Aop.OnLogExecuted = (sql, pars) =>
             {
-                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                var logger = sp.GetRequiredService<ILogger<IDbLoggerSign>>();
                 logger.LogInformation(db.Ado.SqlExecutionTime.ToString());
             };
             //SQL报错
             db.Aop.OnError = exp =>
             {
-                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                var logger = sp.GetRequiredService<ILogger<IDbLoggerSign>>();
                 logger.LogError(exp, "SqlSugar 执行出错: {Sql}", exp.Sql);
             };
 
@@ -79,7 +79,7 @@ public static class SqlsugarConfiguration
             //SQL报错
             db.Aop.OnError = exp =>
             {
-                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                var logger = sp.GetRequiredService<ILogger<IDbLoggerSign>>();
                 logger.LogError(exp, "SqlSugar 执行出错: {Sql}", exp.Sql);
             };
             return db;

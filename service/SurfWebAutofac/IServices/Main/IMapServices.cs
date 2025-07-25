@@ -2,7 +2,7 @@
 using Model.Dtos.Maps;
 using Model.Models.Main;
 
-namespace IServices;
+namespace IServices.Main;
 
 public interface IMapServices : IBaseServices<MapModel>
 {

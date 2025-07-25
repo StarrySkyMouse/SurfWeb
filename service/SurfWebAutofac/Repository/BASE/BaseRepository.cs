@@ -21,6 +21,22 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     }
 
     /// <summary>
+    ///     新增
+    /// </summary>
+    public int Insert(TEntity insertObj)
+    {
+        return _sqlSugarClient.Insertable(insertObj).ExecuteCommand();
+    }
+
+    /// <summary>
+    ///     批量新增
+    /// </summary>
+    public int Inserts(List<TEntity> insertObjs)
+    {
+        return _sqlSugarClient.Insertable(insertObjs).ExecuteCommand();
+    }
+
+    /// <summary>
     ///     批量更新
     /// </summary>
     public int Updates(List<TEntity> updateObjs)

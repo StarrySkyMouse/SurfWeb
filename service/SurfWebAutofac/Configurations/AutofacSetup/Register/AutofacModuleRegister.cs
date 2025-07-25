@@ -24,8 +24,10 @@ public class AutofacModuleRegister : Module
         builder.RegisterAssemblyTypes(servicesAssembly)
             //是啊下只注册实现了 IServices 接口的类型
             .Where(t => t.GetInterfaces().Any(i => i.Assembly == iservicesAssembly))
-            //按接口注入
+            //接口注入
             .AsImplementedInterfaces()
+            //属性注入
+            .PropertiesAutowired()
             //设置生命周期为每请求一个实例（Scoped）
             .InstancePerLifetimeScope()
             //启用接口拦截器（AOP）。
@@ -37,6 +39,7 @@ public class AutofacModuleRegister : Module
         // 扫描并注册 Repository 层所有类型
         builder.RegisterAssemblyTypes(repositoryAssembly)
             .AsImplementedInterfaces()
+            .PropertiesAutowired()
             .InstancePerLifetimeScope()
             .EnableInterfaceInterceptors()
             .InterceptedBy(typeof(LoggingInterceptor));
