@@ -52,3 +52,7 @@
 /service/SurfWebAutofac/SurfWebAutofac/obj
 /service/SurfWebAutofac/Common/obj
 /service/SurfWebAutofac/IServices/obj
+/service/SurfWebAutofac/DataSync/bin
+/service/SurfWebAutofac/DataSync/obj
+/service/SurfWebAutofac/SurfWebAutofac/appsettings.Development.json
+/service/SurfWebAutofac/DataSync/appsettings.Development.json
