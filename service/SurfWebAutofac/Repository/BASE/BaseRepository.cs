@@ -7,22 +7,74 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 {
     private readonly ISqlSugarClient _sqlSugarClient;
 
-    private BaseRepository(ISqlSugarClient sqlSugarClient)
+    protected BaseRepository(ISqlSugarClient sqlSugarClient)
     {
         _sqlSugarClient = sqlSugarClient;
     }
+
+    /// <summary>
+    ///     获取查询
+    /// </summary>
     public ISugarQueryable<TEntity> Queryable()
     {
-        return _sqlSugarClient.Queryable<TEntity>();
+        return _sqlSugarClient.Queryable<TEntity>().Where(t => t.IsDelete == 0);
     }
 
-    IUpdateable<TEntity> IBaseRepository<TEntity>.Updateable(TEntity updateObj)
+    /// <summary>
+    ///     批量更新
+    /// </summary>
+    public int Updates(List<TEntity> updateObjs)
     {
-        throw new NotImplementedException();
+        return _sqlSugarClient.Updateable(updateObjs).ExecuteCommand();
     }
 
-    public int Updateable(TEntity updateObj)
+    /// <summary>
+    ///     更新
+    /// </summary>
+    public int Update(TEntity updateObj)
     {
         return _sqlSugarClient.Updateable(updateObj).ExecuteCommand();
+    }
+
+    /// <summary>
+    ///     逻辑删除
+    /// </summary>
+    public int Delete(long id)
+    {
+        return _sqlSugarClient.Updateable<TEntity>()
+            .SetColumns(it =>
+                new TEntity
+                {
+                    IsDelete = 1,
+                    UpDateTime = DateTime.Now
+                }).Where(t => t.Id == id).ExecuteCommand();
+    }
+
+    /// <summary>
+    ///     逻辑删除
+    /// </summary>
+    public int Delete(TEntity deleteObj)
+    {
+        return _sqlSugarClient.Updateable<TEntity>()
+            .SetColumns(it =>
+                new TEntity
+                {
+                    IsDelete = 1,
+                    UpDateTime = DateTime.Now
+                }).Where(t => t.Id == deleteObj.Id).ExecuteCommand();
+    }
+
+    /// <summary>
+    ///     批量逻辑删除
+    /// </summary>
+    public int Deletes(List<TEntity> deleteObjs)
+    {
+        return _sqlSugarClient.Updateable<TEntity>()
+            .SetColumns(it =>
+                new TEntity
+                {
+                    IsDelete = 1,
+                    UpDateTime = DateTime.Now
+                }).Where(t => deleteObjs.Select(a => a.Id).Contains(t.Id)).ExecuteCommand();
     }
 }

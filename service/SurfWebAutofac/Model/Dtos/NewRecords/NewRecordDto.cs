@@ -1,4 +1,4 @@
-﻿using Model.Models;
+﻿using Model.Models.Main;
 
 namespace Model.Dtos.NewRecords;
 
@@ -22,7 +22,7 @@ public class NewRecordDto
     /// <summary>
     ///     地图名称
     /// </summary>
-    public  string MapName { get; set; }
+    public string MapName { get; set; }
 
     /// <summary>
     ///     通关类型(主线，奖励，阶段)
@@ -32,7 +32,7 @@ public class NewRecordDto
     /// <summary>
     ///     说明难度或阶段
     /// </summary>
-    public  string Notes { get; set; }
+    public string Notes { get; set; }
 
     /// <summary>
     ///     通关时间

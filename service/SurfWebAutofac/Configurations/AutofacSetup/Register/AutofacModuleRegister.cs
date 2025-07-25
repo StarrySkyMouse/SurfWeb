@@ -30,8 +30,10 @@ public class AutofacModuleRegister : Module
             .InstancePerLifetimeScope()
             //启用接口拦截器（AOP）。
             .EnableInterfaceInterceptors()
-            //指定拦截器类
-            .InterceptedBy(typeof(LoggingInterceptor));
+            //日志拦截器
+            .InterceptedBy(typeof(LoggingInterceptor))
+            //Service缓存拦截器
+            .InterceptedBy(typeof(CacheInterceptor));
         // 扫描并注册 Repository 层所有类型
         builder.RegisterAssemblyTypes(repositoryAssembly)
             .AsImplementedInterfaces()

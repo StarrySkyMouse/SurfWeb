@@ -18,7 +18,7 @@ public class DataSyncPlayerDto
     /// <summary>
     ///     玩家名
     /// </summary>
-    public  string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     ///     积分

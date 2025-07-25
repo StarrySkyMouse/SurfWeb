@@ -1,7 +1,7 @@
+using IServices;
 using Microsoft.AspNetCore.Mvc;
 using Model.Dtos.Maps;
-using Model.Models;
-using Services.IServices;
+using Model.Models.Main;
 
 namespace ClientWeb.Controllers;
 

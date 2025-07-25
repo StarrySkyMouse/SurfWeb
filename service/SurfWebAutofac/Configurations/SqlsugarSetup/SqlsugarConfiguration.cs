@@ -1,8 +1,11 @@
-﻿using Autofac.Core;
+﻿using Common.Logger.Sink;
 using Configurations.SqlsugarSetup.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Repository.BASE.Log.SugarClient;
+using Repository.BASE.MainSqlSugar.SugarClient;
 using SqlSugar;
 
 namespace Configurations.SqlsugarSetup;
@@ -16,30 +19,72 @@ public static class SqlsugarConfiguration
     {
         var sqlsugarConfig = builder.Configuration.GetSection("SqlsugarConfig").Get<SqlsugarConfig>();
         if (sqlsugarConfig == null) throw new InvalidOperationException("数据库配置SqlsugarConfig丢失");
-        // 配置主从分离
-        var db = new SqlSugarClient(new ConnectionConfig
+        //应用数据库
+        builder.Services.AddScoped<IMainSqlSugarClient>(sp =>
         {
-            ConnectionString = sqlsugarConfig.MasterConn,
-            DbType = sqlsugarConfig.DbType, // 根据你的数据库类型选用
-            IsAutoCloseConnection = true,
-            // 主从分离配置
-            SlaveConnectionConfigs = sqlsugarConfig.SlaveConns.Select(slave => new SlaveConnectionConfig
+            var connectionConfig = new ConnectionConfig
             {
-                HitRate = slave.HitRate, // 从库权重
-                ConnectionString = slave.SlaveConn // 从库连接字符串
-            }).ToList()
+                DbType = sqlsugarConfig.DbType,
+                IsAutoCloseConnection = true,
+                ConnectionString = sqlsugarConfig.MainConfig.DbConnection
+            };
+            //id生成器配置
+            SnowFlakeSingle.WorkId = sqlsugarConfig.SnowflakeIdConfig.WorkId;
+            SnowFlakeSingle.DatacenterId = sqlsugarConfig.SnowflakeIdConfig.DatacenterId;
+            //主从数据库配置
+            if (sqlsugarConfig.MainConfig.IsOpenSlave && sqlsugarConfig.MainConfig.SlaveConfigs.Any(t => t.IsEnable))
+                connectionConfig.SlaveConnectionConfigs = sqlsugarConfig.MainConfig.SlaveConfigs
+                    .Where(t => t.IsEnable)
+                    .Select(slave => new SlaveConnectionConfig
+                    {
+                        HitRate = slave.HitRate, // 从库权重
+                        ConnectionString = slave.DbConnection // 从库连接字符串
+                    }).ToList();
+            var db = new MainSqlSugarClient(connectionConfig);
+
+            #region AOP
+
+            ////SQL执行前
+            //db.Aop.OnLogExecuting = (sql, pars) =>
+            //{
+            //    //获取原生SQL推荐 5.1.4.63  性能OK
+            //    UtilMethods.GetNativeSql(sql, pars);
+            //};
+            //SQL执行后
+            db.Aop.OnLogExecuted = (sql, pars) =>
+            {
+                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                logger.LogInformation(db.Ado.SqlExecutionTime.ToString());
+            };
+            //SQL报错
+            db.Aop.OnError = exp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                logger.LogError(exp, "SqlSugar 执行出错: {Sql}", exp.Sql);
+            };
+
+            #endregion
+
+            return db;
         });
-        // 可选：AOP日志、错误处理等
-        db.Aop.OnLogExecuting = (sql, pars) =>
+        //日志数据库
+        builder.Services.AddSingleton<ILogSqlSugarClient>(sp =>
         {
-            Console.WriteLine(sql); // 记录SQL
-        };
-        // 注入到 DI
-        builder.Services.AddScoped<ISqlSugarClient>(_ => db);
+            var db = new LogSqlSugarClient(new ConnectionConfig
+            {
+                DbType = sqlsugarConfig.DbType,
+                IsAutoCloseConnection = true,
+                ConnectionString = sqlsugarConfig.LogConfig.DbConnection
+            });
+            //SQL报错
+            db.Aop.OnError = exp =>
+            {
+                var logger = sp.GetRequiredService<ILogger<DbLoggerSink>>();
+                logger.LogError(exp, "SqlSugar 执行出错: {Sql}", exp.Sql);
+            };
+            return db;
+        });
         //数据库初始化
-        if (sqlsugarConfig.IsDataCreate)
-        {
-            builder.Services.AddHostedService<SeedDataHostedService>();
-        }
+        if (sqlsugarConfig.IsDataCreate) builder.Services.AddHostedService<SeedDataHostedService>();
     }
 }

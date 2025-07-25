@@ -5,17 +5,17 @@ public class PlayerWRDto
     /// <summary>
     ///     地图Id
     /// </summary>
-    public  string MapId { get; set; }
+    public string MapId { get; set; }
 
     /// <summary>
     ///     地图名称
     /// </summary>
-    public  string MapName { get; set; }
+    public string MapName { get; set; }
 
     /// <summary>
     ///     难度
     /// </summary>
-    public  string Difficulty { get; set; }
+    public string Difficulty { get; set; }
 
     public List<PlayerStageDto> Stages { get; set; } = new();
 }

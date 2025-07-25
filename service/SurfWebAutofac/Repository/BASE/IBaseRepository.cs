@@ -5,6 +5,33 @@ namespace Repository.BASE;
 
 public interface IBaseRepository<TEntity> where TEntity : BaseEntity, new()
 {
+    /// <summary>
+    ///     获取查询
+    /// </summary>
     ISugarQueryable<TEntity> Queryable();
-    IUpdateable<TEntity> Updateable(TEntity updateObj);
+
+    /// <summary>
+    ///     批量更新
+    /// </summary>
+    int Update(TEntity updateObj);
+
+    /// <summary>
+    ///     更新
+    /// </summary>
+    int Updates(List<TEntity> updateObjs);
+
+    /// <summary>
+    ///     逻辑删除
+    /// </summary>
+    int Delete(long id);
+
+    /// <summary>
+    ///     逻辑删除
+    /// </summary>
+    int Delete(TEntity deleteObj);
+
+    /// <summary>
+    ///     批量逻辑删除
+    /// </summary>
+    int Deletes(List<TEntity> deleteObjs);
 }

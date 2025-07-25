@@ -9,6 +9,7 @@ namespace ClientWeb.Controllers
     [Route("[controller]")]
     public class SteamController : ControllerBase
     {
+
         //private readonly DataCache _dataCache;
 
         //public SteamController(DataCache dataCache)

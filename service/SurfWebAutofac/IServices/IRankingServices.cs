@@ -1,15 +1,15 @@
 ﻿using IServices.Base;
 using Model.Dtos.Rankings;
-using Model.Models;
+using Model.Models.Main;
 
-namespace IServices
+namespace IServices;
+
+public interface IRankingServices : IBaseServices<RankingModel>
 {
-    public interface IRankingServices : IBaseServices<RankingModel>
-    {
-        Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType);
-        /// <summary>
-        /// 更新排行榜数据
-        /// </summary>
-        Task UpdateRanking();
-    }
+    Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType);
+
+    /// <summary>
+    ///     更新排行榜数据
+    /// </summary>
+    Task UpdateRanking();
 }

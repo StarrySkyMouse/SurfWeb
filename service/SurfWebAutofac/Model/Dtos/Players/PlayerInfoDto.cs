@@ -2,12 +2,12 @@
 
 public class PlayerInfoDto
 {
-    public  long Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     ///     玩家名
     /// </summary>
-    public  string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     ///     积分排行

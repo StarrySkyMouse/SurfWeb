@@ -16,8 +16,9 @@ public class PlayerSucceesDto
     ///     难度
     /// </summary>
     public string Difficulty { get; set; }
+
     /// <summary>
-    /// 图片
+    ///     图片
     /// </summary>
     public string Img { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using IServices.Base;
 using Model.Models.Base;
-using Repository.BASE;
 
 namespace Services.Base;
 

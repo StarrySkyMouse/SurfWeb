@@ -1,21 +1,24 @@
-﻿using Model.Dtos.Maps;
-using Model.Models;
-using Repository.BASE;
+﻿using IServices;
+using Model.Dtos.Maps;
+using Model.Models.Main;
+using Repository.BASE.MainSqlSugar;
 using Services.Base;
-using Services.IServices;
 using SqlSugar;
 
 namespace Services;
 
 public class MapServices : BaseServices<MapModel>, IMapServices
 {
-    private readonly IBaseRepository<MapModel> _mapRepository;
-    private readonly IBaseRepository<PlayerCompleteModel> _playerCompleteRepository;
-    public MapServices(IBaseRepository<MapModel> mapRepository, IBaseRepository<PlayerCompleteModel> playerCompleteRepository)
+    private readonly IMainRepository<MapModel> _mapRepository;
+    private readonly IMainRepository<PlayerCompleteModel> _playerCompleteRepository;
+
+    public MapServices(IMainRepository<MapModel> mapRepository,
+        IMainRepository<PlayerCompleteModel> playerCompleteRepository)
     {
         _mapRepository = mapRepository;
         _playerCompleteRepository = playerCompleteRepository;
     }
+
     /// <summary>
     ///     获取地图信息
     /// </summary>
@@ -33,6 +36,7 @@ public class MapServices : BaseServices<MapModel>, IMapServices
                 StageNumber = t.StageNumber
             }).FirstAsync(t => t.Id == id);
     }
+
     /// <summary>
     ///     获取地图列表
     /// </summary>
@@ -40,6 +44,7 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     {
         return await GetMapQueryable(difficulty, search).CountAsync();
     }
+
     /// <summary>
     ///     获取地图列表
     /// </summary>
@@ -55,38 +60,26 @@ public class MapServices : BaseServices<MapModel>, IMapServices
             })
             .ToPageListAsync(pageIndex, 10);
     }
-    private ISugarQueryable<MapModel> GetMapQueryable(string? difficulty, string? search)
-    {
-        return _mapRepository.Queryable()
-            .OrderBy(t => t.Name)
-            .WhereIF(!string.IsNullOrWhiteSpace(difficulty),
-                t => t.Difficulty.ToUpper() == difficulty.ToUpper().Trim())
-            .WhereIF(!string.IsNullOrWhiteSpace(search), t => t.Name.ToUpper().Contains(search.ToUpper()));
-    }
+
     /// <summary>
-    /// 获取地图前100数量
+    ///     获取地图前100数量
     /// </summary>
     public async Task<int> GetMapTop100Count(long id, RecordTypeEnum recordType, int? stage)
     {
         var result = await GetMapTop100Queryable(id, recordType, stage).CountAsync();
         return result > 100 ? 100 : result;
     }
+
     /// <summary>
-    /// 获取地图前100
+    ///     获取地图前100
     /// </summary>
     public Task<List<MapTop100Dto>> GetMapTop100List(long id, RecordTypeEnum recordType, int? stage, int pageIndex)
     {
         throw new AbandonedMutexException();
     }
-    private ISugarQueryable<PlayerCompleteModel> GetMapTop100Queryable(long id, RecordTypeEnum recordType, int? stage)
-    {
-        return _playerCompleteRepository.Queryable()
-            .Where(t => t.MapId == id && t.Type == recordType)
-            .WhereIF(stage.HasValue && recordType != RecordTypeEnum.Main, t => t.Stage == stage);
-    }
 
     /// <summary>
-    /// 获取地图缓存列表
+    ///     获取地图缓存列表
     /// </summary>
     /// <returns></returns>
     public async Task<List<MapCacheDto>> GetMapCacheList()
@@ -134,7 +127,7 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     //    }).ToList();
     //}
     /// <summary>
-    /// 通过地图名称获取地图ID列表
+    ///     通过地图名称获取地图ID列表
     /// </summary>
     public async Task<Dictionary<string, string>> GetMapIdListByName(List<string> mapNameList)
     {
@@ -149,7 +142,7 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     }
 
     /// <summary>
-    /// 统计地图完成人数
+    ///     统计地图完成人数
     /// </summary>
     public async Task UpdateSucceesNumber()
     {
@@ -168,7 +161,7 @@ public class MapServices : BaseServices<MapModel>, IMapServices
                 .Where(t => t.PlayerId != 0 && t.MapId == item.Id && t.Type == RecordTypeEnum.Main)
                 .Select(t => t.PlayerId).Distinct().CountAsync();
             item.SurcessNumber = succeesNumber;
-            _mapRepository.Updateable(item);
+            _mapRepository.Update(item);
         }
     }
 
@@ -184,5 +177,21 @@ public class MapServices : BaseServices<MapModel>, IMapServices
         return await _mapRepository.Queryable()
             .Where(t => names.Select(a => a.Trim()).Contains(t.Name))
             .ToListAsync();
+    }
+
+    private ISugarQueryable<MapModel> GetMapQueryable(string? difficulty, string? search)
+    {
+        return _mapRepository.Queryable()
+            .OrderBy(t => t.Name)
+            .WhereIF(!string.IsNullOrWhiteSpace(difficulty),
+                t => t.Difficulty.ToUpper() == difficulty.ToUpper().Trim())
+            .WhereIF(!string.IsNullOrWhiteSpace(search), t => t.Name.ToUpper().Contains(search.ToUpper()));
+    }
+
+    private ISugarQueryable<PlayerCompleteModel> GetMapTop100Queryable(long id, RecordTypeEnum recordType, int? stage)
+    {
+        return _playerCompleteRepository.Queryable()
+            .Where(t => t.MapId == id && t.Type == recordType)
+            .WhereIF(stage.HasValue && recordType != RecordTypeEnum.Main, t => t.Stage == stage);
     }
 }

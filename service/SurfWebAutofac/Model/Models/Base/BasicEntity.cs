@@ -8,7 +8,7 @@ namespace Model.Models.Base;
 public abstract class BaseEntity
 {
     /// <summary>
-    ///     主键
+    ///     主键（配置雪花算法生成的id）
     /// </summary>
     [SugarColumn(ColumnDescription = "主键", IsNullable = false, IsPrimaryKey = true)]
     public long Id { get; set; }

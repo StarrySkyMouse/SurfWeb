@@ -5,17 +5,17 @@ public class MapTop100Dto
     /// <summary>
     ///     排行
     /// </summary>
-    public  int Ranking { get; set; }
+    public int Ranking { get; set; }
 
     /// <summary>
     ///     玩家id
     /// </summary>
-    public  long PlayerId { get; set; }
+    public long PlayerId { get; set; }
 
     /// <summary>
     ///     玩家名
     /// </summary>
-    public  string PlayerName { get; set; }
+    public string PlayerName { get; set; }
 
     /// <summary>
     ///     阶段
