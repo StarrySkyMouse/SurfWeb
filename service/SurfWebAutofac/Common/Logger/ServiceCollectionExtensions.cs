@@ -6,6 +6,9 @@ using Serilog;
 
 namespace Common.Logger;
 
+/// <summary>
+///     链式调用+定制扩展+对外依赖注入能力
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     private static LoggerConfiguration WhereIf(this LoggerConfiguration cfg, bool condition,
@@ -56,25 +59,41 @@ public static class ServiceCollectionExtensions
                     t.Properties.ContainsKey("SourceContext") && t.Properties["SourceContext"].ToString() ==
                     $"\"{typeof(IServiceLoggerSign).FullName}\""))
             .CreateLogger();
-        return (ILoggerConfigure)services;
+        return new LoggerConfigure(services);
     }
 
     //依赖注入实现
-    public static ILoggerConfigure AddDbLoggerSinkExecute<T>(this ILoggerConfigure services)
+    public static ILoggerConfigure AddDbLoggerSinkExecute<T>(this ILoggerConfigure cfg)
         where T : class, IDbLoggerSinkExecute
     {
-        services.AddSingleton<IDbLoggerSinkExecute, T>();
-        return services;
+        cfg.GetServices().AddSingleton<IDbLoggerSinkExecute, T>();
+        return cfg;
     }
 
-    public static ILoggerConfigure AddServiceLoggerSinkExecute<T>(this ILoggerConfigure services)
+    public static ILoggerConfigure AddServiceLoggerSinkExecute<T>(this ILoggerConfigure cfg)
         where T : class, IServiceLoggerSinkExecute
     {
-        services.AddSingleton<IServiceLoggerSinkExecute, T>();
-        return services;
+        cfg.GetServices().AddSingleton<IServiceLoggerSinkExecute, T>();
+        return cfg;
     }
 }
 
-public interface ILoggerConfigure : IServiceCollection
+public interface ILoggerConfigure
 {
+    IServiceCollection GetServices();
+}
+
+public class LoggerConfigure : ILoggerConfigure
+{
+    private readonly IServiceCollection _services;
+
+    public LoggerConfigure(IServiceCollection services)
+    {
+        _services = services;
+    }
+
+    public IServiceCollection GetServices()
+    {
+        return _services;
+    }
 }

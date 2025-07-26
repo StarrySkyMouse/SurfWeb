@@ -38,4 +38,8 @@
     <ProjectReference Include="..\Model\Model.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="QuartzSetup\Jobs\" />
+  </ItemGroup>
 </Project>

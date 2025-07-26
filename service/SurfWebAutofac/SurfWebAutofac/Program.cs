@@ -2,6 +2,7 @@ using Configurations;
 using Configurations.AutofacSetup;
 using Configurations.AutoMapperSetup;
 using Configurations.LoggerSetup;
+using Configurations.QuartzSetup;
 using Configurations.SqlsugarSetup;
 
 var builder = WebApplication.CreateBuilder(args);

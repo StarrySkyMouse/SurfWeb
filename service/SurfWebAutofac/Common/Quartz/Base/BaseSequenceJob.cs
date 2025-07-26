@@ -8,15 +8,15 @@ namespace Common.Quartz.Base;
 ///     顺序Job
 /// </summary>
 [DisallowConcurrentExecution] //防止重复触发
-public abstract class SequenceJob : IJob
+public abstract class BaseSequenceJob : IJob
 {
     private readonly ILogger<IConsoleLoggerSign> _logger;
     private readonly List<ISequenceJob> _sequenceJob;
 
-    public SequenceJob(ILogger<IConsoleLoggerSign> logger)
+    public BaseSequenceJob(ILogger<IConsoleLoggerSign> logger, IServiceProvider provider)
     {
         _logger = logger;
-        _sequenceJob = GetSequenceJob();
+        _sequenceJob = GetSequenceJob().Select(t => provider.GetService(t) as ISequenceJob).ToList();
     }
 
     public async Task Execute(IJobExecutionContext context)
@@ -39,5 +39,5 @@ public abstract class SequenceJob : IJob
         }
     }
 
-    public abstract List<ISequenceJob> GetSequenceJob();
+    public abstract List<Type> GetSequenceJob();
 }
