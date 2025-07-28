@@ -1,10 +1,10 @@
-﻿using IServices.Base;
+﻿using IServices.Main.Base;
 using Model.Dtos.Players;
 using Model.Models.Main;
 
 namespace IServices.Main;
 
-public interface IPlayerServices : IBaseServices<PlayerModel>
+public interface IPlayerServices : IMainBaseServices<PlayerModel>
 {
     /// <summary>
     ///     获取玩家信息

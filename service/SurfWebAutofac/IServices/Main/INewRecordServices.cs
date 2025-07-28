@@ -1,10 +1,10 @@
-﻿using IServices.Base;
+﻿using IServices.Main.Base;
 using Model.Dtos.NewRecords;
 using Model.Models.Main;
 
 namespace IServices.Main;
 
-public interface INewRecordServices : IBaseServices<NewRecordModel>
+public interface INewRecordServices : IMainBaseServices<NewRecordModel>
 {
     /// <summary>
     ///     获取新增地图

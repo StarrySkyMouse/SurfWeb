@@ -1,9 +1,9 @@
 ﻿using Castle.DynamicProxy;
 using Common.Caches.Base;
 
-namespace Configurations.AutofacSetup.AOP;
+namespace Common.Logger.AOP.Cache;
 
-internal class CacheInterceptor : IInterceptor
+public class CacheInterceptor : IInterceptor
 {
     private readonly ICache _cache;
 

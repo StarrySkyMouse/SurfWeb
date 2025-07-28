@@ -1,14 +1,15 @@
 ﻿using Common.Quartz.Base;
 using IServices.Main;
-using Microsoft.IdentityModel.Tokens;
+using Model.ExteriorEntitys;
 using Model.Models.Main;
 using Quartz;
 using Repository.Other;
+using Utils.DateTime;
 
 namespace Configurations.QuartzSetup.SequenceJobs;
 
 /// <summary>
-///     记录同步
+///记录同步
 /// </summary>
 public class PlayerCompleteSequenceJob : ISequenceJob
 {
@@ -31,121 +32,116 @@ public class PlayerCompleteSequenceJob : ISequenceJob
 
     public async Task Execute(IJobExecutionContext context)
     {
-        if (_sqlHelp.IsDataSync())
+        //查询最后数据的时间
+        var finallyDateTime = _playerCompleteServices.GetFinallyDateTime();
+        //同步主线和奖励记录
+        var syncData1 = await GetPlayertimesList(finallyDateTime.Item1);
+        //同步阶段记录
+        var syncData2 = await GetStagetimesList(finallyDateTime.Item2);
+        var addList = new List<PlayerCompleteModel>();
+        var updateList = new List<PlayerCompleteModel>();
+        var authList = new List<int>();
+        authList.AddRange(syncData1.Select(t => t.auth));
+        authList.AddRange(syncData2.Select(t => t.auth));
+        authList = authList.Distinct().ToList();
+        //通过Auth获取PlayerId
+        var authDic = await _playerServices.GetPlayerInfoListByAuth(authList);
+        //通过mapName获取MapId
+        var mapNameList = new List<string>();
+        mapNameList.AddRange(syncData1.Select(t => t.map));
+        mapNameList.AddRange(syncData2.Select(t => t.map));
+        mapNameList = mapNameList.Distinct().ToList();
+        var mapDic = await _mapServices.GetMapIdListByName(mapNameList);
+        if (syncData1.Any())
         {
-            //查询最后数据的时间
-            var finallyDateTime = _playerCompleteServices.GetFinallyDateTime();
-            //同步主线和奖励记录
-            var syncData1 = await GetPlayertimesList(finallyDateTime.Item1);
-            //同步阶段记录
-            var syncData2 = await GetStagetimesList(finallyDateTime.Item2);
-            var addList = new List<PlayerCompleteModel>();
-            var updateList = new List<PlayerCompleteModel>();
-            var authList = new List<int>();
-            authList.AddRange(syncData1.Select(t => t.auth));
-            authList.AddRange(syncData2.Select(t => t.auth));
-            authList = authList.Distinct().ToList();
-            //通过Auth获取PlayerId
-            var authDic = await _playerServices.GetPlayerInfoListByAuth(authList);
-            //通过mapName获取MapId
-            var mapNameList = new List<string>();
-            mapNameList.AddRange(syncData1.Select(t => t.map));
-            mapNameList.AddRange(syncData2.Select(t => t.map));
-            mapNameList = mapNameList.Distinct().ToList();
-            var mapDic = await _mapServices.GetMapIdListByName(mapNameList);
-            if (syncData1.Any())
+            //获取旧的数据
+            var oldList = await _playerCompleteServices.GetOldPlayertimesData(syncData1.Select(t => (
+                t.auth,
+                t.map,
+                t.track
+            )));
+            oldList.ForEach(t =>
             {
-                //获取旧的数据
-                var oldList = await _playerCompleteServices.GetOldPlayertimesData(syncData1.Select(t => (
-                    t.auth,
-                    t.map,
-                    t.track
-                )));
-                oldList.ForEach(t =>
-                {
-                    var newData = syncData1.First(a => t.Auth == a.auth &&
-                                                       t.MapName == a.map &&
-                                                       t.Type == (a.track == 0
-                                                           ? RecordTypeEnum.Main
-                                                           : RecordTypeEnum.Bounty) &&
-                                                       t.Stage == (a.track == 0 ? null : a.track)
-                    );
-                    t.Time = newData.time;
-                    t.Date = DateTimeUtil.FromUnixTimestamp(newData.date);
-                });
-                updateList.AddRange(oldList);
-                addList.AddRange(syncData1
-                    .Where(t => !oldList.Any(a => a.Auth == t.auth &&
-                                                  a.MapName == t.map &&
-                                                  a.Type == (t.track == 0
-                                                      ? RecordTypeEnum.Main
-                                                      : RecordTypeEnum.Bounty) &&
-                                                  a.Stage == (t.track == 0 ? null : t.track)))
-                    .Select(t =>
-                    {
-                        var playerInfo = authDic.ContainsKey(t.auth) ? authDic[t.auth] : default;
-                        var mapId = mapDic.ContainsKey(t.map) ? mapDic[t.map] : null;
-                        var result = new PlayerCompleteModel
-                        {
-                            Id = null, // 该标识在插入时自动生成
-                            Auth = t.auth,
-                            PlayerId = playerInfo.Item1,
-                            PlayerName = playerInfo.Item2,
-                            MapId = mapId,
-                            MapName = t.map,
-                            Type = t.track == 0 ? RecordTypeEnum.Main : RecordTypeEnum.Bounty,
-                            Stage = t.track == 0 ? null : t.track,
-                            Time = t.time,
-                            Date = DateTimeUtil.FromUnixTimestamp(t.date)
-                        };
-                        return result;
-                    }));
-            }
-
-            if (syncData2.Any())
-            {
-                //获取旧的数据
-                var oldList = await _playerCompleteServices.GetOldStagetimesData(syncData2.Select(t => (
-                    t.auth,
-                    t.map,
-                    t.stage
-                )));
-                oldList.ForEach(t =>
-                {
-                    var newData = syncData2.First(a => t.Auth == a.auth &&
-                                                       t.MapName == a.map &&
-                                                       t.Type == RecordTypeEnum.Stage &&
-                                                       t.Stage == a.stage
-                    );
-                    t.Time = newData.time;
-                    t.Date = DateTimeUtil.FromUnixTimestamp(newData.date);
-                });
-                addList.AddRange(syncData2
-                    .Where(t => !oldList.Any(a => a.Auth == t.auth &&
-                                                  a.MapName == t.map &&
-                                                  a.Type == RecordTypeEnum.Stage &&
-                                                  a.Stage == t.stage))
-                    .Select(t =>
-                    {
-                        var playerInfo = authDic.ContainsKey(t.auth) ? authDic[t.auth] : default;
-                        var mapId = mapDic.ContainsKey(t.map) ? mapDic[t.map] : null;
-                        var result = new PlayerCompleteModel
-                        {
-                            Id = null, // 该标识在插入时自动生成
-                            Auth = t.auth,
-                            PlayerId = playerInfo.Item1,
-                            PlayerName = playerInfo.Item2,
-                            MapId = mapId,
-                            MapName = t.map,
-                            Type = RecordTypeEnum.Stage,
-                            Stage = t.stage,
-                            Time = t.time,
-                            Date = DateTimeUtil.FromUnixTimestamp(t.date)
-                        };
-                        return result;
-                    })
+                var newData = syncData1.First(a => t.Auth == a.auth &&
+                                                   t.MapName == a.map &&
+                                                   t.Type == (a.track == 0
+                                                       ? RecordTypeEnum.Main
+                                                       : RecordTypeEnum.Bounty) &&
+                                                   t.Stage == (a.track == 0 ? null : a.track)
                 );
-            }
+                t.Time = newData.time;
+                t.Date = DateTimeUtil.FromUnixTimestamp(newData.date);
+            });
+            updateList.AddRange(oldList);
+            addList.AddRange(syncData1
+                .Where(t => !oldList.Any(a => a.Auth == t.auth &&
+                                              a.MapName == t.map &&
+                                              a.Type == (t.track == 0
+                                                  ? RecordTypeEnum.Main
+                                                  : RecordTypeEnum.Bounty) &&
+                                              a.Stage == (t.track == 0 ? null : t.track)))
+                .Select(t =>
+                {
+                    var playerInfo = authDic.ContainsKey(t.auth) ? authDic[t.auth] : default;
+                    var mapId = mapDic.ContainsKey(t.map) ? mapDic[t.map] : 0;
+                    var result = new PlayerCompleteModel
+                    {
+                        Auth = t.auth,
+                        PlayerId = playerInfo.Item1,
+                        PlayerName = playerInfo.Item2,
+                        MapId = mapId,
+                        MapName = t.map,
+                        Type = t.track == 0 ? RecordTypeEnum.Main : RecordTypeEnum.Bounty,
+                        Stage = t.track == 0 ? null : t.track,
+                        Time = t.time,
+                        Date = DateTimeUtil.FromUnixTimestamp(t.date)
+                    };
+                    return result;
+                }));
+        }
+
+        if (syncData2.Any())
+        {
+            //获取旧的数据
+            var oldList = await _playerCompleteServices.GetOldStagetimesData(syncData2.Select(t => (
+                t.auth,
+                t.map,
+                t.stage
+            )));
+            oldList.ForEach(t =>
+            {
+                var newData = syncData2.First(a => t.Auth == a.auth &&
+                                                   t.MapName == a.map &&
+                                                   t.Type == RecordTypeEnum.Stage &&
+                                                   t.Stage == a.stage
+                );
+                t.Time = newData.time;
+                t.Date = DateTimeUtil.FromUnixTimestamp(newData.date);
+            });
+            addList.AddRange(syncData2
+                .Where(t => !oldList.Any(a => a.Auth == t.auth &&
+                                              a.MapName == t.map &&
+                                              a.Type == RecordTypeEnum.Stage &&
+                                              a.Stage == t.stage))
+                .Select(t =>
+                {
+                    var playerInfo = authDic.ContainsKey(t.auth) ? authDic[t.auth] : default;
+                    var mapId = mapDic.ContainsKey(t.map) ? mapDic[t.map] : 0;
+                    var result = new PlayerCompleteModel
+                    {
+                        Auth = t.auth,
+                        PlayerId = playerInfo.Item1,
+                        PlayerName = playerInfo.Item2,
+                        MapId = mapId,
+                        MapName = t.map,
+                        Type = RecordTypeEnum.Stage,
+                        Stage = t.stage,
+                        Time = t.time,
+                        Date = DateTimeUtil.FromUnixTimestamp(t.date)
+                    };
+                    return result;
+                })
+            );
 
             if (addList.Any()) _playerCompleteServices.Inserts(addList);
             if (updateList.Any()) _playerCompleteServices.Updates(updateList);

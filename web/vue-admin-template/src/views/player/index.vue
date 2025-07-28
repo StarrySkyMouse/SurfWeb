@@ -13,7 +13,7 @@
       <template #default>
         <!-- 原来的内容 -->
         <el-card class="box-card head">
-          <el-descriptions class="margin-top" :title="playerInfo.name" :column="isMobile ? 2 : 3" :size="size">
+          <el-descriptions class="margin-top" :title="playerInfo.name" :column="isMobile ? 2 : 3">
             <el-descriptions-item label="积分排名">
               {{ playerInfo.integralRanking }}({{ playerInfo.integral }})
             </el-descriptions-item>
@@ -40,7 +40,7 @@
             <span>已完成</span>
           </div>
           <el-row>
-            <el-col :span="24">
+            <el-col :span="24" class="data-card-bottom">
               <el-radio-group v-model="succeessRecordType" @input="changeSucceesBtn()">
                 <el-radio-button label="0">主线</el-radio-button>
                 <el-radio-button label="1">奖励</el-radio-button>
@@ -51,75 +51,73 @@
           <el-row>
             <el-col :span="24">
               <Tabs :tabs="tabs" @tabChange="succeessTabChange">
-                <child-component>
-                  <el-table v-show="succeessRecordType == 0" v-loading="succeesListLoading" :data="succeesList">
-                    <el-table-column align="center" label="地图" width="300">
-                      <template slot-scope="scope">
-                        <div class="map-card" @click="openMap(scope.row)">
-                          <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                          <div class="card-info">
-                            <span class="map-name">{{ scope.row.mapName }}</span>
-                            <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                          </div>
+                <el-table v-show="succeessRecordType == 0" v-loading="succeesListLoading" :data="succeesList">
+                  <el-table-column align="center" label="地图" width="300">
+                    <template slot-scope="scope">
+                      <div class="map-card" @click="openMap(scope.row)">
+                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
+                        <div class="card-info">
+                          <span class="map-name">{{ scope.row.mapName }}</span>
+                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
                         </div>
+                      </div>
+                    </template>
+                  </el-table-column>
+                  <el-table-column align="center" label="时间">
+                    <template slot-scope="scope">
+                      {{ scope.row.stages[0].time }}
+                      <span class="wrLable" v-if="scope.row.stages[0].gapTime == '00:00:00.0000'">wr</span>
+                      <template v-else>
+                        (+{{ scope.row.stages[0].gapTime | FormattingTime }})
                       </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="时间">
-                      <template slot-scope="scope">
-                        {{ scope.row.stages[0].time }}
-                        <el-tag v-if="scope.row.stages[0].gapTime == '00:00:00.0000'" effect="plain" type="danger"
-                          size="mini">wr</el-tag>
-                        <template v-else>
-                          (+{{ scope.row.stages[0].gapTime | FormattingTime }})
-                        </template>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" label="日期">
-                      <template slot-scope="scope">
-                        {{ scope.row.stages[0].date }}
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <el-table v-show="succeessRecordType != 0" v-loading="succeesListLoading" :data="succeesList"
-                    style="width: 100%">
-                    <el-table-column align="center" label="地图" width="300">
-                      <template slot-scope="scope">
-                        <div class="map-card" @click="openMap(scope.row)">
-                          <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                          <div class="card-info">
-                            <span class="map-name">{{ scope.row.mapName }}</span>
-                            <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                          </div>
+                    </template>
+                  </el-table-column>
+                  <el-table-column align="center" label="日期">
+                    <template slot-scope="scope">
+                      {{ scope.row.stages[0].date }}
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-table v-show="succeessRecordType != 0" v-loading="succeesListLoading" :data="succeesList"
+                  style="width: 100%">
+                  <el-table-column align="center" label="地图" width="300">
+                    <template slot-scope="scope">
+                      <div class="map-card" @click="openMap(scope.row)">
+                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
+                        <div class="card-info">
+                          <span class="map-name">{{ scope.row.mapName }}</span>
+                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
                         </div>
-                      </template>
-                    </el-table-column>
-                    <el-table-column label="阶段详情" width="480">
-                      <template slot-scope="scope">
-                        <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
-                          <el-table-column prop="stage" label="阶段" width="60" />
-                          <el-table-column align="center" label="时间">
-                            <template slot-scope="scope">
-                              {{ scope.row.time }}
-                              <el-tag v-if="scope.row.gapTime == '00:00:00.0000'" effect="plain" type="danger"
-                                size="mini">wr</el-tag>
-                              <template v-else>
-                                (+{{ scope.row.gapTime | FormattingTime }})
-                              </template>
+                      </div>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="阶段详情">
+                    <template slot-scope="scope">
+                      <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
+                        <el-table-column prop="stage" align="center" :label="succeessRecordType == '1' ? '奖励' : '阶段'"
+                          width="60" />
+                        <el-table-column align="center" label="时间">
+                          <template slot-scope="scope">
+                            {{ scope.row.time }}
+                            <el-tag v-if="scope.row.gapTime == '00:00:00.0000'" effect="plain" type="danger"
+                              size="mini">WR</el-tag>
+                            <template v-else>
+                              (+{{ scope.row.gapTime | FormattingTime }})
                             </template>
-                          </el-table-column>
-                          <el-table-column align="center" label="日期">
-                            <template slot-scope="scope">
-                              {{ scope.row.date }}
-                            </template>
-                          </el-table-column>
-                        </el-table>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <el-pagination style="text-align: center;" :current-page="succeesPageIndex" small :page-sizes="[10]"
-                    layout="prev, pager, next" :total="succeesTotal" @current-change="handleSucceesChange">
-                  </el-pagination>
-                </child-component>
+                          </template>
+                        </el-table-column>
+                        <el-table-column align="center" label="日期">
+                          <template slot-scope="scope">
+                            {{ scope.row.date }}
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-pagination style="text-align: center;" :current-page="succeesPageIndex" small :page-sizes="[10]"
+                  layout="prev, pager, next" :total="succeesTotal" @current-change="handleSucceesChange">
+                </el-pagination>
               </Tabs>
             </el-col>
           </el-row>
@@ -131,7 +129,7 @@
             <span>未完成</span>
           </div>
           <el-row>
-            <el-col :span="24">
+            <el-col :span="24" class="data-card-bottom">
               <el-radio-group v-model="failRecordType" @input="changeFailBtn()">
                 <el-radio-button label="0">主线</el-radio-button>
                 <el-radio-button label="1">奖励</el-radio-button>
@@ -142,35 +140,33 @@
           <el-row>
             <el-col :span="24">
               <Tabs :tabs="tabs" @tabChange="failTabChange">
-                <child-component>
-                  <el-table v-loading="failListLoading" :data="failList">
-                    <el-table-column align="center" label="地图" width="300">
-                      <template slot-scope="scope">
-                        <div class="map-card" @click="openMap(scope.row)">
-                          <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                          <div class="card-info">
-                            <span class="map-name">{{ scope.row.mapName }}</span>
-                            <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                          </div>
+                <el-table v-loading="failListLoading" :data="failList">
+                  <el-table-column align="center" label="地图" width="300">
+                    <template slot-scope="scope">
+                      <div class="map-card" @click="openMap(scope.row)">
+                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
+                        <div class="card-info">
+                          <span class="map-name">{{ scope.row.mapName }}</span>
+                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
                         </div>
-                      </template>
-                    </el-table-column>
-                    <el-table-column align="center" :label="''">
-                      <template slot-scope="scope" v-if="failRecordType != 0">
-                        <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
-                          <el-table-column align="center" label="阶段">
-                            <template slot-scope="scope">
-                              {{ scope.row }}
-                            </template>
-                          </el-table-column>
-                        </el-table>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                  <el-pagination style="text-align: center;" :current-page="failPageIndex" small :page-sizes="[10]"
-                    layout="prev, pager, next" :total="failTotal" @current-change="handleFailChange">
-                  </el-pagination>
-                </child-component>
+                      </div>
+                    </template>
+                  </el-table-column>
+                  <el-table-column align="center" :label="''">
+                    <template slot-scope="scope" v-if="failRecordType != 0">
+                      <el-table :data="scope.row.stages" size="small" border style="margin-top: 10px;">
+                        <el-table-column align="center" :label="failRecordType == '1' ? '奖励' : '阶段'">
+                          <template slot-scope="scope">
+                            {{ scope.row }}
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-pagination style="text-align: center;" :current-page="failPageIndex" small :page-sizes="[10]"
+                  layout="prev, pager, next" :total="failTotal" @current-change="handleFailChange">
+                </el-pagination>
               </Tabs>
             </el-col>
           </el-row>
@@ -191,6 +187,7 @@ import {
 import Tabs from '@/components/Tabs'
 
 export default {
+  name: 'Player',
   filters: {
     FormattingTime(val) {
       return val.toString().replace('00:', '').replace('00:', '')
@@ -374,6 +371,36 @@ export default {
 
   .head {
     border-left: 10px solid #EA2F14;
+  }
+
+  .data-card {
+    .el-card__body {
+      padding: 0px;
+    }
+  }
+
+  .tabs-wrapper {
+    margin-top: 10px;
+  }
+
+  .data-card-bottom {
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .wrLable {
+    background-color: #fff;
+    border-color: #fbc4c4;
+    color: #f56c6c;
+    display: inline-block;
+    height: 20px;
+    padding: 0 5px;
+    line-height: 19px;
+    padding: 0 5px;
+    font-size: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
   }
 }
 </style>

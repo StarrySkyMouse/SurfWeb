@@ -1,28 +1,26 @@
 ﻿using Common.Logger.Sink;
 using IServices.Log;
+using Microsoft.Extensions.DependencyInjection;
 using Model.Models.Log;
 using Serilog.Events;
 
 namespace Configurations.LoggerSetup.Sink;
 
-public class DbLoggerSinkExecute : IDbLoggerSinkExecute
+public class DbLoggerSinkExecute : IDbLoggerSink
 {
-    private readonly IDbLogServices _dbLogServices;
-
-    public DbLoggerSinkExecute(IDbLogServices dbLogServices)
+    private readonly IServiceProvider _serviceProvider;
+    public DbLoggerSinkExecute(IServiceProvider serviceProvider)
     {
-        _dbLogServices = dbLogServices;
+        _serviceProvider = serviceProvider;
     }
-
     public void Emit(LogEvent logEvent)
     {
-        _dbLogServices.Insert(new DbLogModel
+        // 每次 Emit 时，从容器获取最新的服务实例（防止生命周期冲突）
+        using var scope = _serviceProvider.CreateScope();
+        var dbLogServices = scope.ServiceProvider.GetRequiredService<IDbLogServices>();
+        dbLogServices.Insert(new DbLogModel
         {
             Message = logEvent.RenderMessage()
         });
-        //var message = logEvent.RenderMessage();
-        //var level = logEvent.Level.ToString();
-        //var timestamp = logEvent.Timestamp.UtcDateTime;
-        //var properties = logEvent.Properties; // 结构化属性
     }
 }

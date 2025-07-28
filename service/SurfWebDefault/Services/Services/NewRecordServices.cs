@@ -4,6 +4,7 @@ using Model.Entitys;
 using Repositories.IRepository;
 using Services.Base;
 using Services.IServices;
+using Utils.Extensions;
 
 namespace Services.Services
 {
@@ -22,24 +23,73 @@ namespace Services.Services
             _playerCompleteRepository = playerCompleteRepository;
         }
         /// <summary>
-        /// 获取最新纪录
+        /// 获取最新纪录(记录往前推，到第11张图出现就停止，每次查100条)
         /// </summary>
         public async Task<List<NewRecordDto>> GetNewRecordList(RecordTypeEnum recordType)
         {
-            return await _repository.Select(t => new NewRecordDto
+            var result = new List<NewRecordDto>();
+            var i = 1;
+            var isQuit = false;
+            while (true)
             {
-                PlayerId = t.PlayerId,
-                PlayerName = t.PlayerName,
-                MapId = t.MapId,
-                MapName = t.MapName,
-                Type = t.Type,
-                Notes = t.Notes,
-                Time = t.Time,
-                Date = t.Date
-            }).Where(t => t.Type == recordType)
-            .OrderByDescending(t => t.Date)
-            .Take(10)
-            .ToListAsync();
+                var list = await _playerCompleteRepository.Select(t => t)
+                    .Where(t => t.Type == recordType)
+                    .OrderByDescending(t => t.Date)
+                    .PageData(i, 100)
+                    .ToListAsync();
+                i++;
+                if (!list.Any())
+                {
+                    break;
+                }
+
+                foreach (var t in list)
+                {
+                    var item = result.FirstOrDefault(a => a.MapId == t.MapId);
+                    if (item == null)
+                    {
+                        result.Add(new NewRecordDto()
+                        {
+                            MapId = t.MapId,
+                            MapName = t.MapName,
+                            Notes = t.Stage?.ToString(),
+                            Players = new List<NewRecordDto_Player>
+                            {
+                                new()
+                                {
+                                    PlayerId = t.PlayerId,
+                                    PlayerName = t.PlayerName,
+                                    Date = t.Date,
+                                    Time = t.Time
+                                }
+                            }
+                        });
+                    }
+                    else
+                    {
+                        item.Players.Add(new NewRecordDto_Player()
+                        {
+                            PlayerId = t.PlayerId,
+                            PlayerName = t.PlayerName,
+                            Date = t.Date,
+                            Time = t.Time
+                        });
+                    }
+
+                    if (result.Count == 11)
+                    {
+                        result.Remove(result[10]);
+                        isQuit = true;
+                        break;
+                    }
+                }
+
+                if (isQuit)
+                {
+                    break;
+                }
+            }
+            return result;
         }
         /// <summary>
         /// 获取新增地图

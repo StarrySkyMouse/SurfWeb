@@ -1,10 +1,10 @@
-﻿using IServices.Base;
+﻿using IServices.Main.Base;
 using Model.Dtos.Maps;
 using Model.Models.Main;
 
 namespace IServices.Main;
 
-public interface IMapServices : IBaseServices<MapModel>
+public interface IMapServices : IMainBaseServices<MapModel>
 {
     /// <summary>
     ///     获取地图信息
@@ -46,7 +46,7 @@ public interface IMapServices : IBaseServices<MapModel>
     /// <summary>
     ///     通过地图名称获取地图ID列表
     /// </summary>
-    Task<Dictionary<string, string>> GetMapIdListByName(List<string> mapNameList);
+    Task<Dictionary<string, long>> GetMapIdListByName(List<string> mapNameList);
 
     /// <summary>
     ///     统计地图完成人数

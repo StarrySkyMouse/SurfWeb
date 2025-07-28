@@ -1,6 +1,6 @@
 ﻿using IServices.Main;
 using Model.Models.Main;
-using Repository.BASE.MainSqlSugar;
+using Repository.BASE.Main;
 using Services.Base;
 
 namespace Services.Main;
@@ -21,7 +21,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
     }
 
     /// <summary>
-    ///     获取主线/奖励、阶段的最后更新时间
+    ///获取主线/奖励、阶段的最后更新时间
     /// </summary>
     /// <returns></returns>
     public (DateTime?, DateTime?) GetFinallyDateTime()

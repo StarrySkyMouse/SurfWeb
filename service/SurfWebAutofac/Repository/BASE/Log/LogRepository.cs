@@ -1,13 +1,13 @@
 ﻿using Model.Models.Base;
 using Repository.BASE.Log.SugarClient;
-using Repository.BASE.MainSqlSugar;
+using Repository.BASE.Main;
 
 namespace Repository.BASE.Log;
 
-public class LogRepository<TEntity> : BaseRepository<TEntity>, IMainRepository<TEntity>
+public class LogRepository<TEntity> : BaseRepository<TEntity>, ILogRepository<TEntity>
     where TEntity : BaseEntity, new()
 {
-    private LogRepository(ILogSqlSugarClient sqlSugarClient) : base(sqlSugarClient)
+    public LogRepository(ILogSqlSugarClient sqlSugarClient) : base(sqlSugarClient)
     {
     }
 }

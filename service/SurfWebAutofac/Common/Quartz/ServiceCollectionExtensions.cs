@@ -55,17 +55,20 @@ public static class ServiceCollectionExtensions
         //添加Quartz到HostedService服务
         services.AddQuartzHostedService();
     }
-
     public static IQuartzConfigure AddSequenceJob<T>(this IQuartzConfigure cfg)
         where T : BaseSequenceJob
     {
         cfg.GetBaseSequenceJobs().Add(typeof(T));
-        var temp = Activator.CreateInstance(typeof(T), new object[] { null!, null! }) as BaseSequenceJob;
-        cfg.GetSequenceJobs().AddRange(temp.GetSequenceJob());
+        // 此处仅用于获取 T 下属的 SequenceJob 类型，不做实际构造
+        var temp = Activator.CreateInstance(typeof(T), new object[] { null, null }) as BaseSequenceJob;
+        if (temp != null)
+        {
+            cfg.GetSequenceJobs().AddRange(temp.GetSequenceJob());
+        }
         return cfg;
     }
-
-    public static IQuartzConfigure AddJob<T>(this IQuartzConfigure cfg) where T : BaseJob
+    public static IQuartzConfigure AddJob<T>(this IQuartzConfigure cfg)
+        where T : BaseJob
     {
         cfg.GetJobs().Add(typeof(T));
         return cfg;

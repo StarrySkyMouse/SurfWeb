@@ -1,8 +1,7 @@
 ﻿using System.Reflection;
-using DataSync.SourceModel;
 using Microsoft.Extensions.Configuration;
 using Model.Models.Base;
-using MySqlConnector;
+using Model.Models.Main;
 using Repository.Other;
 using SqlSugar;
 
@@ -10,6 +9,7 @@ SqlSugarClient _db;
 MySqlHelp _sourceDb;
 
 SyncData();
+
 //数据同步
 void SyncData()
 {
@@ -20,20 +20,18 @@ void SyncData()
     Console.WriteLine("已完成按任意键结束");
     Console.ReadKey();
 }
+
 void Init()
 {
     Console.WriteLine("对象初始化");
     //当本地没有appsettings.Development.json时，使用开源配置
     var env = "Development";
-    if (!File.Exists("appsettings.Development.json"))
-    {
-        env = "OpenSource";
-    }
+    if (!File.Exists("appsettings.Development.json")) env = "OpenSource";
 
     var config = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory()) // Microsoft.Extensions.Configuration.FileExtensions 的扩展方法
-        .AddJsonFile($"appsettings.{env}.json", optional: false,
-            reloadOnChange: true) //Microsoft.Extensions.Configuration.Json 的扩展方法
+        .AddJsonFile($"appsettings.{env}.json", false,
+            true) //Microsoft.Extensions.Configuration.Json 的扩展方法
         .Build();
 
     var dbConfig =
@@ -43,7 +41,7 @@ void Init()
     {
         ConnectionString = dbConfig,
         DbType = DbType.MySql,
-        IsAutoCloseConnection = true,
+        IsAutoCloseConnection = true
     });
     var sourceDbConfig =
         config.GetSection("SourceDbConnection").Get<string>() ??
@@ -51,6 +49,7 @@ void Init()
     _sourceDb = new MySqlHelp(sourceDbConfig);
     Console.WriteLine("完成对象初始化");
 }
+
 //初始化主库
 void InitDb()
 {
@@ -64,20 +63,21 @@ void InitDb()
     //创建表
     _db.CodeFirst.InitTables(list);
     //删除所有数据
-    _db.DbMaintenance.TruncateTable<Model.Models.Main.MapModel>();
-    _db.DbMaintenance.TruncateTable<Model.Models.Main.NewRecordModel>();
-    _db.DbMaintenance.TruncateTable<Model.Models.Main.PlayerModel>();
-    _db.DbMaintenance.TruncateTable<Model.Models.Main.PlayerCompleteModel>();
-    _db.DbMaintenance.TruncateTable<Model.Models.Main.RankingModel>();
+    _db.DbMaintenance.TruncateTable<MapModel>();
+    _db.DbMaintenance.TruncateTable<NewRecordModel>();
+    _db.DbMaintenance.TruncateTable<PlayerModel>();
+    _db.DbMaintenance.TruncateTable<PlayerCompleteModel>();
+    _db.DbMaintenance.TruncateTable<RankingModel>();
     Console.WriteLine("完成数据库初始化");
 }
+
 //转换数据
 void TransferData()
 {
     Console.WriteLine("数据插入");
     //map
     var mapList = GetSourceMapList();
-    _db.Insertable<Model.Models.Main.MapModel>(mapList.Select(t => new Model.Models.MapModel()
+    _db.Insertable(mapList.Select(t => new MapModel
     {
         Name = t.Name,
         Difficulty = t.Difficulty,
@@ -92,11 +92,11 @@ void TransferData()
     Console.WriteLine($"map:{mapList.Count}条");
     //newrecord
     var newrecordList = GetSourceNewrecordList();
-    _db.Insertable<Model.Models.Main.NewRecordModel>(newrecordList.Select(t => new Model.Models.NewRecordModel()
+    _db.Insertable(newrecordList.Select(t => new NewRecordModel
     {
         MapId = 0,
         MapName = null,
-        Type = (Model.Models.Main.RecordTypeEnum)(int)t.Type,
+        Type = (RecordTypeEnum)(int)t.Type,
         Notes = t.Notes,
         Time = t.Time,
         Date = t.Date,
@@ -107,7 +107,7 @@ void TransferData()
     Console.WriteLine($"newrecord:{newrecordList.Count}条");
     //player
     var playerList = GetSourcePlayerList();
-    _db.Insertable<Model.Models.Main.PlayerModel>(playerList.Select(t => new Model.Models.PlayerModel()
+    _db.Insertable(playerList.Select(t => new PlayerModel
     {
         Name = t.Name,
         Integral = t.Integral,
@@ -122,15 +122,15 @@ void TransferData()
     Console.WriteLine($"player:{playerList.Count}条");
     //playercomplete
     var playerCompleteList = GetSourcePlayercompleteList();
-    _db.Insertable<Model.Models.Main.PlayerCompleteModel>(playerCompleteList.Select(t =>
-        new Model.Models.PlayerCompleteModel()
+    _db.Insertable(playerCompleteList.Select(t =>
+        new PlayerCompleteModel
         {
             Auth = t.Auth,
             PlayerId = 0,
             PlayerName = null,
             MapId = 0,
             MapName = null,
-            Type = (Model.Models.Main.RecordTypeEnum)(int)t.Type,
+            Type = (RecordTypeEnum)(int)t.Type,
             Stage = t.Stage,
             Time = t.Time,
             Date = t.Date,
@@ -142,9 +142,9 @@ void TransferData()
     Console.WriteLine($"playercomplete:{playerCompleteList.Count}条");
     //ranking
     var rankingList = GetSourceRankingList();
-    _db.Insertable<Model.Models.Main.RankingModel>(rankingList.Select(t => new Model.Models.RankingModel()
+    _db.Insertable(rankingList.Select(t => new RankingModel
     {
-        Type = (Model.Models.Main.RankingTypeEnum)(int)t.Type,
+        Type = (RankingTypeEnum)(int)t.Type,
         Rank = t.Rank,
         PlayerId = 0,
         PlayerName = null,
@@ -158,8 +158,8 @@ void TransferData()
 
 List<DataSync.SourceModel.MapModel> GetSourceMapList()
 {
-    int pageIndex = 1;
-    int pageSize = 1000;
+    var pageIndex = 1;
+    var pageSize = 1000;
     var result = new List<DataSync.SourceModel.MapModel>();
     while (true)
     {
@@ -173,14 +173,16 @@ List<DataSync.SourceModel.MapModel> GetSourceMapList()
 
     return result;
 }
+
 List<DataSync.SourceModel.NewRecordModel> GetSourceNewrecordList()
 {
-    int pageIndex = 1;
-    int pageSize = 1000;
+    var pageIndex = 1;
+    var pageSize = 1000;
     var result = new List<DataSync.SourceModel.NewRecordModel>();
     while (true)
     {
-        var list = _sourceDb.QueryPageAsync<DataSync.SourceModel.NewRecordModel>("select * from newrecord", pageIndex, pageSize)
+        var list = _sourceDb
+            .QueryPageAsync<DataSync.SourceModel.NewRecordModel>("select * from newrecord", pageIndex, pageSize)
             .Result;
         if (list == null || !list.Any())
             break;
@@ -193,12 +195,13 @@ List<DataSync.SourceModel.NewRecordModel> GetSourceNewrecordList()
 
 List<DataSync.SourceModel.PlayerModel> GetSourcePlayerList()
 {
-    int pageIndex = 1;
-    int pageSize = 1000;
+    var pageIndex = 1;
+    var pageSize = 1000;
     var result = new List<DataSync.SourceModel.PlayerModel>();
     while (true)
     {
-        var list = _sourceDb.QueryPageAsync<DataSync.SourceModel.PlayerModel>("select * from player", pageIndex, pageSize)
+        var list = _sourceDb
+            .QueryPageAsync<DataSync.SourceModel.PlayerModel>("select * from player", pageIndex, pageSize)
             .Result;
         if (list == null || !list.Any())
             break;
@@ -211,12 +214,14 @@ List<DataSync.SourceModel.PlayerModel> GetSourcePlayerList()
 
 List<DataSync.SourceModel.PlayerCompleteModel> GetSourcePlayercompleteList()
 {
-    int pageIndex = 1;
-    int pageSize = 1000;
+    var pageIndex = 1;
+    var pageSize = 1000;
     var result = new List<DataSync.SourceModel.PlayerCompleteModel>();
     while (true)
     {
-        var list = _sourceDb.QueryPageAsync<DataSync.SourceModel.PlayerCompleteModel>("select * from playercomplete", pageIndex, pageSize)
+        var list = _sourceDb
+            .QueryPageAsync<DataSync.SourceModel.PlayerCompleteModel>("select * from playercomplete", pageIndex,
+                pageSize)
             .Result;
         if (list == null || !list.Any())
             break;
@@ -229,12 +234,13 @@ List<DataSync.SourceModel.PlayerCompleteModel> GetSourcePlayercompleteList()
 
 List<DataSync.SourceModel.RankingModel> GetSourceRankingList()
 {
-    int pageIndex = 1;
-    int pageSize = 1000;
+    var pageIndex = 1;
+    var pageSize = 1000;
     var result = new List<DataSync.SourceModel.RankingModel>();
     while (true)
     {
-        var list = _sourceDb.QueryPageAsync<DataSync.SourceModel.RankingModel>("select * from ranking", pageIndex, pageSize)
+        var list = _sourceDb
+            .QueryPageAsync<DataSync.SourceModel.RankingModel>("select * from ranking", pageIndex, pageSize)
             .Result;
         if (list == null || !list.Any())
             break;

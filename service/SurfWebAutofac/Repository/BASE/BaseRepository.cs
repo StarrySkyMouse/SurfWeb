@@ -7,7 +7,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
 {
     private readonly ISqlSugarClient _sqlSugarClient;
 
-    protected BaseRepository(ISqlSugarClient sqlSugarClient)
+    public BaseRepository(ISqlSugarClient sqlSugarClient)
     {
         _sqlSugarClient = sqlSugarClient;
     }
@@ -23,17 +23,26 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     /// <summary>
     ///     新增
     /// </summary>
-    public int Insert(TEntity insertObj)
+    public long Insert(TEntity insertObj)
     {
-        return _sqlSugarClient.Insertable(insertObj).ExecuteCommand();
+        insertObj.CreateTime = DateTime.Now;
+        insertObj.UpDateTime = DateTime.Now;
+        insertObj.IsDelete = 0;
+        return _sqlSugarClient.Insertable(insertObj).ExecuteReturnSnowflakeId();
     }
 
     /// <summary>
     ///     批量新增
     /// </summary>
-    public int Inserts(List<TEntity> insertObjs)
+    public long Inserts(List<TEntity> insertObjs)
     {
-        return _sqlSugarClient.Insertable(insertObjs).ExecuteCommand();
+        insertObjs.ForEach(t =>
+        {
+            t.CreateTime = DateTime.Now;
+            t.UpDateTime = DateTime.Now;
+            t.IsDelete = 0;
+        });
+        return _sqlSugarClient.Insertable(insertObjs).ExecuteReturnSnowflakeId();
     }
 
     /// <summary>
@@ -41,6 +50,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     /// </summary>
     public int Updates(List<TEntity> updateObjs)
     {
+        updateObjs.ForEach(t => t.UpDateTime = DateTime.Now);
         return _sqlSugarClient.Updateable(updateObjs).ExecuteCommand();
     }
 
@@ -49,6 +59,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
     /// </summary>
     public int Update(TEntity updateObj)
     {
+        updateObj.UpDateTime = DateTime.Now;
         return _sqlSugarClient.Updateable(updateObj).ExecuteCommand();
     }
 

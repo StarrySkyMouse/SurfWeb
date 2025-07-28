@@ -1,9 +1,9 @@
-﻿using IServices.Base;
+﻿using IServices.Main.Base;
 using Model.Models.Main;
 
 namespace IServices.Main;
 
-public interface IPlayerCompleteServices : IBaseServices<PlayerCompleteModel>
+public interface IPlayerCompleteServices : IMainBaseServices<PlayerCompleteModel>
 {
     /// <summary>
     ///     获取最后一次的时间

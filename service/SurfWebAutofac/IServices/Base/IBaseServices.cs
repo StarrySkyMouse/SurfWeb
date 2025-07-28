@@ -7,12 +7,12 @@ public interface IBaseServices<TEntity> where TEntity : BaseEntity, new()
     /// <summary>
     ///     新增
     /// </summary>
-    int Insert(TEntity insertObj);
+    long Insert(TEntity insertObj);
 
     /// <summary>
     ///     批量新增
     /// </summary>
-    int Inserts(List<TEntity> insertObjs);
+    long Inserts(List<TEntity> insertObjs);
 
     /// <summary>
     ///     批量更新

@@ -6,6 +6,7 @@ namespace Model.Models.Main;
 /// <summary>
 ///     地图
 /// </summary>
+[SugarTable("Map")]
 public class MapModel : BaseEntity
 {
     [SugarColumn(ColumnDescription = "名称", Length = 128)]

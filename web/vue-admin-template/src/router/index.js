@@ -42,7 +42,7 @@ export const constantRoutes = [
     redirect: '/serverList',
     children: [{
       path: '',
-      name: 'serverList',
+      name: 'ServerList',
       component: () => import('@/views/serverList/index'),
       meta: { title: '服务器', icon: 'serverList', affix: true }
     }]
@@ -64,7 +64,7 @@ export const constantRoutes = [
     redirect: '/news/index',
     children: [{
       path: 'index',
-      name: 'Index',
+      name: 'NewsIndex',
       component: () => import('@/views/news/index'),
       meta: { title: '新的', icon: 'new', affix: true }
     }]
@@ -75,7 +75,7 @@ export const constantRoutes = [
     redirect: '/maps/index',
     children: [{
       path: 'index',
-      name: 'Index',
+      name: 'MapIndex',
       component: () => import('@/views/maps/index'),
       meta: { title: '地图', icon: 'map', affix: true }
     }]

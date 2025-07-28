@@ -36,7 +36,7 @@
       <el-row>
         <el-col :span="24">
           <el-input v-model="search" placeholder="请输入内容" class="input-with-select"
-            :style="isMobile ? { width: '100%' } : { width: '612px' }">
+            :style="isMobile ? { width: '100%' } : { width: '612px' }" @keyup.enter.native="changeDifficulty">
             <el-button slot="append" icon="el-icon-search" @click="changeDifficulty" />
           </el-input>
         </el-col>
@@ -69,6 +69,7 @@
 import { getMapList } from '@/api/maps'
 
 export default {
+  name: 'MapIndex',
   data() {
     return {
       data: [],
@@ -96,7 +97,19 @@ export default {
       window.addEventListener('resize', this.handleResize)
     })
   },
-  beforeDestroy() {
+  // 使用keep-alive时缓存每次进来触发
+  activated() {
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    this.$nextTick(() => {
+      const scrollBody = this.$el.querySelector('.scroll-body')
+      if (scrollBody) {
+        scrollBody.addEventListener('scroll', this.handleScroll)
+      }
+      window.addEventListener('resize', this.handleResize)
+    })
+  },
+  deactivated() {
     document.body.style.overflow = ''
     document.documentElement.style.overflow = ''
     const scrollBody = this.$el.querySelector('.scroll-body')

@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
 
-namespace Repository.BASE.MainSqlSugar.SugarClient;
+namespace Repository.BASE.Main.SugarClient;
 
 /// <summary>
 ///     多ISqlSugarClient实例

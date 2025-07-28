@@ -1,7 +1,16 @@
 ﻿using System.Reflection;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
-using Configurations.AutofacSetup.AOP;
+using Castle.DynamicProxy;
+using Common.Logger.AOP;
+using Common.Logger.AOP.Cache;
+using Common.Logger.AOP.ServiceLogging;
+using IServices.Base;
+using IServices.Main.Base;
+using Microsoft.AspNetCore.Hosting;
+using Repository.BASE.Log;
+using Repository.BASE.Main;
+using Serilog.Core;
 using Module = Autofac.Module;
 
 namespace Configurations.AutofacSetup.Register;
@@ -15,33 +24,37 @@ public class AutofacModuleRegister : Module
         // 加载相关程序集
         var iservicesAssembly = Assembly.LoadFrom(Path.Combine(basePath, "IServices.dll"));
         var servicesAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Services.dll"));
-        var repositoryAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Repository.dll"));
-
-        //AOP
-        builder.RegisterType<LoggingInterceptor>();
-
+        var commonAssembly = Assembly.LoadFrom(Path.Combine(basePath, "Common.dll"));
+        // 注册拦截器
+        builder.RegisterAssemblyTypes(commonAssembly)
+            .Where(t => typeof(IInterceptor).IsAssignableFrom(t) && t is { IsClass: true, IsAbstract: false })
+            .AsSelf()
+            .SingleInstance(); // 单例
         // 扫描并注册 Services 层所有实现 IServices 接口的类型
         builder.RegisterAssemblyTypes(servicesAssembly)
-            //是啊下只注册实现了 IServices 接口的类型
+            //只注册实现了 IServices 接口的类型
             .Where(t => t.GetInterfaces().Any(i => i.Assembly == iservicesAssembly))
             //接口注入
             .AsImplementedInterfaces()
             //属性注入
             .PropertiesAutowired()
             //设置生命周期为每请求一个实例（Scoped）
-            .InstancePerLifetimeScope()
-            //启用接口拦截器（AOP）。
-            .EnableInterfaceInterceptors()
-            //日志拦截器
-            .InterceptedBy(typeof(LoggingInterceptor))
-            //Service缓存拦截器
-            .InterceptedBy(typeof(CacheInterceptor));
-        // 扫描并注册 Repository 层所有类型
-        builder.RegisterAssemblyTypes(repositoryAssembly)
+            .InstancePerLifetimeScope();
+        //为MainService注册拦截器
+        builder.RegisterAssemblyTypes(servicesAssembly)
+            .Where(t => t.GetInterfaces().Any(i =>
+                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMainBaseServices<>)))
             .AsImplementedInterfaces()
-            .PropertiesAutowired()
-            .InstancePerLifetimeScope()
             .EnableInterfaceInterceptors()
-            .InterceptedBy(typeof(LoggingInterceptor));
+            .InterceptedBy(typeof(ServiceLoggingInterceptor), typeof(CacheInterceptor))
+            .PropertiesAutowired()
+            .InstancePerLifetimeScope();
+
+        builder.RegisterGeneric(typeof(MainRepository<>))
+            .As(typeof(IMainRepository<>))
+            .InstancePerLifetimeScope();
+        builder.RegisterGeneric(typeof(LogRepository<>))
+            .As(typeof(ILogRepository<>))
+        .InstancePerLifetimeScope();
     }
 }

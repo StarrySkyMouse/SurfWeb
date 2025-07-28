@@ -110,6 +110,7 @@
 import { getNewRecordList, getNewMapList, getPopularMapList } from '@/api/news'
 
 export default {
+  name: 'NewsIndex',
   data() {
     return {
       recordType: 0,

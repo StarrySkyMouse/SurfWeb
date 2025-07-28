@@ -6,6 +6,7 @@ namespace Model.Models.Main;
 /// <summary>
 ///     玩家
 /// </summary>
+[SugarTable("Player")]
 public class PlayerModel : BaseEntity
 {
     /// <summary>

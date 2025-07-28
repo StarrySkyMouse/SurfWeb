@@ -1,5 +1,6 @@
 ﻿using Common.Quartz.Base;
 using IServices.Main;
+using Model.ExteriorEntitys;
 using Quartz;
 using Repository.Other;
 
@@ -24,8 +25,6 @@ public class MapBeforeSequenceJob : ISequenceJob
 
     public async Task Execute(IJobExecutionContext context)
     {
-        if (_sqlHelp.IsDataSync())
-        {
             //查询地图奖励数和阶段数
             var mapInfoList = await _sqlHelp.QueryAsync<MapInfo>(@"
                         /*奖励-1*/
@@ -50,6 +49,5 @@ public class MapBeforeSequenceJob : ISequenceJob
                 map.StageNumber = mapStageNumber?.number ?? 0;
             });
             _mapServices.Updates(mapModelList);
-        }
     }
 }

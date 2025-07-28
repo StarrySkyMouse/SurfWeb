@@ -1,7 +1,7 @@
 ﻿using IServices.Main;
 using Model.Dtos.NewRecords;
 using Model.Models.Main;
-using Repository.BASE.MainSqlSugar;
+using Repository.BASE.Main;
 using Services.Base;
 
 namespace Services.Main;

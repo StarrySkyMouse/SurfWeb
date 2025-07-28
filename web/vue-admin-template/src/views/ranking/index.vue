@@ -78,6 +78,7 @@
 import { getRankingList } from '@/api/ranking'
 
 export default {
+  name: 'Ranking',
   filters: {
     intValue(val) {
       // 转为整数

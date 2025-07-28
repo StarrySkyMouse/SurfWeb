@@ -27,6 +27,7 @@ public enum RecordTypeEnum
 /// <summary>
 ///     最新记录
 /// </summary>
+[SugarTable("NewRecord")]
 public class NewRecordModel : BaseEntity
 {
     /// <summary>

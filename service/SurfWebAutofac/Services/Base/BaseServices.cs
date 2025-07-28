@@ -23,7 +23,7 @@ public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : Base
     /// <summary>
     ///     新增
     /// </summary>
-    public int Insert(TEntity insertObj)
+    public long Insert(TEntity insertObj)
     {
         return _baseRepository.Insert(insertObj);
     }
@@ -31,7 +31,7 @@ public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : Base
     /// <summary>
     ///     批量新增
     /// </summary>
-    public int Inserts(List<TEntity> insertObjs)
+    public long Inserts(List<TEntity> insertObjs)
     {
         return _baseRepository.Inserts(insertObjs);
     }

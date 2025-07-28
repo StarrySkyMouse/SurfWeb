@@ -1,10 +1,10 @@
-﻿using IServices.Base;
+﻿using IServices.Main.Base;
 using Model.Dtos.Rankings;
 using Model.Models.Main;
 
 namespace IServices.Main;
 
-public interface IRankingServices : IBaseServices<RankingModel>
+public interface IRankingServices : IMainBaseServices<RankingModel>
 {
     Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType);
 

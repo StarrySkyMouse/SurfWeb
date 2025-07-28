@@ -1,20 +1,14 @@
-﻿using Common.Logger;
+﻿using Autofac.Core;
+using Common.Logger;
 using Configurations.LoggerSetup.Sink;
 using Microsoft.AspNetCore.Builder;
 using Serilog;
+using System.Configuration;
 
 namespace Configurations.LoggerSetup;
 
 public static class LoggerConfiguration
 {
-    private static Serilog.LoggerConfiguration WhereIf(this Serilog.LoggerConfiguration cfg, bool condition,
-        Func<Serilog.LoggerConfiguration, Serilog.LoggerConfiguration> predicate)
-    {
-        if (!condition) return cfg;
-
-        return predicate(cfg);
-    }
-
     /// <summary>
     ///     日志配置
     /// </summary>
@@ -22,10 +16,9 @@ public static class LoggerConfiguration
     public static void AddLoggerConfiguration(this WebApplicationBuilder builder)
     {
         //依赖注入
-        builder.Services.AddLoggerService(builder.Configuration)
-            .AddDbLoggerSinkExecute<DbLoggerSinkExecute>()
-            .AddServiceLoggerSinkExecute<ServiceLoggerSinkExecute>();
-        // 替换默认日志为 Serilog
-        builder.Host.UseSerilog();
+        builder.Services.AddLoggerService(builder.Configuration, builder.Host, (cfg, services) => cfg
+            //Fluent API风格
+            .AddDbLoggerSinkExecute<DbLoggerSinkExecute>(services)
+            .AddServiceLoggerSinkExecute<ServiceLoggerSinkExecute>(services));
     }
 }

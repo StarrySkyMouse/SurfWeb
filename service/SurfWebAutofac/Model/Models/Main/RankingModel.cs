@@ -29,6 +29,7 @@ public enum RankingTypeEnum
 /// <summary>
 ///     排行
 /// </summary>
+[SugarTable("Ranking")]
 public class RankingModel : BaseEntity
 {
     /// <summary>

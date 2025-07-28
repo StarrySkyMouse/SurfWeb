@@ -11,15 +11,14 @@
           <span>地图:
             <span class="map-name" :title="serverInfo.map" v-if="serverInfo.mapInfo == null">{{ serverInfo.map }}</span>
             <el-link v-else class="map-name" :title="serverInfo.map" type="primary" @click="openMap()">{{ serverInfo.map
-              }}</el-link>
+            }}</el-link>
           </span>
         </div>
         <div class="info-item">
           <span>难度:{{ serverInfo.mapInfo == null ? '' : serverInfo.mapInfo.difficulty }}</span>
         </div>
         <div class="info-item">
-          <span>玩家: <el-link type="primary" @click="dialogVisible = true">{{ serverInfo.playerInfos.length }}/{{
-            serverInfo.maxPlayers }}</el-link></span>
+          <span>玩家: <el-link type="primary" @click="dialogVisible = true">{{ serverInfo.playerInfos ?serverInfo.playerInfos.length : 0 }}/{{ serverInfo.maxPlayers }}</el-link></span>
         </div>
         <div class="info-item-button">
           <button onclick="window.location.href = 'steam://connect/124.223.198.48:27070'">加入</button>
@@ -52,6 +51,7 @@
 import { getServerInfo } from '@/api/serverList'
 
 export default {
+  name: 'ServerList',
   data() {
     return {
       intervalId: null,

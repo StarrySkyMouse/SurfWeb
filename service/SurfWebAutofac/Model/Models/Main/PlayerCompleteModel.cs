@@ -6,6 +6,7 @@ namespace Model.Models.Main;
 /// <summary>
 ///     玩家通关
 /// </summary>
+[SugarTable("PlayerComplete")]
 public class PlayerCompleteModel : BaseEntity
 {
     /// <summary>

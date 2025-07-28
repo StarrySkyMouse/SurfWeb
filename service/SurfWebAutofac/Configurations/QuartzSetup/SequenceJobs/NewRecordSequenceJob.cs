@@ -22,6 +22,6 @@ public class NewRecordSequenceJob : ISequenceJob
     public async Task Execute(IJobExecutionContext context)
     {
         //更新新的
-        await _newRecordServices.UpdateNewRecord();
+        //await _newRecordServices.UpdateNewRecord();
     }
 }

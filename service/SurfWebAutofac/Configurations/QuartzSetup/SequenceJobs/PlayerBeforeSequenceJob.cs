@@ -1,5 +1,6 @@
 ﻿using Common.Quartz.Base;
 using IServices.Main;
+using Model.ExteriorEntitys;
 using Model.Models.Main;
 using Quartz;
 using Repository.Other;
@@ -25,40 +26,37 @@ public class PlayerBeforeSequenceJob : ISequenceJob
     public async Task Execute(IJobExecutionContext context)
     {
         //没有修改时间字段，只能做全量同步
-        if (_sqlHelp.IsDataSync())
-        {
-            //获取目标数据源和源数据源
-            var targetList = await GetUsersFromTarget();
-            //获取源数据源
-            var sourceList = await GetUsersFromSource();
-            var changeList = new List<PlayerModel>();
-            var addList = new List<PlayerModel>();
-            //List检索的时间复杂度是O(n)，而Dictionary检索的时间复杂度是O(1)
-            var targetDict = targetList.ToDictionary(t => t.Auth, t => t);
-            foreach (var src in sourceList)
-                if (targetDict.TryGetValue(src.auth, out var tgt))
-                {
-                    if (src.name != tgt.Name || src.points != tgt.Integral)
-                    {
-                        tgt.Name = src.name;
-                        tgt.Integral = src.points;
-                        changeList.Add(tgt);
-                    }
-                }
-                else
-                {
-                    addList.Add(new PlayerModel
-                    {
-                        Id = null, // 该标识在插入时自动生成
-                        Auth = src.auth,
-                        Name = src.name,
-                        Integral = src.points
-                    });
-                }
 
-            if (changeList.Any()) await _playerServices.ChangeInfo(changeList);
-            if (addList.Any()) _playerServices.Inserts(addList);
-        }
+        //获取目标数据源和源数据源
+        var targetList = await GetUsersFromTarget();
+        //获取源数据源
+        var sourceList = await GetUsersFromSource();
+        var changeList = new List<PlayerModel>();
+        var addList = new List<PlayerModel>();
+        //List检索的时间复杂度是O(n)，而Dictionary检索的时间复杂度是O(1)
+        var targetDict = targetList.ToDictionary(t => t.Auth, t => t);
+        foreach (var src in sourceList)
+            if (targetDict.TryGetValue(src.auth, out var tgt))
+            {
+                if (src.name != tgt.Name || src.points != tgt.Integral)
+                {
+                    tgt.Name = src.name;
+                    tgt.Integral = src.points;
+                    changeList.Add(tgt);
+                }
+            }
+            else
+            {
+                addList.Add(new PlayerModel
+                {
+                    Auth = src.auth,
+                    Name = src.name,
+                    Integral = src.points
+                });
+            }
+
+        if (changeList.Any()) await _playerServices.ChangeInfo(changeList);
+        if (addList.Any()) _playerServices.Inserts(addList);
     }
 
     /// <summary>

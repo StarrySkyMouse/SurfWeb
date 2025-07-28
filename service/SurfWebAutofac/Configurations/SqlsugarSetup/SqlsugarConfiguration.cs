@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Repository.BASE.Log.SugarClient;
-using Repository.BASE.MainSqlSugar.SugarClient;
+using Repository.BASE.Main.SugarClient;
 using SqlSugar;
 
 namespace Configurations.SqlsugarSetup;
@@ -19,6 +19,9 @@ public static class SqlsugarConfiguration
     {
         var sqlsugarConfig = builder.Configuration.GetSection("SqlsugarConfig").Get<SqlsugarConfig>();
         if (sqlsugarConfig == null) throw new InvalidOperationException("数据库配置SqlsugarConfig丢失");
+        //id生成器配置
+        SnowFlakeSingle.WorkId = sqlsugarConfig.SnowflakeIdConfig.WorkId;
+        SnowFlakeSingle.DatacenterId = sqlsugarConfig.SnowflakeIdConfig.DatacenterId;
         //应用数据库
         builder.Services.AddScoped<IMainSqlSugarClient>(sp =>
         {
@@ -28,9 +31,6 @@ public static class SqlsugarConfiguration
                 IsAutoCloseConnection = true,
                 ConnectionString = sqlsugarConfig.MainConfig.DbConnection
             };
-            //id生成器配置
-            SnowFlakeSingle.WorkId = sqlsugarConfig.SnowflakeIdConfig.WorkId;
-            SnowFlakeSingle.DatacenterId = sqlsugarConfig.SnowflakeIdConfig.DatacenterId;
             //主从数据库配置
             if (sqlsugarConfig.MainConfig.IsOpenSlave && sqlsugarConfig.MainConfig.SlaveConfigs.Any(t => t.IsEnable))
                 connectionConfig.SlaveConnectionConfigs = sqlsugarConfig.MainConfig.SlaveConfigs
@@ -44,12 +44,6 @@ public static class SqlsugarConfiguration
 
             #region AOP
 
-            ////SQL执行前
-            //db.Aop.OnLogExecuting = (sql, pars) =>
-            //{
-            //    //获取原生SQL推荐 5.1.4.63  性能OK
-            //    UtilMethods.GetNativeSql(sql, pars);
-            //};
             //SQL执行后
             db.Aop.OnLogExecuted = (sql, pars) =>
             {
@@ -68,7 +62,7 @@ public static class SqlsugarConfiguration
             return db;
         });
         //日志数据库
-        builder.Services.AddSingleton<ILogSqlSugarClient>(sp =>
+        builder.Services.AddScoped<ILogSqlSugarClient>(sp =>
         {
             var db = new LogSqlSugarClient(new ConnectionConfig
             {

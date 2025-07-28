@@ -1,24 +1,31 @@
 ﻿using Common.Logger.Sink;
 using IServices.Log;
+using Microsoft.Extensions.DependencyInjection;
 using Model.Models.Log;
 using Serilog.Events;
 
 namespace Configurations.LoggerSetup.Sink;
 
-public class ServiceLoggerSinkExecute : IServiceLoggerSinkExecute
+public class ServiceLoggerSinkExecute : IServiceLoggerSink
 {
-    private readonly IServicesLogServices _servicesLogServices;
+    private readonly IServiceProvider _serviceProvider;
 
-    public ServiceLoggerSinkExecute(IServicesLogServices servicesLogServices)
+    public ServiceLoggerSinkExecute(IServiceProvider serviceProvider)
     {
-        _servicesLogServices = servicesLogServices;
+        _serviceProvider = serviceProvider;
     }
 
     public void Emit(LogEvent logEvent)
     {
-        _servicesLogServices.Insert(new ServicesLogModel
+        using var scope = _serviceProvider.CreateScope();
+        var servicesLogServices = scope.ServiceProvider.GetRequiredService<IServicesLogServices>();
+        servicesLogServices.Insert(new ServicesLogModel()
         {
             Message = logEvent.RenderMessage()
         });
+        //var message = logEvent.RenderMessage();
+        //var level = logEvent.Level.ToString();
+        //var timestamp = logEvent.Timestamp.UtcDateTime;
+        //var properties = logEvent.Properties; // 结构化属性
     }
 }

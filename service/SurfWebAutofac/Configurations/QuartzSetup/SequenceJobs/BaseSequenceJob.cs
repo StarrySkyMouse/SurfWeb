@@ -9,7 +9,6 @@ public class SequenceJob : BaseSequenceJob
     public SequenceJob(ILogger<IConsoleLoggerSign> logger, IServiceProvider provider) : base(logger, provider)
     {
     }
-
     public override List<Type> GetSequenceJob()
     {
         return new List<Type>
@@ -28,8 +27,6 @@ public class SequenceJob : BaseSequenceJob
             //typeof(RankingSequenceJob),
             ////新记录
             //typeof(NewRecordSequenceJob),
-            //缓存
-            typeof(CacheSequenceJob)
         };
     }
 }
