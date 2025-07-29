@@ -25,9 +25,9 @@ public class CacheConfig
     public CacheConfig_RedisConfig RedisConfig { get; set; }
 
     /// <summary>
-    ///     缓存有效时间
+    ///     缓存有效时间秒
     /// </summary>
-    public int ExpirationMinute { get; set; } = 30;
+    public int DefaultCacheTime { get; set; } = 60;
 }
 
 public class CacheConfig_RedisConfig

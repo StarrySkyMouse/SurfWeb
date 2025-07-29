@@ -1,5 +1,5 @@
-﻿using IServices.Base;
-using Model.Models.Base;
+﻿using Common.SqlSugar.BASE;
+using IServices.Base;
 
 namespace IServices.Log.Base;
 

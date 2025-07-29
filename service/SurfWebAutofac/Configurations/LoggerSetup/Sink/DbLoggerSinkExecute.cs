@@ -9,10 +9,12 @@ namespace Configurations.LoggerSetup.Sink;
 public class DbLoggerSinkExecute : IDbLoggerSink
 {
     private readonly IServiceProvider _serviceProvider;
+
     public DbLoggerSinkExecute(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
+
     public void Emit(LogEvent logEvent)
     {
         // 每次 Emit 时，从容器获取最新的服务实例（防止生命周期冲突）

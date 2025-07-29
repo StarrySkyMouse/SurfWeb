@@ -1,12 +1,15 @@
-﻿using IServices.Main;
+﻿using Common.Caches.AOP;
+using Common.SqlSugar.BASE.Main;
+using IServices.Main;
 using Model.Dtos.Players;
 using Model.Models.Main;
-using Repository.BASE.Main;
 using Services.Base;
 using SqlSugar;
 
 namespace Services.Main;
 
+//设置缓存2分钟
+[Cache(CacheTime = 120)]
 public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
@@ -15,7 +18,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 
     public PlayerServices(IMainRepository<PlayerModel> playerRepository,
         IMainRepository<PlayerCompleteModel> playerCompleteRepository,
-        IMainRepository<MapModel> mapRepository)
+        IMainRepository<MapModel> mapRepository) : base(playerRepository)
     {
         _playerRepository = playerRepository;
         _playerCompleteRepository = playerCompleteRepository;

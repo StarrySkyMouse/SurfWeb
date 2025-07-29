@@ -1,5 +1,6 @@
 ﻿using Common.Quartz;
 using Configurations.QuartzSetup.SequenceJobs;
+using Configurations.QuartzSetup.SequenceJobs.DbSync;
 using Microsoft.AspNetCore.Builder;
 
 namespace Configurations.QuartzSetup;
@@ -13,6 +14,6 @@ public static class QuartzConfiguration
     public static void AddQuartzConfiguration(this WebApplicationBuilder builder)
     {
         builder.Services.AddQuartzService(builder.Configuration,
-            cfg => cfg.AddSequenceJob<SequenceJob>());
+            cfg => cfg.AddSequenceJob<DbSyncSequenceJob>());
     }
 }

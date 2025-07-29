@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
         ////顺序任务记录
         foreach (var item in quartzConfigure.GetBaseSequenceJobs()) services.AddScoped(typeof(BaseSequenceJob), item);
 
-        foreach (var item in quartzConfigure.GetSequenceJobs()) services.AddScoped(typeof(ISequenceJob), item);
+        foreach (var item in quartzConfigure.GetSequenceJobs()) services.AddScoped(item);
 
         foreach (var item in quartzConfigure.GetJobs()) services.AddScoped(typeof(BaseJob), item);
 
@@ -23,10 +23,10 @@ public static class ServiceCollectionExtensions
         {
             //注册定时任务
             // 注册 Job（注册的Job必须添加Trigger否则会报错）
-            foreach (var item in quartzConfigure.GetSequenceJobs())
-                q.AddJob(item.GetType(), null, opts => opts.WithIdentity(item.GetType().Name));
+            foreach (var item in quartzConfigure.GetBaseSequenceJobs())
+                q.AddJob(item, null, opts => opts.WithIdentity(item.Name));
             foreach (var item in quartzConfigure.GetJobs())
-                q.AddJob(item.GetType(), null, opts => opts.WithIdentity(item.GetType().Name));
+                q.AddJob(item, null, opts => opts.WithIdentity(item.Name));
             var jobConfig = configuration.GetSection("JobConfig").Get<JobConfig>();
             if (jobConfig == null) throw new InvalidOperationException("注册定时任务配置JobConfig部分缺失");
             //配置同步任务执行
@@ -55,18 +55,17 @@ public static class ServiceCollectionExtensions
         //添加Quartz到HostedService服务
         services.AddQuartzHostedService();
     }
+
     public static IQuartzConfigure AddSequenceJob<T>(this IQuartzConfigure cfg)
         where T : BaseSequenceJob
     {
         cfg.GetBaseSequenceJobs().Add(typeof(T));
         // 此处仅用于获取 T 下属的 SequenceJob 类型，不做实际构造
         var temp = Activator.CreateInstance(typeof(T), new object[] { null, null }) as BaseSequenceJob;
-        if (temp != null)
-        {
-            cfg.GetSequenceJobs().AddRange(temp.GetSequenceJob());
-        }
+        if (temp != null) cfg.GetSequenceJobs().AddRange(temp.GetSequenceJob());
         return cfg;
     }
+
     public static IQuartzConfigure AddJob<T>(this IQuartzConfigure cfg)
         where T : BaseJob
     {

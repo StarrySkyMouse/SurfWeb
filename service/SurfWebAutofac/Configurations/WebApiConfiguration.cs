@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Common.Middlewares.ApiResponse;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -61,5 +62,6 @@ public static class WebApiConfiguration
         //api响应中间件
         app.UseAuthorization();
         app.MapControllers();
+        app.UseApiResponse();
     }
 }

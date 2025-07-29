@@ -5,13 +5,14 @@ namespace Common.Caches;
 
 public class MemoryCache : ICache
 {
-    private readonly int _expirationMinute;
+    //秒
+    private readonly int _defaultCacheTime;
     private readonly IMemoryCache _memoryCache;
 
-    public MemoryCache(IMemoryCache memoryCache, int expirationMinute)
+    public MemoryCache(IMemoryCache memoryCache, int defaultCacheTime)
     {
         _memoryCache = memoryCache;
-        _expirationMinute = expirationMinute;
+        _defaultCacheTime = defaultCacheTime;
     }
 
     public bool Exists(string cacheKey, Action? action = null)
@@ -29,21 +30,21 @@ public class MemoryCache : ICache
         return result;
     }
 
-    public T? GetOrFunc<T>(string cacheKey, Func<T> func)
+    public T? GetOrFunc<T>(string cacheKey, Func<T> func, int cacheTime = -1)
     {
         var result = _memoryCache.Get<T>(cacheKey);
         if (result == null || EqualityComparer<T>.Default.Equals(result, default))
         {
             result = func();
-            Set(cacheKey, result);
+            Set(cacheKey, result, cacheTime);
         }
 
         return result;
     }
 
-    public void Set<T>(string cacheKey, T value)
+    public void Set<T>(string cacheKey, T value, int cacheTime = -1)
     {
-        _memoryCache.Set(cacheKey, value, TimeSpan.FromMinutes(_expirationMinute));
+        _memoryCache.Set(cacheKey, value, TimeSpan.FromMinutes(cacheTime != -1 ? cacheTime : _defaultCacheTime));
     }
 
     public void Remove(string key)

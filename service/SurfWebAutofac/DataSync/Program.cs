@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
+using Common.Dapper;
+using Common.SqlSugar.BASE;
 using Microsoft.Extensions.Configuration;
-using Model.Models.Base;
 using Model.Models.Main;
-using Repository.Other;
 using SqlSugar;
 
 SqlSugarClient _db;
@@ -67,7 +67,6 @@ void InitDb()
     _db.DbMaintenance.TruncateTable<NewRecordModel>();
     _db.DbMaintenance.TruncateTable<PlayerModel>();
     _db.DbMaintenance.TruncateTable<PlayerCompleteModel>();
-    _db.DbMaintenance.TruncateTable<RankingModel>();
     Console.WriteLine("完成数据库初始化");
 }
 
@@ -95,7 +94,7 @@ void TransferData()
     _db.Insertable(newrecordList.Select(t => new NewRecordModel
     {
         MapId = 0,
-        MapName = null,
+        MapName = t.MapName,
         Type = (RecordTypeEnum)(int)t.Type,
         Notes = t.Notes,
         Time = t.Time,
@@ -109,6 +108,7 @@ void TransferData()
     var playerList = GetSourcePlayerList();
     _db.Insertable(playerList.Select(t => new PlayerModel
     {
+        Auth = t.Auth,
         Name = t.Name,
         Integral = t.Integral,
         SucceesNumber = t.SucceesNumber,
@@ -127,9 +127,9 @@ void TransferData()
         {
             Auth = t.Auth,
             PlayerId = 0,
-            PlayerName = null,
+            PlayerName = t.PlayerName,
             MapId = 0,
-            MapName = null,
+            MapName = t.MapName,
             Type = (RecordTypeEnum)(int)t.Type,
             Stage = t.Stage,
             Time = t.Time,
@@ -140,20 +140,6 @@ void TransferData()
             IsDelete = t.IsDelete
         }).ToList()).ExecuteReturnSnowflakeIdList();
     Console.WriteLine($"playercomplete:{playerCompleteList.Count}条");
-    //ranking
-    var rankingList = GetSourceRankingList();
-    _db.Insertable(rankingList.Select(t => new RankingModel
-    {
-        Type = (RankingTypeEnum)(int)t.Type,
-        Rank = t.Rank,
-        PlayerId = 0,
-        PlayerName = null,
-        Value = t.Value,
-        CreateTime = t.CreateTime,
-        UpDateTime = t.UpDateTime,
-        IsDelete = t.IsDelete
-    }).ToList()).ExecuteReturnSnowflakeIdList();
-    Console.WriteLine($"ranking:{rankingList.Count}条");
 }
 
 List<DataSync.SourceModel.MapModel> GetSourceMapList()

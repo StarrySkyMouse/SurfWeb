@@ -1,4 +1,5 @@
 ﻿using IServices.Main.Base;
+using Model.Dtos.Rankings;
 using Model.Models.Main;
 
 namespace IServices.Main;
@@ -31,4 +32,8 @@ public interface IPlayerCompleteServices : IMainBaseServices<PlayerCompleteModel
     ///     获取旧的数据(阶段)
     /// </summary>
     Task<List<PlayerCompleteModel>> GetOldStagetimesData(IEnumerable<(int auth, string map, int stage)> list);
+    /// <summary>
+    /// 获取排名
+    /// </summary>
+    Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType);
 }

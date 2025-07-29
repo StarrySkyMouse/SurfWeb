@@ -7,12 +7,12 @@ namespace Common.Caches;
 public class RedisCache : ICache
 {
     private readonly IDatabase _db;
-    private readonly int _expirationMinute;
+    private readonly int _defaultCacheTime;
 
-    public RedisCache(IConnectionMultiplexer connectionMultiplexer, int expirationMinute)
+    public RedisCache(IConnectionMultiplexer connectionMultiplexer, int defaultCacheTime)
     {
         _db = connectionMultiplexer.GetDatabase();
-        _expirationMinute = expirationMinute;
+        _defaultCacheTime = defaultCacheTime;
     }
 
     public bool Exists(string cacheKey, Action? action = null)
@@ -30,19 +30,19 @@ public class RedisCache : ICache
         return JsonSerializer.Deserialize<T>(value!);
     }
 
-    public T? GetOrFunc<T>(string cacheKey, Func<T> func)
+    public T? GetOrFunc<T>(string cacheKey, Func<T> func, int cacheTime)
     {
         var value = _db.StringGet(cacheKey);
         if (value.HasValue) return JsonSerializer.Deserialize<T>(value!);
         var result = func();
-        if (result != null) Set(cacheKey, result);
+        if (result != null) Set(cacheKey, result, cacheTime);
         return result;
     }
 
-    public void Set<T>(string cacheKey, T value)
+    public void Set<T>(string cacheKey, T value, int cacheTime)
     {
         var json = JsonSerializer.Serialize(value);
-        _db.StringSet(cacheKey, json, TimeSpan.FromMinutes(_expirationMinute));
+        _db.StringSet(cacheKey, json, TimeSpan.FromSeconds(cacheTime != -1 ? cacheTime : _defaultCacheTime));
     }
 
     public void Remove(string key)

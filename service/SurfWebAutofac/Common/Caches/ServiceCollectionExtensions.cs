@@ -19,12 +19,12 @@ public static class ServiceCollectionExtensions
                 services.AddMemoryCache();
                 services.AddSingleton<ICache>(sp =>
                     new MemoryCache(sp.GetRequiredService<IMemoryCache>(),
-                        cacheConfig.ExpirationMinute));
+                        cacheConfig.DefaultCacheTime));
                 break;
             case CacheType.Redis:
                 services.AddSingleton<ICache>(sp =>
                     new RedisCache(ConnectionMultiplexer.Connect(cacheConfig.RedisConfig.Connect),
-                        cacheConfig.ExpirationMinute));
+                        cacheConfig.DefaultCacheTime));
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

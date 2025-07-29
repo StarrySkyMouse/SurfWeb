@@ -1,11 +1,14 @@
-﻿using IServices.Main;
+﻿using Common.Caches.AOP;
+using Common.SqlSugar.BASE.Main;
+using IServices.Main;
 using Model.Dtos.NewRecords;
 using Model.Models.Main;
-using Repository.BASE.Main;
 using Services.Base;
 
 namespace Services.Main;
 
+//设置缓存2分钟
+[Cache(CacheTime = 120)]
 public class NewRecordServices : BaseServices<NewRecordModel>, INewRecordServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
@@ -15,7 +18,7 @@ public class NewRecordServices : BaseServices<NewRecordModel>, INewRecordService
     public NewRecordServices(IMainRepository<NewRecordModel> newRecorRepository,
         IMainRepository<MapModel> mapRepository,
         IMainRepository<PlayerCompleteModel> playerCompleteRepository
-    )
+    ) : base(newRecorRepository)
     {
         _newRecorRepository = newRecorRepository;
         _mapRepository = mapRepository;

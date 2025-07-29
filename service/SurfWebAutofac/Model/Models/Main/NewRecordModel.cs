@@ -1,4 +1,4 @@
-﻿using Model.Models.Base;
+﻿using Common.SqlSugar.BASE;
 using SqlSugar;
 
 namespace Model.Models.Main;
@@ -22,6 +22,29 @@ public enum RecordTypeEnum
     ///     阶段
     /// </summary>
     Stage
+}
+
+public enum RankingTypeEnum
+{
+    /// <summary>
+    /// 积分
+    /// </summary>
+    Integral,
+
+    /// <summary>
+    /// 主线
+    /// </summary>
+    MainWR,
+
+    /// <summary>
+    /// 奖励
+    /// </summary>
+    BountyWR,
+
+    /// <summary>
+    /// 阶段
+    /// </summary>
+    StageWR
 }
 
 /// <summary>

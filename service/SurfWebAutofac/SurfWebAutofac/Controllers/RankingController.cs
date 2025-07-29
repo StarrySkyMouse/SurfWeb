@@ -1,32 +1,32 @@
-using IServices;
 using IServices.Main;
 using Microsoft.AspNetCore.Mvc;
 using Model.Dtos.Rankings;
 using Model.Models.Main;
 
-namespace ClientWeb.Controllers;
+namespace SurfWebAutofac.Controllers;
 
 /// <summary>
-/// 排行
+///     排行
 /// </summary>
 [ApiController]
 [Route("[controller]")]
 public class RankingController : ControllerBase
 {
-    private readonly IRankingServices _rankingServices;
+    private readonly IPlayerCompleteServices _playerCompleteServices;
+
     /// <summary>
-    /// 
     /// </summary>
-    public RankingController(IRankingServices rankingServices)
+    public RankingController(IPlayerCompleteServices playerCompleteServices)
     {
-        _rankingServices = rankingServices;
+        _playerCompleteServices = playerCompleteServices;
     }
+
     /// <summary>
-    /// 获取排行信息排行
+    ///     获取排行信息排行
     /// </summary>
     [HttpGet("GetRankingList")]
     public async Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType)
     {
-        return await _rankingServices.GetRankingList(rankingType);
+        return await _playerCompleteServices.GetRankingList(rankingType);
     }
 }

@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ClientWeb.Controllers
+namespace SurfWebAutofac.Controllers;
+
+/// <summary>
+///     Steam信息
+/// </summary>
+[ApiController]
+[Route("[controller]")]
+public class TestController : ControllerBase
 {
     /// <summary>
-    /// Steam信息
+    ///     发送消息
     /// </summary>
-    [ApiController]
-    [Route("[controller]")]
-    public class TestController : ControllerBase
+    [HttpGet("SendMessage")]
+    public void SendMessage()
     {
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        [HttpGet("SendMessage")]
-        public void SendMessage()
-        {
-        }
     }
 }

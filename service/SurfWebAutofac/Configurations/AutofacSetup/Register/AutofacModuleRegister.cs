@@ -2,15 +2,11 @@
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
+using Common.Caches.AOP;
 using Common.Logger.AOP;
-using Common.Logger.AOP.Cache;
-using Common.Logger.AOP.ServiceLogging;
-using IServices.Base;
+using Common.SqlSugar.BASE.Log;
+using Common.SqlSugar.BASE.Main;
 using IServices.Main.Base;
-using Microsoft.AspNetCore.Hosting;
-using Repository.BASE.Log;
-using Repository.BASE.Main;
-using Serilog.Core;
 using Module = Autofac.Module;
 
 namespace Configurations.AutofacSetup.Register;
@@ -55,6 +51,6 @@ public class AutofacModuleRegister : Module
             .InstancePerLifetimeScope();
         builder.RegisterGeneric(typeof(LogRepository<>))
             .As(typeof(ILogRepository<>))
-        .InstancePerLifetimeScope();
+            .InstancePerLifetimeScope();
     }
 }

@@ -19,7 +19,7 @@ public class ServiceLoggerSinkExecute : IServiceLoggerSink
     {
         using var scope = _serviceProvider.CreateScope();
         var servicesLogServices = scope.ServiceProvider.GetRequiredService<IServicesLogServices>();
-        servicesLogServices.Insert(new ServicesLogModel()
+        servicesLogServices.Insert(new ServicesLogModel
         {
             Message = logEvent.RenderMessage()
         });

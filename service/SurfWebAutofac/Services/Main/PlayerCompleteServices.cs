@@ -1,10 +1,14 @@
-﻿using IServices.Main;
+﻿using Common.Caches.AOP;
+using Common.SqlSugar.BASE.Main;
+using IServices.Main;
+using Model.Dtos.Rankings;
 using Model.Models.Main;
-using Repository.BASE.Main;
 using Services.Base;
 
 namespace Services.Main;
 
+//设置缓存2分钟
+[Cache(CacheTime = 120)]
 public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayerCompleteServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
@@ -13,7 +17,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
 
     public PlayerCompleteServices(IMainRepository<PlayerCompleteModel> playerCompleteRepository,
         IMainRepository<PlayerModel> playerRepository,
-        IMainRepository<MapModel> mapRepository)
+        IMainRepository<MapModel> mapRepository) : base(playerCompleteRepository)
     {
         _playerCompleteRepository = playerCompleteRepository;
         _playerRepository = playerRepository;
@@ -21,7 +25,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
     }
 
     /// <summary>
-    ///获取主线/奖励、阶段的最后更新时间
+    ///     获取主线/奖励、阶段的最后更新时间
     /// </summary>
     /// <returns></returns>
     public (DateTime?, DateTime?) GetFinallyDateTime()
@@ -176,5 +180,12 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
         //}
         //return result;
         throw new AbandonedMutexException();
+    }
+    /// <summary>
+    /// 获取排名
+    /// </summary>
+    public Task<List<RankingDto>> GetRankingList(RankingTypeEnum rankingType)
+    {
+        return null;
     }
 }

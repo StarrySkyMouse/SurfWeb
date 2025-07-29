@@ -18,12 +18,12 @@ public interface ICache
     /// <summary>
     ///     获取缓存或执行操作（缓存失效执行操作）
     /// </summary>
-    public T? GetOrFunc<T>(string cacheKey, Func<T> func);
+    public T? GetOrFunc<T>(string cacheKey, Func<T> func, int cacheTime = -1);
 
     /// <summary>
     ///     设置带过期时间的缓存
     /// </summary>
-    void Set<T>(string cacheKey, T value);
+    void Set<T>(string cacheKey, T value, int cacheTime = -1);
 
     /// <summary>
     ///     删除

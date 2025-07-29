@@ -16,7 +16,8 @@ public abstract class BaseSequenceJob : IJob
     public BaseSequenceJob(ILogger<IConsoleLoggerSign> logger, IServiceProvider provider)
     {
         _logger = logger;
-        _sequenceJob = GetSequenceJob().Select(t => provider.GetService(t) as ISequenceJob).ToList();
+        if (provider != null)
+            _sequenceJob = GetSequenceJob().Select(t => provider.GetService(t) as ISequenceJob).ToList();
     }
 
     public async Task Execute(IJobExecutionContext context)

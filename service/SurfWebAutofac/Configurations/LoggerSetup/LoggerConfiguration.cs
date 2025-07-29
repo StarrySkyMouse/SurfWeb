@@ -1,9 +1,6 @@
-﻿using Autofac.Core;
-using Common.Logger;
+﻿using Common.Logger;
 using Configurations.LoggerSetup.Sink;
 using Microsoft.AspNetCore.Builder;
-using Serilog;
-using System.Configuration;
 
 namespace Configurations.LoggerSetup;
 

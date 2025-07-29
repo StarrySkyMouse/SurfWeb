@@ -3,7 +3,6 @@ using Configurations.AutofacSetup;
 using Configurations.AutoMapperSetup;
 using Configurations.LoggerSetup;
 using Configurations.QuartzSetup;
-using Configurations.SqlsugarSetup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +11,7 @@ builder.AddAutofacConfiguration();
 //≈‰÷√WebApi
 builder.AddWebApiConfiguration();
 //≈‰÷√ ˝æ›ø‚
-builder.AddSqlsugarConfiguration();
+builder.AddDbConfiguration();
 //≈‰÷√ª∫¥Ê
 builder.AddCacheConfiguration();
 //≈‰÷√»’÷æ

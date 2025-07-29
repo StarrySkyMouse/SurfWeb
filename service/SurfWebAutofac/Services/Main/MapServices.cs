@@ -1,21 +1,22 @@
-﻿using IServices.Main;
+﻿using Common.Caches.AOP;
+using Common.SqlSugar.BASE.Main;
+using IServices.Main;
 using Model.Dtos.Maps;
 using Model.Models.Main;
 using Services.Base;
 using SqlSugar;
-using Common.Logger.AOP;
-using Common.Logger.AOP.Cache;
-using Repository.BASE.Main;
 
 namespace Services.Main;
 
+//设置缓存2分钟
+[Cache(CacheTime = 120)]
 public class MapServices : BaseServices<MapModel>, IMapServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
     private readonly IMainRepository<PlayerCompleteModel> _playerCompleteRepository;
 
     public MapServices(IMainRepository<MapModel> mapRepository,
-        IMainRepository<PlayerCompleteModel> playerCompleteRepository)
+        IMainRepository<PlayerCompleteModel> playerCompleteRepository) : base(mapRepository)
     {
         _mapRepository = mapRepository;
         _playerCompleteRepository = playerCompleteRepository;
@@ -24,7 +25,6 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     /// <summary>
     ///     获取地图信息
     /// </summary>
-    //[Cache(CacheTime = 1800)]
     public async Task<MapDto?> GetMapInfoById(long id)
     {
         return await _mapRepository.Queryable()
@@ -41,18 +41,16 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     }
 
     /// <summary>
-    ///获取地图列表
+    ///     获取地图列表
     /// </summary>
-    [Cache]
     public async Task<int> GetMapCount(string? difficulty, string? search)
     {
         return await GetMapQueryable(difficulty, search).CountAsync();
     }
 
     /// <summary>
-    ///获取地图列表
+    ///     获取地图列表
     /// </summary>
-    [Cache]
     public async Task<List<MapListDto>> GetMapList(string? difficulty, string? search, int pageIndex)
     {
         return await GetMapQueryable(difficulty, search)
@@ -67,9 +65,8 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     }
 
     /// <summary>
-    ///获取地图前100数量
+    ///     获取地图前100数量
     /// </summary>
-    [Cache]
     public async Task<int> GetMapTop100Count(long id, RecordTypeEnum recordType, int? stage)
     {
         var result = await GetMapTop100Queryable(id, recordType, stage).CountAsync();
@@ -77,9 +74,8 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     }
 
     /// <summary>
-    ///获取地图前100
+    ///     获取地图前100
     /// </summary>
-    [Cache]
     public Task<List<MapTop100Dto>> GetMapTop100List(long id, RecordTypeEnum recordType, int? stage, int pageIndex)
     {
         throw new AbandonedMutexException();

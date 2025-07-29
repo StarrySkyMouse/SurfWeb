@@ -1,5 +1,7 @@
-﻿namespace Common.Logger.Sign;
+﻿using Common.Logger.Sign.Base;
 
-public interface ISeqLoggerSign
+namespace Common.Logger.Sign;
+
+public interface ISeqLoggerSign : ILoggerSign
 {
 }
