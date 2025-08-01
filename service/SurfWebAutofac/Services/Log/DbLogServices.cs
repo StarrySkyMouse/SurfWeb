@@ -1,4 +1,4 @@
-﻿using Common.SqlSugar.BASE.Log;
+﻿using Common.Db.SqlSugar.Repository.Log;
 using IServices.Log;
 using Model.Models.Log;
 using Services.Base;

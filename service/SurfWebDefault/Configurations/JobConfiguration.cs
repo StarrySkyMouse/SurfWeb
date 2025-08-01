@@ -65,11 +65,11 @@ public static class JobConfiguration
                         .RepeatForever()) // 永久重复执行
             );
             q.AddTrigger(opts => opts
-                    .ForJob("ServerInfoCacheJob") 
-                    .WithIdentity("ServerInfoCacheJob_Trigger")
-                    .WithSimpleSchedule(x => x
-                        .WithIntervalInSeconds(jobConfig.ServerInfoCacheJobSecond) 
-                        .RepeatForever())
+                .ForJob("ServerInfoCacheJob")
+                .WithIdentity("ServerInfoCacheJob_Trigger")
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(jobConfig.ServerInfoCacheJobSecond)
+                    .RepeatForever())
             );
         });
         //添加Quartz到HostedService服务

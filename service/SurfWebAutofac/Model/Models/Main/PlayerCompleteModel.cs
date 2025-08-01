@@ -1,4 +1,4 @@
-﻿using Common.SqlSugar.BASE;
+﻿using Common.Db.Base;
 using SqlSugar;
 
 namespace Model.Models.Main;

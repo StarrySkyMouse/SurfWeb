@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using Common.Middlewares.ApiResponse;
+using Common.CustomMiddlewares.ApiResponse;
+using Common.JsonConverters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,9 +29,10 @@ public static class WebApiConfiguration
         builder.Services.AddControllers()
             .AddJsonOptions(options =>
             {
-                //options.JsonSerializerOptions.Converters.Add(new DateTiemConverter());
-                //options.JsonSerializerOptions.Converters.Add(new FloatConverter());
-                //options.JsonSerializerOptions.Converters.Add(new DecimalConverter());
+                options.JsonSerializerOptions.Converters.Add(new DateTiemConverter());
+                options.JsonSerializerOptions.Converters.Add(new FloatConverter());
+                options.JsonSerializerOptions.Converters.Add(new DecimalConverter());
+                options.JsonSerializerOptions.Converters.Add(new Int64ToStringConverter());
             });
         //注册CORS策略 
         builder.Services.AddCors(options =>

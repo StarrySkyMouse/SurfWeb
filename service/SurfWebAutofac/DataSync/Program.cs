@@ -1,9 +1,13 @@
 ﻿using System.Reflection;
-using Common.Dapper;
-using Common.SqlSugar.BASE;
+using Common.Db.Base;
+using Common.Db.Dapper;
+using DataSync.SourceModel;
 using Microsoft.Extensions.Configuration;
-using Model.Models.Main;
 using SqlSugar;
+using MapModel = Model.Models.Main.MapModel;
+using PlayerCompleteModel = Model.Models.Main.PlayerCompleteModel;
+using PlayerModel = Model.Models.Main.PlayerModel;
+using RecordTypeEnum = Model.Models.Main.RecordTypeEnum;
 
 SqlSugarClient _db;
 MySqlHelp _sourceDb;
@@ -64,7 +68,6 @@ void InitDb()
     _db.CodeFirst.InitTables(list);
     //删除所有数据
     _db.DbMaintenance.TruncateTable<MapModel>();
-    _db.DbMaintenance.TruncateTable<NewRecordModel>();
     _db.DbMaintenance.TruncateTable<PlayerModel>();
     _db.DbMaintenance.TruncateTable<PlayerCompleteModel>();
     Console.WriteLine("完成数据库初始化");
@@ -89,21 +92,6 @@ void TransferData()
         IsDelete = t.IsDelete
     }).ToList()).ExecuteReturnSnowflakeIdList();
     Console.WriteLine($"map:{mapList.Count}条");
-    //newrecord
-    var newrecordList = GetSourceNewrecordList();
-    _db.Insertable(newrecordList.Select(t => new NewRecordModel
-    {
-        MapId = 0,
-        MapName = t.MapName,
-        Type = (RecordTypeEnum)(int)t.Type,
-        Notes = t.Notes,
-        Time = t.Time,
-        Date = t.Date,
-        CreateTime = t.CreateTime,
-        UpDateTime = t.UpDateTime,
-        IsDelete = t.IsDelete
-    }).ToList()).ExecuteReturnSnowflakeIdList();
-    Console.WriteLine($"newrecord:{newrecordList.Count}条");
     //player
     var playerList = GetSourcePlayerList();
     _db.Insertable(playerList.Select(t => new PlayerModel
@@ -120,15 +108,20 @@ void TransferData()
         IsDelete = t.IsDelete
     }).ToList()).ExecuteReturnSnowflakeIdList();
     Console.WriteLine($"player:{playerList.Count}条");
-    //playercomplete
+    var playerModelList = _db.Queryable<PlayerModel>().ToList();
+    var mapModelList = _db.Queryable<MapModel>().ToList();
     var playerCompleteList = GetSourcePlayercompleteList();
-    _db.Insertable(playerCompleteList.Select(t =>
+    var insertList = playerCompleteList.Select(t =>
         new PlayerCompleteModel
         {
             Auth = t.Auth,
-            PlayerId = 0,
+            PlayerId = playerModelList.Any(a => a.Auth == t.Auth)
+                ? playerModelList.FirstOrDefault(a => a.Auth == t.Auth).Id
+                : 0,
             PlayerName = t.PlayerName,
-            MapId = 0,
+            MapId = mapModelList.Any(a => a.Name == t.MapName)
+                ? mapModelList.FirstOrDefault(a => a.Name == t.MapName).Id
+                : 0,
             MapName = t.MapName,
             Type = (RecordTypeEnum)(int)t.Type,
             Stage = t.Stage,
@@ -138,7 +131,8 @@ void TransferData()
             CreateTime = t.CreateTime,
             UpDateTime = t.UpDateTime,
             IsDelete = t.IsDelete
-        }).ToList()).ExecuteReturnSnowflakeIdList();
+        }).ToList();
+    _db.Insertable(insertList).ExecuteReturnSnowflakeIdList();
     Console.WriteLine($"playercomplete:{playerCompleteList.Count}条");
 }
 
@@ -150,25 +144,6 @@ List<DataSync.SourceModel.MapModel> GetSourceMapList()
     while (true)
     {
         var list = _sourceDb.QueryPageAsync<DataSync.SourceModel.MapModel>("select * from map", pageIndex, pageSize)
-            .Result;
-        if (list == null || !list.Any())
-            break;
-        result.AddRange(list);
-        pageIndex++;
-    }
-
-    return result;
-}
-
-List<DataSync.SourceModel.NewRecordModel> GetSourceNewrecordList()
-{
-    var pageIndex = 1;
-    var pageSize = 1000;
-    var result = new List<DataSync.SourceModel.NewRecordModel>();
-    while (true)
-    {
-        var list = _sourceDb
-            .QueryPageAsync<DataSync.SourceModel.NewRecordModel>("select * from newrecord", pageIndex, pageSize)
             .Result;
         if (list == null || !list.Any())
             break;
@@ -208,25 +183,6 @@ List<DataSync.SourceModel.PlayerCompleteModel> GetSourcePlayercompleteList()
         var list = _sourceDb
             .QueryPageAsync<DataSync.SourceModel.PlayerCompleteModel>("select * from playercomplete", pageIndex,
                 pageSize)
-            .Result;
-        if (list == null || !list.Any())
-            break;
-        result.AddRange(list);
-        pageIndex++;
-    }
-
-    return result;
-}
-
-List<DataSync.SourceModel.RankingModel> GetSourceRankingList()
-{
-    var pageIndex = 1;
-    var pageSize = 1000;
-    var result = new List<DataSync.SourceModel.RankingModel>();
-    while (true)
-    {
-        var list = _sourceDb
-            .QueryPageAsync<DataSync.SourceModel.RankingModel>("select * from ranking", pageIndex, pageSize)
             .Result;
         if (list == null || !list.Any())
             break;

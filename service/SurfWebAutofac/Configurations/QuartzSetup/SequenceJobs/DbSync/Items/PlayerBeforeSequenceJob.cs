@@ -1,4 +1,4 @@
-﻿using Common.Dapper;
+﻿using Common.Db.Dapper;
 using Common.Quartz.Base;
 using IServices.Main;
 using Model.ExteriorEntitys;

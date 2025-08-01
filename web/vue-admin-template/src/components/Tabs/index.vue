@@ -45,6 +45,7 @@ export default {
   border: 1px solid #dcdfe6;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
   overflow: hidden;
+
 }
 
 .tabs-header {
@@ -72,8 +73,12 @@ export default {
 }
 
 .tabs-content {
+  min-height: 625px;
   padding: 24px 8px;
   font-size: 20px;
   color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>

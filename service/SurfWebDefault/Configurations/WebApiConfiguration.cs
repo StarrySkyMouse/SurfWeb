@@ -35,7 +35,7 @@ public static class WebApiConfiguration
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowAllOrigins",
-        builder => builder.AllowAnyOrigin()
+                builder => builder.AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader());
         });

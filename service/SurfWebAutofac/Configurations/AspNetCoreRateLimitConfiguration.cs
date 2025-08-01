@@ -1,7 +1,5 @@
-﻿using AspNetCoreRateLimit;
-using Common.IpRateLimit;
+﻿using Common.IpRateLimit;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Configurations;
 
@@ -14,6 +12,7 @@ public static class AspNetCoreRateLimitConfiguration
     {
         builder.Services.AddIpRateLimitService(builder.Configuration);
     }
+
     /// <summary>
     ///     中间件
     /// </summary>

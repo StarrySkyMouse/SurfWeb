@@ -1,4 +1,4 @@
-﻿using Common.SqlSugar.BASE;
+﻿using Common.Db.Base;
 
 namespace IServices.Base;
 

@@ -1,26 +1,29 @@
-﻿namespace Model.Dtos.Players
+﻿namespace Model.Dtos.Players;
+
+public class PlayerFailDto
 {
-    public class PlayerFailDto
-    {
-        /// <summary>
-        /// 地图id
-        /// </summary>
-        public required string MapId { get; set; }
-        /// <summary>
-        /// 地图名称
-        /// </summary>
-        public required string MapName { get; set; }
-        /// <summary>
-        /// 难度
-        /// </summary>
-        public required string Difficulty { get; set; }
-        /// <summary>
-        /// 图片
-        /// </summary>
-        public string Img { get; set; }
-        /// <summary>
-        /// 阶段
-        /// </summary>
-        public List<int> Stages { get; set; } = new List<int>();
-    }
+    /// <summary>
+    ///     地图id
+    /// </summary>
+    public required string MapId { get; set; }
+
+    /// <summary>
+    ///     地图名称
+    /// </summary>
+    public required string MapName { get; set; }
+
+    /// <summary>
+    ///     难度
+    /// </summary>
+    public required string Difficulty { get; set; }
+
+    /// <summary>
+    ///     图片
+    /// </summary>
+    public string Img { get; set; }
+
+    /// <summary>
+    ///     阶段
+    /// </summary>
+    public List<int> Stages { get; set; } = new();
 }

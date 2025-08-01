@@ -51,16 +51,10 @@
           <el-row>
             <el-col :span="24">
               <Tabs :tabs="tabs" @tabChange="succeessTabChange">
-                <el-table v-show="succeessRecordType == 0" v-loading="succeesListLoading" :data="succeesList">
+                <el-table v-if="succeessRecordType == 0" v-loading="succeesListLoading" :data="succeesList">
                   <el-table-column align="center" label="地图" width="300">
                     <template slot-scope="scope">
-                      <div class="map-card" @click="openMap(scope.row)">
-                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                        <div class="card-info">
-                          <span class="map-name">{{ scope.row.mapName }}</span>
-                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                        </div>
-                      </div>
+                      <MapCard :mapInfo="scope.row" @openMap="openMap" />
                     </template>
                   </el-table-column>
                   <el-table-column align="center" label="时间">
@@ -78,17 +72,11 @@
                     </template>
                   </el-table-column>
                 </el-table>
-                <el-table v-show="succeessRecordType != 0" v-loading="succeesListLoading" :data="succeesList"
+                <el-table v-if="succeessRecordType != 0" v-loading="succeesListLoading" :data="succeesList"
                   style="width: 100%">
                   <el-table-column align="center" label="地图" width="300">
                     <template slot-scope="scope">
-                      <div class="map-card" @click="openMap(scope.row)">
-                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                        <div class="card-info">
-                          <span class="map-name">{{ scope.row.mapName }}</span>
-                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                        </div>
-                      </div>
+                      <MapCard :mapInfo="scope.row" @openMap="openMap" />
                     </template>
                   </el-table-column>
                   <el-table-column label="阶段详情">
@@ -143,13 +131,7 @@
                 <el-table v-loading="failListLoading" :data="failList">
                   <el-table-column align="center" label="地图" width="300">
                     <template slot-scope="scope">
-                      <div class="map-card" @click="openMap(scope.row)">
-                        <div class="card-image" :style="{ backgroundImage: `url(${scope.row.img})` }"></div>
-                        <div class="card-info">
-                          <span class="map-name">{{ scope.row.mapName }}</span>
-                          <span class="map-difficulty">{{ scope.row.difficulty }}</span>
-                        </div>
-                      </div>
+                      <MapCard :mapInfo="scope.row" @openMap="openMap" />
                     </template>
                   </el-table-column>
                   <el-table-column align="center" :label="''">
@@ -185,6 +167,7 @@ import {
 } from '@/api/player'
 
 import Tabs from '@/components/Tabs'
+import MapCard from '@/components/MapCard'
 
 export default {
   name: 'Player',
@@ -194,7 +177,8 @@ export default {
     }
   },
   components: {
-    Tabs
+    Tabs,
+    MapCard
   },
   data() {
     return {
@@ -309,61 +293,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.map-card {
-  width: 100%;
-  max-width: 400px;
-  margin: 16px auto;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.2s, transform 0.2s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-
-.map-card:hover {
-  // box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-  transform: translateY(-3px) scale(1.03);
-}
-
-.card-image {
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px 8px 0 0;
-}
-
-.card-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 18px;
-  background: #f9f9f9;
-  border-radius: 0 0 18px 18px;
-  font-size: 17px;
-}
-
-.map-name {
-  font-weight: 600;
-  color: #222;
-  max-width: 70%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.map-difficulty {
-  // background: #ffeaea;
-  // color: #e74c3c;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 2px 10px;
-}
-
 ::v-deep {
   .el-card {
     margin: 10px;
@@ -388,19 +317,5 @@ export default {
     margin-left: 10px;
   }
 
-  .wrLable {
-    background-color: #fff;
-    border-color: #fbc4c4;
-    color: #f56c6c;
-    display: inline-block;
-    height: 20px;
-    padding: 0 5px;
-    line-height: 19px;
-    padding: 0 5px;
-    font-size: 12px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
-  }
 }
 </style>

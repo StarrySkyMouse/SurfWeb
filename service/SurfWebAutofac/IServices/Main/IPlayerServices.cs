@@ -10,34 +10,24 @@ public interface IPlayerServices : IMainBaseServices<PlayerModel>
     ///     获取玩家信息
     /// </summary>
     Task<PlayerInfoDto?> GetPlayerInfo(long id);
-
-    /// <summary>
-    /// 获取玩家WRCount
-    /// </summary>
-    //int GetPlayerWRCount(string id, RecordTypeEnum recordType, string difficulty);
-    /// <summary>
-    /// 获取玩家WRList
-    /// </summary>
-    //List<PlayerWRDto> GetPlayerWRList(string id, RecordTypeEnum recordType, string difficulty, int pageIndex);
     /// <summary>
     ///     获取玩家已完成Count
     /// </summary>
-    Task<int> GetPlayerSucceesCount(string id, RecordTypeEnum recordType, string difficulty);
+    Task<int> GetPlayerSucceesCount(long id, RecordTypeEnum recordType, string difficulty);
 
     /// <summary>
     ///     获取玩家已完成List
     /// </summary>
-    Task<List<PlayerSucceesDto>> GetPlayerSucceesList(string id, RecordTypeEnum recordType, string difficulty,
+    Task<List<PlayerSucceesDto>> GetPlayerSucceesList(long id, RecordTypeEnum recordType, string difficulty,
         int pageIndex);
-
     /// <summary>
     /// 获取玩家未完成Count
     /// </summary>
-    //Task<int> GetPlayerFailCount(string id, RecordTypeEnum recordType, string difficulty);
+    Task<int> GetPlayerFailCount(long id, RecordTypeEnum recordType, string difficulty);
     /// <summary>
     ///     获取玩家未完成List
     /// </summary>
-    Task<List<PlayerFailDto>> GetPlayerFailList(string id, RecordTypeEnum recordType, string difficulty, int pageIndex);
+    Task<List<PlayerFailDto>> GetPlayerFailList(long id, RecordTypeEnum recordType, string difficulty, int pageIndex);
 
     /// <summary>
     ///     获取玩家列表分页数据
@@ -58,4 +48,9 @@ public interface IPlayerServices : IMainBaseServices<PlayerModel>
     ///     修改信息
     /// </summary>
     Task ChangeInfo(List<PlayerModel> changeList);
+
+    /// <summary>
+    ///     通过玩家名称获取玩家信息
+    /// </summary>
+    Task<List<PlayerModel>> GetPlayersByNames(List<string> names);
 }

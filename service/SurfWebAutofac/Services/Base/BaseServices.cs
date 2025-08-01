@@ -1,4 +1,5 @@
-﻿using Common.SqlSugar.BASE;
+﻿using Common.Db.Base;
+using Common.Db.SqlSugar.Repository;
 using IServices.Base;
 
 namespace Services.Base;
@@ -11,6 +12,7 @@ public class BaseServices<TEntity> : IBaseServices<TEntity> where TEntity : Base
     {
         _baseRepository = baseRepository;
     }
+
     /// <summary>
     ///     新增
     /// </summary>

@@ -2,12 +2,11 @@
 using Repositories.Base;
 using Repositories.IRepository;
 
-namespace Repositories.Repository
+namespace Repositories.Repository;
+
+public class PlayerRepository : BaseRepository<PlayerModel>, IPlayerRepository
 {
-    public class PlayerRepository : BaseRepository<PlayerModel>, IPlayerRepository
+    public PlayerRepository(IServiceProvider serviceProvider) : base(serviceProvider)
     {
-        public PlayerRepository(IServiceProvider serviceProvider) : base(serviceProvider)
-        {
-        }
     }
 }

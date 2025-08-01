@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Model.Dtos.Players;
 
-namespace Model.Dtos.Players
+public class PlayerStageDto
 {
-    public class PlayerStageDto
-    {
-        /// <summary>
-        /// 阶段
-        /// </summary>
-        public int? Stage { get; set; }
-        /// <summary>
-        /// 时间
-        /// </summary>
-        public float Time { get; set; }
-        /// <summary>
-        /// 和wr差距
-        /// </summary>
-        public float GapTime { get; set; }
-        /// <summary>
-        /// 日期
-        /// </summary>
-        public DateTime Date { get; set; }
-    }
+    /// <summary>
+    ///     阶段
+    /// </summary>
+    public int? Stage { get; set; }
+
+    /// <summary>
+    ///     时间
+    /// </summary>
+    public float Time { get; set; }
+
+    /// <summary>
+    ///     和wr差距
+    /// </summary>
+    public float GapTime { get; set; }
+
+    /// <summary>
+    ///     日期
+    /// </summary>
+    public DateTime Date { get; set; }
 }

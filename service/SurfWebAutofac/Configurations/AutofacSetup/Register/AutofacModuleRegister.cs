@@ -3,10 +3,12 @@ using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using Common.Caches.AOP;
+using Common.Db.SqlSugar.Repository.Log;
+using Common.Db.SqlSugar.Repository.Main;
 using Common.Logger.AOP;
-using Common.SqlSugar.BASE.Log;
-using Common.SqlSugar.BASE.Main;
 using IServices.Main.Base;
+using Model.Models.Main;
+using Services.Main.ExtensionsRepository;
 using Module = Autofac.Module;
 
 namespace Configurations.AutofacSetup.Register;
@@ -32,8 +34,6 @@ public class AutofacModuleRegister : Module
             .Where(t => t.GetInterfaces().Any(i => i.Assembly == iservicesAssembly))
             //接口注入
             .AsImplementedInterfaces()
-            //属性注入
-            .PropertiesAutowired()
             //设置生命周期为每请求一个实例（Scoped）
             .InstancePerLifetimeScope();
         //为MainService注册拦截器
@@ -43,7 +43,6 @@ public class AutofacModuleRegister : Module
             .AsImplementedInterfaces()
             .EnableInterfaceInterceptors()
             .InterceptedBy(typeof(ServiceLoggingInterceptor), typeof(CacheInterceptor))
-            .PropertiesAutowired()
             .InstancePerLifetimeScope();
 
         builder.RegisterGeneric(typeof(MainRepository<>))
@@ -51,6 +50,8 @@ public class AutofacModuleRegister : Module
             .InstancePerLifetimeScope();
         builder.RegisterGeneric(typeof(LogRepository<>))
             .As(typeof(ILogRepository<>))
+            .InstancePerLifetimeScope();
+        builder.RegisterType(typeof(PlayerCompleteRepository))
             .InstancePerLifetimeScope();
     }
 }

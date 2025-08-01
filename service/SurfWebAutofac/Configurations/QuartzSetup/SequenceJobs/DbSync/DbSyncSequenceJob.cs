@@ -4,8 +4,9 @@ using Configurations.QuartzSetup.SequenceJobs.DbSync.Items;
 using Microsoft.Extensions.Logging;
 
 namespace Configurations.QuartzSetup.SequenceJobs.DbSync;
+
 /// <summary>
-/// 数据同步
+///     数据同步
 /// </summary>
 public class DbSyncSequenceJob : BaseSequenceJob
 {
@@ -27,8 +28,6 @@ public class DbSyncSequenceJob : BaseSequenceJob
             typeof(PlayerLaterSequenceJob),
             //地图信息后
             typeof(MapLaterSequenceJob),
-            //新记录
-            typeof(NewRecordSequenceJob)
         };
     }
 }

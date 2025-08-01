@@ -10,11 +10,6 @@ public class RankingDto
     public RankingTypeEnum Type { get; set; }
 
     /// <summary>
-    ///     名次
-    /// </summary>
-    public int Rank { get; set; }
-
-    /// <summary>
     ///     玩家id
     /// </summary>
     public long PlayerId { get; set; }

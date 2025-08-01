@@ -78,3 +78,29 @@
 .tabs-wrapper {
   min-height: 668.75px;
 }
+.el-loading-mask {
+  background-color: rgba(255, 255, 255, 1) !important; /* 1 表示完全不透明 */
+}
+/* 显示动画 */
+.el-loading-fade-enter-active {
+  transition: opacity 0s; 
+}
+/* 隐藏动画 */
+.el-loading-fade-leave-active {
+  transition: opacity 0.2s; /* 隐藏动画0.2秒 */
+}
+
+.wrLable {
+  background-color: #fff;
+  border-color: #fbc4c4;
+  color: #f56c6c;
+  display: inline-block;
+  height: 20px;
+  padding: 0 5px;
+  line-height: 19px;
+  padding: 0 5px;
+  font-size: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}

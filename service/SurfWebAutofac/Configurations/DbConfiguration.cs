@@ -1,5 +1,5 @@
-﻿using Common.Dapper;
-using Common.SqlSugar;
+﻿using Common.Db.Dapper;
+using Common.Db.SqlSugar;
 using Microsoft.AspNetCore.Builder;
 
 namespace Configurations;

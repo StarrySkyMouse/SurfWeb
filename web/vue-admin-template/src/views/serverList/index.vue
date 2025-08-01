@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column align="center" label="玩家">
           <template slot-scope="scope">
-            <el-link type="primary">{{ scope.row.name }}</el-link>
+            <el-link type="primary" @click="openPlayer(scope.row)">{{ scope.row.name }}</el-link>
           </template>
         </el-table-column>
         <el-table-column align="center" label="在线时长">
@@ -64,6 +64,9 @@ export default {
   },
   mounted() {
   },
+  activated() {
+    this.loadData()
+  },
   deactivated() {
     if (this.intervalId) {
       clearInterval(this.intervalId)
@@ -75,6 +78,13 @@ export default {
     }
   },
   methods: {
+    openPlayer(row) {
+      this.dialogVisible = false
+      this.$router.push({
+        path: `/player/${row.playerId}`,
+        query: { tagName: row.name }
+      })
+    },
     openMap() {
       if (this.serverInfo.mapInfo) {
         this.$router.push({

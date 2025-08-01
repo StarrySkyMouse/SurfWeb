@@ -1,5 +1,4 @@
 ﻿using Common.Quartz;
-using Configurations.QuartzSetup.SequenceJobs;
 using Configurations.QuartzSetup.SequenceJobs.DbSync;
 using Microsoft.AspNetCore.Builder;
 

@@ -44,7 +44,7 @@ public class MemoryCache : ICache
 
     public void Set<T>(string cacheKey, T value, int cacheTime = -1)
     {
-        _memoryCache.Set(cacheKey, value, TimeSpan.FromMinutes(cacheTime != -1 ? cacheTime : _defaultCacheTime));
+        _memoryCache.Set(cacheKey, value, TimeSpan.FromSeconds(cacheTime != -1 ? cacheTime : _defaultCacheTime));
     }
 
     public void Remove(string key)

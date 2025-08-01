@@ -10,6 +10,11 @@ public class PopularMapDto
     public string Name { get; set; }
 
     /// <summary>
+    ///     地图图片
+    /// </summary>
+    public required string Img { get; set; }
+
+    /// <summary>
     ///     难度
     /// </summary>
     public string Difficulty { get; set; }

@@ -5,7 +5,7 @@ public class PlayerFailDto
     /// <summary>
     ///     地图id
     /// </summary>
-    public string MapId { get; set; }
+    public long MapId { get; set; }
 
     /// <summary>
     ///     地图名称
@@ -16,6 +16,10 @@ public class PlayerFailDto
     ///     难度
     /// </summary>
     public string Difficulty { get; set; }
+    /// <summary>
+    /// 图片
+    /// </summary>
+    public string Img { get; set; }
 
     /// <summary>
     ///     阶段

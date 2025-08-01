@@ -1,12 +1,12 @@
-﻿namespace Model.ExteriorEntitys
+﻿namespace Model.ExteriorEntitys;
+
+public class MapInfo
 {
-    public class MapInfo
-    {
-        public string map { get; set; }
-        public int number { get; set; }
-        /// <summary>
-        /// 1-奖励，2-阶段
-        /// </summary>
-        public int type { get; set; }
-    }
+    public string map { get; set; }
+    public int number { get; set; }
+
+    /// <summary>
+    ///     1-奖励，2-阶段
+    /// </summary>
+    public int type { get; set; }
 }

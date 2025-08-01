@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSync", "DataSync\DataSy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{51A7B6F7-1558-4275-AF9B-D82B3E9DF404}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFServices", "EFServices\EFServices.csproj", "{CF672980-1E84-4F76-9B82-876CBF47B69B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{51A7B6F7-1558-4275-AF9B-D82B3E9DF404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A7B6F7-1558-4275-AF9B-D82B3E9DF404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51A7B6F7-1558-4275-AF9B-D82B3E9DF404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF672980-1E84-4F76-9B82-876CBF47B69B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF672980-1E84-4F76-9B82-876CBF47B69B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF672980-1E84-4F76-9B82-876CBF47B69B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF672980-1E84-4F76-9B82-876CBF47B69B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

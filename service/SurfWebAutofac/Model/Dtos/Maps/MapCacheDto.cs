@@ -16,7 +16,10 @@ public class MapCacheDto
     ///     难度
     /// </summary>
     public string Difficulty { get; set; }
-
+    /// <summary>
+    /// 图片
+    /// </summary>
+    public string Img { get; set; }
     /// <summary>
     ///     地图奖励关数量
     /// </summary>

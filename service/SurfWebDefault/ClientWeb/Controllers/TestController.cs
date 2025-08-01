@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Model.Cahces;
-using Utils.Mail;
 
-namespace ClientWeb.Controllers
-{    /// <summary>
-    /// Steam信息
+namespace ClientWeb.Controllers;
+
+/// <summary>
+///     Steam信息
+/// </summary>
+[ApiController]
+[Route("[controller]")]
+public class TestController : ControllerBase
+{
+    /// <summary>
+    ///     发送消息
     /// </summary>
-    [ApiController]
-    [Route("[controller]")]
-    public class TestController : ControllerBase
+    [HttpGet("SendMessage")]
+    public void SendMessage()
     {
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        [HttpGet("SendMessage")]
-        public void SendMessage()
-        {
-        }
     }
 }

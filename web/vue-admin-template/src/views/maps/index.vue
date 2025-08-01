@@ -42,7 +42,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="scroll-body">
+    <div class="scroll-body" v-loading="listLoading">
       <div class="card-flex-row">
         <el-card v-for="(item, idx) in data" :key="idx" :body-style="{ padding: '0px' }" class="card-item">
           <div style="cursor:pointer;" @click="openMap(item)">
@@ -78,12 +78,13 @@ export default {
       search: '',
       difficulty: '',
       list: null,
-      listLoading: true,
+      listLoading: false,
       loadingMore: false,
       noMore: false
     }
   },
   created() {
+    this.listLoading = true
     this.loadData()
   },
   mounted() {
@@ -124,6 +125,7 @@ export default {
       this.data = []
       this.noMore = false
       this.loadingMore = false
+      this.listLoading = true
       this.loadData()
     },
     handleScroll(e) {
@@ -138,6 +140,9 @@ export default {
       // 这里请求新数据，追加到data
       getMapList({ difficulty: this.difficulty, search: this.search, pageIndex: this.pageIndex }).then(response => {
         const newData = response.data
+        setTimeout(() => {
+          this.listLoading = false
+        }, 300)
         if (newData.length === 0) {
           this.noMore = true
         } else {

@@ -12,13 +12,13 @@ namespace SurfWebAutofac.Controllers;
 [Route("[controller]")]
 public class NewRecordController : ControllerBase
 {
-    private readonly INewRecordServices _newRecordServices;
+    private readonly IMapServices _mapServices;
 
     /// <summary>
     /// </summary>
-    public NewRecordController(INewRecordServices newRecordServices)
+    public NewRecordController(IMapServices mapServices)
     {
-        _newRecordServices = newRecordServices;
+        _mapServices = mapServices;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public class NewRecordController : ControllerBase
     [HttpGet("GetNewRecordList")]
     public async Task<List<NewRecordDto>> GetNewRecordList(RecordTypeEnum recordType)
     {
-        return await _newRecordServices.GetNewRecordList(recordType);
+        return await _mapServices.GetNewRecordList(recordType);
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class NewRecordController : ControllerBase
     [HttpGet("GetNewMapList")]
     public async Task<List<NewMapDto>> GetNewMapList()
     {
-        return await _newRecordServices.GetNewMapList();
+        return await _mapServices.GetNewMapList();
     }
 
     /// <summary>
@@ -45,6 +45,6 @@ public class NewRecordController : ControllerBase
     [HttpGet("GetPopularMapList")]
     public async Task<List<PopularMapDto>> GetPopularMapList()
     {
-        return await _newRecordServices.GetPopularMapList();
+        return await _mapServices.GetPopularMapList();
     }
 }
