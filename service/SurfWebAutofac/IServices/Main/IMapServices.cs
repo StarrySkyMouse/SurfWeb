@@ -12,14 +12,16 @@ public interface IMapServices : IMainBaseServices<MapModel>
     ///     获取地图信息
     /// </summary>
     Task<MapDto?> GetMapInfoById(long id);
+
     /// <summary>
-    /// 通过名字获取地图信息列表
+    ///     通过名字获取地图信息列表
     /// </summary>
     /// <param name="names"></param>
     /// <returns></returns>
     Task<MapModel?> GetMapInfoByName(string names);
+
     /// <summary>
-    /// 通过名字列表获取地图信息列表
+    ///     通过名字列表获取地图信息列表
     /// </summary>
     /// <param name="names"></param>
     /// <returns></returns>
@@ -46,12 +48,12 @@ public interface IMapServices : IMainBaseServices<MapModel>
     Task<List<MapTop100Dto>> GetMapTop100List(long id, RecordTypeEnum recordType, int? stage, int pageIndex);
 
     /// <summary>
-    ///通过地图名称获取地图ID列表
+    ///     通过地图名称获取地图ID列表
     /// </summary>
     Task<Dictionary<string, long>> GetMapIdListByName(List<string> mapNameList);
 
     /// <summary>
-    ///统计地图完成人数
+    ///     统计地图完成人数
     /// </summary>
     Task UpdateSucceesNumber();
 
@@ -61,19 +63,20 @@ public interface IMapServices : IMainBaseServices<MapModel>
     Task<List<MapWrCache>> GetMapWrList(RecordTypeEnum recordType);
 
     /// <summary>
-    /// 获取地图信息Main
+    ///     获取地图信息Main
     /// </summary>
     Task<List<MapMainCache>> GetMapMainList();
 
     /// <summary>
-    /// 获取地图信息Bounty
+    ///     获取地图信息Bounty
     /// </summary>
     Task<List<MapBountyOrStageCache>> GetMapBountyList();
 
     /// <summary>
-    /// 获取地图信息Bounty
+    ///     获取地图信息Bounty
     /// </summary>
     Task<List<MapBountyOrStageCache>> GetMapStageList();
+
     /// <summary>
     ///     获取最新纪录
     /// </summary>

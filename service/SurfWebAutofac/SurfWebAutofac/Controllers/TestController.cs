@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SurfWebAutofac.Controllers;
 
@@ -9,11 +10,17 @@ namespace SurfWebAutofac.Controllers;
 [Route("[controller]")]
 public class TestController : ControllerBase
 {
+    private readonly ITestServices _testServices;
+    public TestController(ITestServices testServices)
+    {
+        _testServices = testServices;
+    }
     /// <summary>
     ///     发送消息
     /// </summary>
     [HttpGet("SendMessage")]
-    public void SendMessage()
+    public async Task SendMessage()
     {
+        await _testServices.Test();
     }
 }

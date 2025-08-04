@@ -1,5 +1,4 @@
-﻿using Common.Caches.AOP;
-using Common.Db.SqlSugar.Repository.Main;
+﻿using Common.Db.SqlSugar.Repository.Main;
 using IServices.Main;
 using Model.Dtos.Players;
 using Model.Models.Main;
@@ -15,9 +14,9 @@ namespace Services.Main;
 public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
+    private readonly IMapServices _mapServices;
     private readonly PlayerCompleteRepository _playerCompleteRepository;
     private readonly IMainRepository<PlayerModel> _playerRepository;
-    private readonly IMapServices _mapServices;
 
     public PlayerServices(IMainRepository<PlayerModel> playerRepository,
         PlayerCompleteRepository playerCompleteRepository,
@@ -132,7 +131,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 Stage = a.Stage,
                 Time = a.Time,
                 GapTime = mapWrList.Any(b => b.MapId == t.Key && b.Stage == a.Stage)
-                    ? (mapWrList.FirstOrDefault(b => b.MapId == t.Key && b.Stage == a.Stage).Time - a.Time)
+                    ? mapWrList.FirstOrDefault(b => b.MapId == t.Key && b.Stage == a.Stage).Time - a.Time
                     : -1,
                 Date = a.Date
             }).OrderBy(a => a.Stage).ToList()
@@ -157,7 +156,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 .OrderBy(t => t.Name)
                 .Skip((pageIndex - 1) * 10)
                 .Take(10)
-                .Select(t => new PlayerFailDto()
+                .Select(t => new PlayerFailDto
                 {
                     MapId = t.Id,
                     MapName = t.Name,
@@ -165,7 +164,8 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                     Img = t.Img
                 }).ToList();
         }
-        else if (recordType == RecordTypeEnum.Bounty)
+
+        if (recordType == RecordTypeEnum.Bounty)
         {
             var list = await _playerCompleteRepository.Queryable()
                 .InnerJoin(_mapRepository.Queryable().Where(t => t.Difficulty == difficulty), (a, b) => a.MapId == b.Id)
@@ -178,7 +178,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 .GroupBy(t => t.Id)
                 .OrderBy(t => t.Key)
                 .PageData(pageIndex, 10)
-                .Select(t => new PlayerFailDto()
+                .Select(t => new PlayerFailDto
                 {
                     MapId = t.Key,
                     MapName = t.First().Name,
@@ -187,7 +187,8 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                     Stages = t.Select(a => a.Stage).ToList()
                 }).ToList();
         }
-        else if (recordType == RecordTypeEnum.Stage)
+
+        if (recordType == RecordTypeEnum.Stage)
         {
             var list = await _playerCompleteRepository.Queryable()
                 .InnerJoin(_mapRepository.Queryable().Where(t => t.Difficulty == difficulty), (a, b) => a.MapId == b.Id)
@@ -199,7 +200,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 .GroupBy(t => t.Id)
                 .OrderBy(t => t.Key)
                 .PageData(pageIndex, 10)
-                .Select(t => new PlayerFailDto()
+                .Select(t => new PlayerFailDto
                 {
                     MapId = t.Key,
                     MapName = t.First().Name,
@@ -211,6 +212,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 
         return await Task.FromResult(new List<PlayerFailDto>());
     }
+
     //分页查询玩家数据
     public async Task<List<PlayerModel>> GetPlayerPageList(int pageIndex, int pageSize)
     {
@@ -218,6 +220,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
             .OrderByDescending(t => t.Id)
             .ToPageListAsync(pageIndex, pageSize);
     }
+
     /// <summary>
     ///     通过Auth获取玩家Id列表
     /// </summary>
@@ -247,12 +250,10 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                     sum = SqlFunc.AggregateCount(t)
                 }).ToListAsync();
         foreach (var item in succeesInfo)
-        {
-            await _playerRepository.Updateable().SetColumns(t => new PlayerModel()
+            await _playerRepository.Updateable().SetColumns(t => new PlayerModel
             {
                 SucceesNumber = item.sum
             }).Where(t => t.Id == item.PlayerId).ExecuteCommandAsync();
-        }
 
         // 主线wr
         var wrInfo = (await _mapServices.GetMapWrList(RecordTypeEnum.Main))
@@ -263,12 +264,10 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 sum = t.Count()
             });
         foreach (var item in wrInfo)
-        {
-            await _playerRepository.Updateable().SetColumns(t => new PlayerModel()
+            await _playerRepository.Updateable().SetColumns(t => new PlayerModel
             {
                 WRNumber = item.sum
             }).Where(t => t.Id == item.PlayerId).ExecuteCommandAsync();
-        }
 
         // 奖励wr
         var wrBountyInfo = (await _mapServices.GetMapWrList(RecordTypeEnum.Bounty))
@@ -279,12 +278,10 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 sum = t.Count()
             });
         foreach (var item in wrBountyInfo)
-        {
-            await _playerRepository.Updateable().SetColumns(t => new PlayerModel()
+            await _playerRepository.Updateable().SetColumns(t => new PlayerModel
             {
                 BWRNumber = item.sum
             }).Where(t => t.Id == item.PlayerId).ExecuteCommandAsync();
-        }
 
         // 阶段wr
         var wrStageInfo = (await _mapServices.GetMapWrList(RecordTypeEnum.Bounty))
@@ -295,12 +292,10 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
                 sum = t.Count()
             });
         foreach (var item in wrBountyInfo)
-        {
-            await _playerRepository.Updateable().SetColumns(t => new PlayerModel()
+            await _playerRepository.Updateable().SetColumns(t => new PlayerModel
             {
                 SWRNumber = item.sum
             }).Where(t => t.Id == item.PlayerId).ExecuteCommandAsync();
-        }
     }
 
     /// <summary>
@@ -323,6 +318,7 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
     {
         return await _playerRepository.Queryable().Where(t => names.Contains(t.Name)).ToListAsync();
     }
+
     /// <summary>
     ///     获取玩家未完成Count
     /// </summary>

@@ -1,5 +1,6 @@
 ﻿using Common.Db.Base;
 using SqlSugar;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Models.Main;
 
@@ -23,6 +24,7 @@ public enum RecordTypeEnum
     /// </summary>
     Stage
 }
+
 public enum RankingTypeEnum
 {
     /// <summary>
@@ -45,6 +47,7 @@ public enum RankingTypeEnum
     /// </summary>
     StageWR
 }
+
 /// <summary>
 ///     地图
 /// </summary>
@@ -52,12 +55,14 @@ public enum RankingTypeEnum
 public class MapModel : BaseEntity
 {
     [SugarColumn(ColumnDescription = "名称", Length = 128)]
+    [MaxLength(128)]
     public string Name { get; set; }
 
     /// <summary>
     ///     难度
     /// </summary>
     [SugarColumn(ColumnDescription = "难度", Length = 16)]
+    [MaxLength(16)]
     public string Difficulty { get; set; }
 
     /// <summary>

@@ -1,5 +1,4 @@
-﻿using Common.Caches.AOP;
-using Common.Caches.Base;
+﻿using Common.Caches.Base;
 using Common.Db.SqlSugar.Repository.Main;
 using IServices.Main;
 using Model.Caches;
@@ -82,7 +81,8 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     /// <summary>
     ///     获取地图前100
     /// </summary>
-    public async Task<List<MapTop100Dto>> GetMapTop100List(long id, RecordTypeEnum recordType, int? stage, int pageIndex)
+    public async Task<List<MapTop100Dto>> GetMapTop100List(long id, RecordTypeEnum recordType, int? stage,
+        int pageIndex)
     {
         var mapWr = (await GetMapWrList(recordType))
             .Where(t => t.MapId == id)
@@ -105,20 +105,22 @@ public class MapServices : BaseServices<MapModel>, IMapServices
                 result[i].Ranking = (pageIndex - 1) * 10 + i + 1;
                 if (mapWr != null) result[i].GapTime = mapWr.Time - result[i].Time;
             }
+
         return result;
     }
+
     /// <summary>
     ///     通过地图名称获取地图ID列表
     /// </summary>
     public async Task<Dictionary<string, long>> GetMapIdListByName(List<string> mapNameList)
     {
         return (await _mapRepository.Queryable()
-           .Where(t => mapNameList.Select(a => a.Trim()).Contains(t.Name))
-           .Select(t => new
-           {
-               t.Id,
-               t.Name
-           }).ToListAsync()).ToDictionary(t => t.Name, t => t.Id);
+            .Where(t => mapNameList.Select(a => a.Trim()).Contains(t.Name))
+            .Select(t => new
+            {
+                t.Id,
+                t.Name
+            }).ToListAsync()).ToDictionary(t => t.Name, t => t.Id);
     }
 
     /// <summary>
@@ -185,8 +187,9 @@ public class MapServices : BaseServices<MapModel>, IMapServices
             Stage = t.Stage
         }).ToList();
     }
+
     /// <summary>
-    /// 获取地图信息
+    ///     获取地图信息
     /// </summary>
     public async Task<List<MapMainCache>> GetMapMainList()
     {
@@ -203,29 +206,30 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     }
 
     /// <summary>
-    /// 获取地图信息Bounty
+    ///     获取地图信息Bounty
     /// </summary>
     public async Task<List<MapBountyOrStageCache>> GetMapBountyList()
     {
-        return (await this.GetMapMainList())
-             .Where(t => t.BonusNumber != 0)
-             .SelectMany(t =>
-                 Enumerable.Range(1, t.BonusNumber)
-                     .Select(b => new MapBountyOrStageCache
-                     {
-                         Id = t.Id,
-                         Name = t.Name,
-                         Difficulty = t.Difficulty,
-                         Img = t.Img,
-                         Stage = b
-                     })).ToList();
+        return (await GetMapMainList())
+            .Where(t => t.BonusNumber != 0)
+            .SelectMany(t =>
+                Enumerable.Range(1, t.BonusNumber)
+                    .Select(b => new MapBountyOrStageCache
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        Difficulty = t.Difficulty,
+                        Img = t.Img,
+                        Stage = b
+                    })).ToList();
     }
+
     /// <summary>
-    /// 获取地图信息Bounty
+    ///     获取地图信息Bounty
     /// </summary>
     public async Task<List<MapBountyOrStageCache>> GetMapStageList()
     {
-        return (await this.GetMapMainList())
+        return (await GetMapMainList())
             .Where(t => t.StageNumber != 0)
             .SelectMany(t =>
                 Enumerable.Range(1, t.StageNumber)
@@ -338,13 +342,13 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     public async Task<List<NewMapDto>> GetNewMapList()
     {
         return await _mapRepository.Queryable().Select(t => new NewMapDto
-        {
-            Id = t.Id,
-            Name = t.Name,
-            Difficulty = t.Difficulty,
-            Img = t.Img,
-            CreateTime = t.CreateTime
-        })
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Difficulty = t.Difficulty,
+                Img = t.Img,
+                CreateTime = t.CreateTime
+            })
             .OrderByDescending(t => t.CreateTime)
             .Take(10)
             .ToListAsync();
@@ -356,13 +360,13 @@ public class MapServices : BaseServices<MapModel>, IMapServices
     public async Task<List<PopularMapDto>> GetPopularMapList()
     {
         var result = await _mapRepository.Queryable().Select(t => new PopularMapDto
-        {
-            Id = t.Id,
-            Name = t.Name,
-            Img = t.Img,
-            Difficulty = t.Difficulty,
-            SurcessNumber = t.SurcessNumber
-        })
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Img = t.Img,
+                Difficulty = t.Difficulty,
+                SurcessNumber = t.SurcessNumber
+            })
             .OrderByDescending(t => t.SurcessNumber)
             .Take(10)
             .ToListAsync();

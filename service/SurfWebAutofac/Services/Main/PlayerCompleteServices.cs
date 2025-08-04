@@ -106,7 +106,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
     {
         ////设置有效地图
         var validList = await _playerCompleteRepository.QueryableNoHide()
-            .Where(t => SqlFunc.Subqueryable<MapModel>().Where(a => a.Id== t.MapId).Any())
+            .Where(t => SqlFunc.Subqueryable<MapModel>().Where(a => a.Id == t.MapId).Any())
             .ToListAsync();
         //设置无效地图
         var invalidList = await _playerCompleteRepository.QueryableNoHide()
@@ -117,6 +117,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
         _playerCompleteRepository.Updates(validList);
         _playerCompleteRepository.Updates(invalidList);
     }
+
     /// <summary>
     ///     获取旧的数据
     /// </summary>
@@ -126,13 +127,12 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
         var result = new List<PlayerCompleteModel>();
         var batchSize = 100;
         var total = list.Count();
-        for (int i = 0; i < total; i += batchSize)
+        for (var i = 0; i < total; i += batchSize)
         {
             var batch = list.Skip(i).Take(batchSize).ToList();
             var predicate = Expressionable.Create<PlayerCompleteModel>();
             // 处理每一批 batch
             foreach (var item in batch)
-            {
                 predicate = predicate.Or(t =>
                     t.Auth == item.auth &&
                     t.MapName == item.map &&
@@ -145,7 +145,6 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
                         (item.track != 0 && t.Stage == item.track)
                     )
                 );
-            }
             var subResult = await _playerCompleteRepository.QueryableNoHide()
                 .Where(predicate.ToExpression()).ToListAsync();
             result.AddRange(subResult);
@@ -161,22 +160,20 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
         IEnumerable<(int auth, string map, int stage)> list)
     {
         var result = new List<PlayerCompleteModel>();
-        int batchSize = 100;
-        int total = list.Count();
-        for (int i = 0; i < total; i += batchSize)
+        var batchSize = 100;
+        var total = list.Count();
+        for (var i = 0; i < total; i += batchSize)
         {
             var batch = list.Skip(i).Take(batchSize).ToList();
             var predicate = Expressionable.Create<PlayerCompleteModel>();
             // 处理每一批 batch
             foreach (var item in batch)
-            {
                 predicate = predicate.Or(t =>
                     t.Auth == item.auth &&
                     t.MapName == item.map &&
                     t.Type == RecordTypeEnum.Stage &&
                     t.Stage == item.stage
                 );
-            }
 
             var subResult = await _playerCompleteRepository.QueryableNoHide()
                 .Where(predicate.ToExpression()).ToListAsync();
@@ -185,6 +182,7 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
 
         return result;
     }
+
     /// <summary>
     ///     获取排名
     /// </summary>
@@ -197,12 +195,12 @@ public class PlayerCompleteServices : BaseServices<PlayerCompleteModel>, IPlayer
             result = (await _playerRepository.Queryable().OrderByDescending(t => t.Integral)
                 .Take(10)
                 .ToListAsync()).Select(t => new RankingDto
-                {
-                    Type = rankingType,
-                    PlayerId = t.Id,
-                    PlayerName = t.Name,
-                    Value = t.Integral
-                }).ToList();
+            {
+                Type = rankingType,
+                PlayerId = t.Id,
+                PlayerName = t.Name,
+                Value = t.Integral
+            }).ToList();
             var mapMainList = await _mapServices.GetMapMainList();
             var succeedInfo = await _playerCompleteRepository.Queryable()
                 .Where(t => result.Select(a => a.PlayerId).Contains(t.PlayerId) && t.Type == RecordTypeEnum.Main)

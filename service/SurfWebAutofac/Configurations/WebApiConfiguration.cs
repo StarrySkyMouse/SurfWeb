@@ -16,6 +16,8 @@ public static class WebApiConfiguration
     /// </summary>
     public static void AddWebApiConfiguration(this WebApplicationBuilder builder)
     {
+        //为每个请求生成唯一id
+        builder.Services.AddHttpContextAccessor();
         // 注册Swagger
         builder.Services.AddEndpointsApiExplorer();
         //当swagger无法使用时请尝试清除浏览器缓存！！！！！！！！！！！！

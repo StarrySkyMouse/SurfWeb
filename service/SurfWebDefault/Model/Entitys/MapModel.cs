@@ -8,7 +8,8 @@ namespace Model.Entitys;
 /// </summary>
 public class MapModel : BaseEntity
 {
-    [MaxLength(128)] public required string Name { get; set; }
+    [MaxLength(128)] 
+    public required string Name { get; set; }
 
     /// <summary>
     ///     难度

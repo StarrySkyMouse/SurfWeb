@@ -1,5 +1,6 @@
 ﻿using Common.Db.Base;
 using SqlSugar;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Models.Main;
 
@@ -19,6 +20,7 @@ public class PlayerModel : BaseEntity
     ///     玩家名
     /// </summary>
     [SugarColumn(ColumnDescription = "玩家名", IsNullable = true, Length = 128)]
+    [MaxLength(128)]
     public string Name { get; set; }
 
     /// <summary>

@@ -10,6 +10,7 @@ public interface IPlayerServices : IMainBaseServices<PlayerModel>
     ///     获取玩家信息
     /// </summary>
     Task<PlayerInfoDto?> GetPlayerInfo(long id);
+
     /// <summary>
     ///     获取玩家已完成Count
     /// </summary>
@@ -20,10 +21,12 @@ public interface IPlayerServices : IMainBaseServices<PlayerModel>
     /// </summary>
     Task<List<PlayerSucceesDto>> GetPlayerSucceesList(long id, RecordTypeEnum recordType, string difficulty,
         int pageIndex);
+
     /// <summary>
-    /// 获取玩家未完成Count
+    ///     获取玩家未完成Count
     /// </summary>
     Task<int> GetPlayerFailCount(long id, RecordTypeEnum recordType, string difficulty);
+
     /// <summary>
     ///     获取玩家未完成List
     /// </summary>
