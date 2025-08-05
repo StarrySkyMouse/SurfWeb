@@ -19,6 +19,7 @@ public static class ServiceCollectionExtensions
         AutofacAssemblyCfg.ServicesDll = cfg.ServicesDll;
         AutofacAssemblyCfg.ServicesType = cfg.ServicesType;
         AutofacAssemblyCfg.IsOpenInterceptor = cfg.IsOpenInterceptor;
+        //替换默认DI容器
         builder.Host
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>

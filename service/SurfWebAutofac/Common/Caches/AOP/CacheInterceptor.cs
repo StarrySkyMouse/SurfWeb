@@ -3,7 +3,9 @@ using Castle.DynamicProxy;
 using Common.Caches.Base;
 
 namespace Common.Caches.AOP;
-
+/// <summary>
+/// 缓存拦截器
+/// </summary>
 public class CacheInterceptor : IInterceptor
 {
     private readonly ICache _cache;

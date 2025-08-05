@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace Common.Logger.AOP;
-
+/// <summary>
+/// Service层日志拦截器
+/// </summary>
 public class ServiceLoggingInterceptor : IInterceptor
 {
     private readonly IHttpContextAccessor _httpContextAccessor;

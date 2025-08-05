@@ -1,4 +1,5 @@
-﻿using Common.Db.SqlSugar.Repository.Main;
+﻿using Common.Caches.AOP;
+using Common.Db.SqlSugar.Repository.Main;
 using IServices.Main;
 using Model.Dtos.Players;
 using Model.Models.Main;
@@ -10,7 +11,7 @@ using Utils.Extensions;
 namespace Services.Main;
 
 //设置缓存2分钟
-//[Cache(CacheTime = 120)]
+[Cache(CacheTime = 120)]
 public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;
@@ -31,6 +32,8 @@ public class PlayerServices : BaseServices<PlayerModel>, IPlayerServices
     /// <summary>
     ///     获取玩家信息
     /// </summary>
+    /// 
+    [Cache(CacheTime = 120)]
     public async Task<PlayerInfoDto?> GetPlayerInfo(long id)
     {
         var result = await _playerRepository.Queryable().Select(t => new PlayerInfoDto

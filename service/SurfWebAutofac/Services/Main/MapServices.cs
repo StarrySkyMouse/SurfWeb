@@ -1,4 +1,5 @@
-﻿using Common.Caches.Base;
+﻿using Common.Caches.AOP;
+using Common.Caches.Base;
 using Common.Db.SqlSugar.Repository.Main;
 using IServices.Main;
 using Model.Caches;
@@ -13,7 +14,7 @@ using Utils.Extensions;
 namespace Services.Main;
 
 //设置缓存2分钟
-//[Cache(CacheTime = 120)]
+[Cache(CacheTime = 120)]
 public class MapServices : BaseServices<MapModel>, IMapServices
 {
     private readonly IMainRepository<MapModel> _mapRepository;

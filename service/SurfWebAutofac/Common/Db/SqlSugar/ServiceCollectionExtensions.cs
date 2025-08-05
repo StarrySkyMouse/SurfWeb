@@ -55,8 +55,8 @@ public static class ServiceCollectionExtensions
             //SQL报错
             db.Aop.OnError = exp =>
             {
-                //var logger = sp.GetRequiredService<ILogger<IDbLoggerSign>>();
-                //logger.LogError(DbLoggerDto.ErrorToString(DbLoggerDtoType.Error, exp.Sql, db.Ado.SqlExecutionTime, exp.ToString()));
+                var logger = sp.GetRequiredService<ILogger<IDbLoggerSign>>();
+                logger.LogError(DbLoggerDto.ErrorToString(sp.GetRequiredService<IHttpContextAccessor>().HttpContext.TraceIdentifier, DbLoggerDtoType.Error, exp.Sql, db.Ado.SqlExecutionTime, exp.ToString()));
             };
 
             #endregion
