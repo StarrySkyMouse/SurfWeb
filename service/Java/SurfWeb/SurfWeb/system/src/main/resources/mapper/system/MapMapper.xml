@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.surfweb.system.mapper.MapMapper">
+<!--    映射不区分大小写-->
+<!--    <resultMap type="MapModel" id="MapModelResult">-->
+<!--        <id     property="id"      column="Id"      />-->
+<!--        <result property="name"    column="Name"    />-->
+<!--        <result property="difficulty"     column="Difficulty"     />-->
+<!--        <result property="img"   column="Img"   />-->
+<!--        <result property="surcessNumber"    column="SurcessNumber"    />-->
+<!--        <result property="bonusNumber"    column="BonusNumber"    />-->
+<!--        <result property="stageNumber"      column="StageNumber"      />-->
+<!--        <result property="createTime"    column="CreateTime"    />-->
+<!--        <result property="upDateTime"    column="UpDateTime"    />-->
+<!--        <result property="isDelete"    column="IsDelete"    />-->
+<!--    </resultMap>-->
+
+    <resultMap type="NewRecordDto" id="NewRecordDtoResult">
+        <id  property="mapId" column="MapId"/>
+        <result property="mapName" column="MapName"/>
+        <result property="type" column="Type"/>
+        <result property="difficulty" column="Difficulty"/>
+        <result property="img" column="Img"/>
+        <collection property="players" ofType="NewRecordDto_Player" resultMap="NewRecordDtoPlayerResult"/>
+    </resultMap>
+
+    <resultMap type="NewRecordDto_Player" id="NewRecordDtoPlayerResult">
+        <result property="playerId" column="PlayerId"/>
+        <result property="playerName" column="PlayerName"/>
+        <result property="stage" column="Stage"/>
+        <result property="time" column="Time"/>
+        <result property="date" column="Date"/>
+        <result property="gapTime" column="GapTime"/>
+    </resultMap>
+
+    <select id="getMapInfoById" parameterType="java.lang.Long" resultMap="MapDto">
+        select Id, Name, Difficulty, Img, SurcessNumber, BonusNumber, StageNumber
+        from map
+        <where>
+            and Id = #{id}
+        </where>
+    </select>
+
+    <select id="getMapInfoByIds" parameterType="java.util.List" resultMap="MapModel">
+        select Id, Name, Difficulty, Img, SurcessNumber, BonusNumber, StageNumber
+        from map
+        <where>
+            AND Id IN
+            <foreach collection="ids" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+
+
+    <select id="getMapInfoByName" resultMap="MapModel">
+        select Id, Name, Difficulty, Img, SurcessNumber, BonusNumber, StageNumber
+        from map
+        <where>
+            and LOWER(Name) = LOWER(#{name})
+        </where>
+    </select>
+
+<!--返回类型根据方法，若查询了多个但是用单个对象接收不会报错但只会返回一个-->
+    <select id="getMapInfoByNameList" resultMap="MapModelResult">
+        select Id, Name, Difficulty, Img, SurcessNumber, BonusNumber, StageNumber
+        from map
+        <where>
+            and LOWER(Name) in
+--             open="(" ：在循环开始前拼接的字符串（通常用于 SQL 语句的括号）。
+--             separator="," ：每个元素之间用什么分隔（通常用逗号分隔 IN 里的每个值）。
+--             close=")" ：在循环结束后拼接的字符串（通常用于 SQL 语句的括号结束）。
+            <foreach collection="names" item="name" open="(" separator="," close=")">
+                LOWER(#{name})
+            </foreach>
+        </where>
+    </select>
+
+    <select id="getMapList" resultMap="MapListDtoResult">
+        select Id, Name, Difficulty, Img
+        from map
+        <where>
+            <if test="difficulty != null and difficulty!=''"> and Difficulty = #{difficulty} </if>
+            <if test="search != null and search != ''">
+                and LOWER(Name) LIKE CONCAT('%', LOWER(#{search}), '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getMapTop100Count" resultMap="int">
+        select COUNT(*)
+        from playercomplete
+        <where>
+            and MapId = #{id}
+            and Type = #{recordType}
+            <if test="recordType != null and recordType == 0">
+                and Stage = #{stage}
+            </if>
+        </where>
+    </select>
+
+    <select id="getMapTop100List" resultMap="MapTop100DtoResult">
+        SELECT PlayerId,PlayerName,Stage,Time,Date
+        FROM playercomplete
+        <where>
+            and MapId = #{id}
+            and Type = #{recordType}
+            <if test="recordType != null AND recordType == 0">
+                and Stage = #{stage}
+            </if>
+            ORDER BY Time
+        </where>
+    </select>
+
+    <select id="getMapIdListByName" parameterType="java.util.List" resultType="java.util.HashMap">
+        SELECT DISTINCT MapId,MapName
+        FROM map
+        <where>
+            AND LOWER(MapName) IN
+            <foreach collection="mapNameList" item="name" open="(" separator="," close=")">
+                LOWER(#{name})
+            </foreach>
+        </where>
+    </select>
+
+    <select id="getMapMainList" resultType="MapMainCacheResult">
+        SELECT Id, Name, Difficulty, Img, SurcessNumber, BonusNumber, StageNumber
+        FROM map
+    </select>
+
+    <select id="getNewMapList" resultType="NewMapDtoResult">
+        SELECT Id, Name, Difficulty, Img, CreateTime
+        FROM map
+        ORDER BY CreateTime DESC
+        LIMIT 10
+    </select>
+
+    <select id="getPopularMapList" resultType="PopularMapDtoResult">
+        SELECT Id, Name, Difficulty, Img, StageNumber
+        FROM map
+        ORDER BY SurcessNumber DESC
+        LIMIT 10
+    </select>
+
+    <select id="getMapWrList" resultType="MapWrCache">
+        select A.MapId,A.MapName,A.Stage,A.Time,A.PlayerName,A.PlayerId from playercomplete A
+        inner join (
+            select MapId,Stage,MIN(Time) as Time from playercomplete
+            where `Type` = #{recordType}
+            group by MapId,Stage
+        ) B on A.MapId=B.MapId
+        /*null=null是false*/
+        and IFNULL(A.Stage,-1)=IFNULL(B.Stage,-1) and A.Time=B.Time
+    </select>
+
+
+    <select id="PlayerCompleteModel" resultType="NewRecordDto">
+        select * from playerCompleteRepository
+        where Type=#{recordType}
+        order by Date desc
+    </select>
+
+    <update id="updateSucceesNumber">
+        update map A
+        set SurcessNumber=(
+            select COUNT(*) from playercomplete B
+            where PlayerId is not null and B.MapId=A.ID and B.type=0
+        )
+    </update>
+</mapper>

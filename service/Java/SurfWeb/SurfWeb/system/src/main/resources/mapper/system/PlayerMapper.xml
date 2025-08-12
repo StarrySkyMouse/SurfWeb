@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.surfweb.system.mapper.PlayerMapper">
+
+    <resultMap type="PlayerModel" id="PlayerModelResult">
+        <id     property="id"      column="Id"      />
+        <result property="auth"    column="Auth"    />
+        <result property="name"    column="Name"    />
+        <result property="integral"    column="Integral"    />
+        <result property="succeesNumber"    column="SucceesNumber"    />
+        <result property="wrNumber"    column="WRNumber"    />
+        <result property="bwrNumber"    column="BWRNumber"    />
+        <result property="swrNumber"    column="SWRNumber"    />
+        <result property="createTime"    column="CreateTime"    />
+        <result property="upDateTime"    column="UpDateTime"    />
+        <result property="isDelete"    column="IsDelete"    />
+    </resultMap>
+    <resultMap type="PlayerInfoDto" id="PlayerInfoDtoResult">
+        <id     property="id"      column="Id"      />
+        <result property="name"    column="Name"    />
+        <result property="integralRanking"    column="IntegralRanking"    />
+        <result property="integral"    column="Integral"    />
+        <result property="succeesRanking"    column="SucceesRanking"    />
+        <result property="succeesNumber"    column="SucceesNumber"    />
+        <result property="wrRanking"    column="WRRanking"    />
+        <result property="wrNumber"    column="WRNumber"    />
+        <result property="bwRanking"    column="BWRanking"    />
+        <result property="bwrNumber"    column="BWRNumber"    />
+        <result property="swRanking"    column="SWRanking"    />
+        <result property="swrNumber"    column="SWRNumber"    />
+    </resultMap>
+
+    <resultMap type="PlayerSucceesDto" id="PlayerSucceesDtoResult">
+        <id     property="mapId"      column="MapId"      />
+        <result property="mapName"    column="MapName"    />
+        <result property="difficulty"    column="Difficulty"    />
+        <result property="img"    column="Img"    />
+        <collection property="stages" ofType="PlayerStageDto" resultMap="PlayerStageDtoResult"/>
+    </resultMap>
+
+    <resultMap type="PlayerStageDto" id="PlayerStageDtoResult">
+        <result property="stage" column="Stage"/>
+        <result property="time" column="Time"/>
+        <result property="gapTime" column="GapTime"/>
+        <result property="date" column="Date"/>
+    </resultMap>
+
+    <resultMap type="PlayerFailDto" id="PlayerFailDtoResult">
+        <id     property="mapId"      column="MapId"      />
+        <result property="mapName"    column="MapName"    />
+        <result property="difficulty"    column="Difficulty"    />
+        <result property="img"    column="Img"    />
+        <collection property="stages" ofType="java.lang.Integer"/>
+    </resultMap>
+
+    <select id="getPlayerInfo" resultMap="PlayerInfoDtoResult">
+        SELECT Id,Name,Integral,SucceesNumber,WRNumber,BWRNumber,SWRNumber
+        FROM Player
+        <where>
+            AND Id >= #{id}
+        </where>
+    </select>
+
+    <select id="getPlayersByNames" resultMap="PlayerModelResult">
+        SELECT Id,Auth,Name,Integral,SucceesNumber,WRNumber,BWRNumber,SWRNumber
+        FROM Player
+        AND Name IN
+        <foreach collection="names" item="name" open="(" separator="," close=")">
+            #{name}
+        </foreach>
+    </select>
+</mapper>

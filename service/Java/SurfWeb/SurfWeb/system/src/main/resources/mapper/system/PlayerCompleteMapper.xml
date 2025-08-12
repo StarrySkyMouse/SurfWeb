@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.surfweb.system.mapper.MapMapper">
+
+    <resultMap type="PlayerCompleteModel" id="PlayerCompleteModelResult">
+        <id     property="id"      column="Id"      />
+        <result property="auth"    column="Auth"    />
+        <result property="playerId"    column="PlayerId"    />
+        <result property="playerName"    column="PlayerName"    />
+        <result property="mapId"    column="MapId"    />
+        <result property="mapName"    column="MapName"    />
+        <result property="type"    column="Type"    />
+        <result property="stage"    column="Stage"    />
+        <result property="time"    column="Time"    />
+        <result property="date"    column="Date"    />
+        <result property="hide"    column="Hide"    />
+        <result property="createTime"    column="CreateTime"    />
+        <result property="upDateTime"    column="UpDateTime"    />
+        <result property="isDelete"    column="IsDelete"    />
+    </resultMap>
+
+    <resultMap type="RankingDto" id="RankingDtoResult">
+        <result property="type"       column="Type"/>
+        <result property="playerId"   column="PlayerId"/>
+        <result property="playerName" column="PlayerName"/>
+        <result property="value"      column="Value"/>
+        <result property="progress"   column="Progress"/>
+    </resultMap>
+<!--通过拦截器实现所有查询增加isDelete-->
+    <sql id="commonWhere">
+        isDelete = 0
+    </sql>
+
+    <select id="getFinallyDateTime" resultMap="java.util.Date">
+        SELECT MAX(Date) AS DATE
+        FROM playercomplete
+        WHERE Type=0 OR TYPE=1
+        UNION ALL
+        SELECT MAX(Date) AS DATE
+        FROM playercomplete
+        WHERE Type=2
+    </select>
+
+    <select id="getByDate" resultMap="PlayerCompleteModelResult">
+        SELECT Id,Auth,PlayerId,PlayerName,MapId,MapName,Type,Stage,Time,Date,Hide
+        FROM playercomplete
+        <where>
+            AND Type IN
+            <foreach collection="typeList" item="type" open="(" separator="," close=")">
+                #{type}
+            </foreach>
+            AND Date >= #{date}
+        </where>
+    </select>
+
+    <update id="disposeDataAssociation_Player">
+        UPDATE playercomplete pc
+            JOIN player p ON pc.Auth = p.Auth
+            SET
+                pc.PlayerId = p.Id,
+                pc.PlayerName = p.Name
+        WHERE pc.PlayerId IS NULL
+    </update>
+    <update id="disposeDataAssociation_Map">
+        UPDATE playercomplete pc
+            JOIN map m ON pc.MapName = m.Name
+            SET
+                pc.MapId = m.Id
+        WHERE pc.MapId IS NULL
+    </update>
+
+    <update id="hideUnLikeData_IsTrue">
+        UPDATE playercomplete
+        SET Hide = 0
+        WHERE MapId IN (SELECT Id FROM map)
+        AND IsDelete = 0
+    </update>
+    <update id="hideUnLikeData_IsFalse">
+        UPDATE playercomplete
+        SET Hide = 1
+        WHERE MapId NOT IN (SELECT Id FROM map)
+        AND IsDelete = 0
+    </update>
+
+</mapper>
