@@ -21,7 +21,10 @@ public class MapMainCache
     ///     图片
     /// </summary>
     public string Img { get; set; }
-
+    /// <summary>
+    ///     完成人数
+    /// </summary>
+    public int SurcessNumber { get; set; }
     /// <summary>
     ///     地图奖励关数量
     /// </summary>

@@ -172,8 +172,8 @@ public class MapServices : BaseServices<MapModel>, IMapServices
 
         var query = minTimes
             .Join(_playerCompleteRepository,
-                a => new { a.MapId, a.Time },
-                b => new { b.MapId, b.Time },
+                a => new { a.MapId,a.Stage, a.Time },
+                b => new { b.MapId, b.Stage, b.Time },
                 (a, b) => new
                 {
                     a.MapId,

@@ -3,12 +3,132 @@
   "WorkspaceRootPath": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\datasync\\appsettings.opensource.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|solutionrelative:datasync\\appsettings.opensource.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|solutionrelative:efservices\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|solutionrelative:efservices\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\models\\main\\playermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\models\\main\\playermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\models\\main\\mapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\models\\main\\mapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\caches\\mapmaincache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\caches\\mapmaincache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\iplayerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\iplayerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\datasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|solutionrelative:datasync\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\datasync\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|solutionrelative:datasync\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\datasync\\appsettings.opensource.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2D73B1BE-82F5-4B11-B6DE-31B3B8D65875}|DataSync\\DataSync.csproj|solutionrelative:datasync\\appsettings.opensource.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\mapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\mapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\newrecordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\newrecordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\iplayercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\iplayercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\imapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\imapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\maps\\mapcachedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\maps\\mapcachedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\rankings\\rankingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\rankings\\rankingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playerfaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playerfaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playerwrdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playerwrdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playersucceesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playersucceesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playerstagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playerstagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playerinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playerinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\maps\\maplistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\maps\\maplistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\maps\\mapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\maps\\mapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\newrecords\\popularmapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\newrecords\\popularmapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\newrecords\\newrecorddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\newrecords\\newrecorddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\newrecords\\newmapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\newrecords\\newmapdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\caches\\serviceinfocache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\caches\\serviceinfocache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\steamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\steamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\rankingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\rankingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -37,22 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\caches\\aop\\nocacheattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\caches\\aop\\nocacheattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|solutionrelative:efservices\\mapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\configurations\\autofacsetup\\autofacconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -155,10 +259,6 @@
       "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\jsonconverters\\datetiemconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\db\\base\\basicentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\db\\base\\basicentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\custommiddlewares\\uniquevisitor\\webapplicationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\custommiddlewares\\uniquevisitor\\webapplicationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -169,18 +269,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\configurations\\webapiconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|solutionrelative:configurations\\webapiconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\models\\main\\playermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\models\\main\\playermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\models\\main\\playercompletemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\models\\main\\playercompletemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\models\\main\\mapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\models\\main\\mapmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\testservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -197,18 +285,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\db\\efcore\\repository\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\db\\efcore\\repository\\ibaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\iplayerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\iplayerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\iplayercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\iplayercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\iservices\\main\\imapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D19AF8C2-7119-4F2D-86A0-F35ABB6665D4}|IServices\\IServices.csproj|solutionrelative:iservices\\main\\imapservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\db\\efcore\\repository\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -271,10 +347,6 @@
       "RelativeMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|solutionrelative:common\\logger\\dto\\dbloggerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|solutionrelative:efservices\\playercompleteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\configurations\\quartzsetup\\sequencejobs\\dbsync\\dbsyncsequencejob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|solutionrelative:configurations\\quartzsetup\\sequencejobs\\dbsync\\dbsyncsequencejob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -303,10 +375,6 @@
       "RelativeMoniker": "D:0:0:{EEA277B6-EFBD-4B55-953F-91A29E7C14F4}|Configurations\\Configurations.csproj|solutionrelative:configurations\\automappersetup\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\services\\main\\extensionsrepository\\playercompleterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01CDC286-B611-4E41-817F-14E276540184}|Services\\Services.csproj|solutionrelative:services\\main\\extensionsrepository\\playercompleterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\efservices\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF672980-1E84-4F76-9B82-876CBF47B69B}|EFServices\\EFServices.csproj|solutionrelative:efservices\\playerservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -317,14 +385,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\surfwebautofac\\controllers\\mapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9BAEE4A-931C-4096-816E-A07D014B4234}|SurfWebAutofac\\SurfWebAutofac.csproj|solutionrelative:surfwebautofac\\controllers\\mapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\model\\dtos\\players\\playerwrdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4923625-668A-95CB-F92E-EAD08FFFA065}|Model\\Model.csproj|solutionrelative:model\\dtos\\players\\playerwrdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D06B7DA7-2754-4E88-B518-776717BB6727}|Common\\Common.csproj|d:\\projects\\surfweb\\service\\surfwebautofac\\common\\migrations\\20250804014951_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -338,7 +398,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -346,20 +406,118 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.OpenSource.json",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\appsettings.OpenSource.json",
-              "RelativeDocumentMoniker": "DataSync\\appsettings.OpenSource.json",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\appsettings.OpenSource.json",
-              "RelativeToolTip": "DataSync\\appsettings.OpenSource.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-05T05:29:36.384Z",
+              "DocumentIndex": 2,
+              "Title": "PlayerServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerServices.cs",
+              "RelativeDocumentMoniker": "Services\\Main\\PlayerServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerServices.cs",
+              "RelativeToolTip": "Services\\Main\\PlayerServices.cs",
+              "ViewState": "AgIAAC8BAAAAAAAAAAApwD0BAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:25:25.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerCompleteServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerCompleteServices.cs",
+              "RelativeDocumentMoniker": "Services\\Main\\PlayerCompleteServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerCompleteServices.cs",
+              "RelativeToolTip": "Services\\Main\\PlayerCompleteServices.cs",
+              "ViewState": "AgIAANEAAAAAAAAAAAAlwOEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:23:16.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerModel.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerModel.cs",
+              "RelativeDocumentMoniker": "Model\\Models\\Main\\PlayerModel.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerModel.cs",
+              "RelativeToolTip": "Model\\Models\\Main\\PlayerModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T02:11:34.327Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MapServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\MapServices.cs",
+              "RelativeDocumentMoniker": "EFServices\\MapServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\MapServices.cs",
+              "RelativeToolTip": "EFServices\\MapServices.cs",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAMwPYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-02T05:33:41.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MapServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\MapServices.cs",
+              "RelativeDocumentMoniker": "Services\\Main\\MapServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\MapServices.cs",
+              "RelativeToolTip": "Services\\Main\\MapServices.cs",
+              "ViewState": "AgIAAGQBAAAAAAAAAAD4v28BAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T02:23:48.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerCompleteServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\PlayerCompleteServices.cs",
+              "RelativeDocumentMoniker": "EFServices\\PlayerCompleteServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\PlayerCompleteServices.cs",
+              "RelativeToolTip": "EFServices\\PlayerCompleteServices.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAMwKkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:23:09.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IPlayerServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerServices.cs",
+              "RelativeDocumentMoniker": "IServices\\Main\\IPlayerServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerServices.cs",
+              "RelativeToolTip": "IServices\\Main\\IPlayerServices.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswBIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T02:01:37.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MapMainCache.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Caches\\MapMainCache.cs",
+              "RelativeDocumentMoniker": "Model\\Caches\\MapMainCache.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Caches\\MapMainCache.cs",
+              "RelativeToolTip": "Model\\Caches\\MapMainCache.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAtwCMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-10T09:03:05.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MapModel.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\MapModel.cs",
+              "RelativeDocumentMoniker": "Model\\Models\\Main\\MapModel.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\MapModel.cs",
+              "RelativeToolTip": "Model\\Models\\Main\\MapModel.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAkwEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-10T09:03:35.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\appsettings.Development.json",
               "RelativeDocumentMoniker": "DataSync\\appsettings.Development.json",
@@ -367,12 +525,275 @@
               "RelativeToolTip": "DataSync\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-05T05:29:31.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T05:29:31.181Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
+              "Title": "MapController.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\MapController.cs",
+              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\MapController.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\MapController.cs",
+              "RelativeToolTip": "SurfWebAutofac\\Controllers\\MapController.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-02T05:09:04.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NewRecordController.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\NewRecordController.cs",
+              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\NewRecordController.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\NewRecordController.cs",
+              "RelativeToolTip": "SurfWebAutofac\\Controllers\\NewRecordController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAABsAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:03:36.358Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\Program.cs",
+              "RelativeDocumentMoniker": "DataSync\\Program.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\Program.cs",
+              "RelativeToolTip": "DataSync\\Program.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAUwDoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-10T04:16:21.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.OpenSource.json",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\appsettings.OpenSource.json",
+              "RelativeDocumentMoniker": "DataSync\\appsettings.OpenSource.json",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\DataSync\\appsettings.OpenSource.json",
+              "RelativeToolTip": "DataSync\\appsettings.OpenSource.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-05T05:29:36.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IPlayerCompleteServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerCompleteServices.cs",
+              "RelativeDocumentMoniker": "IServices\\Main\\IPlayerCompleteServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerCompleteServices.cs",
+              "RelativeToolTip": "IServices\\Main\\IPlayerCompleteServices.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAIwCMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T02:01:32.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MapCacheDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapCacheDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Maps\\MapCacheDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapCacheDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Maps\\MapCacheDto.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwCEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:43:24.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RankingDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Rankings\\RankingDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Rankings\\RankingDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Rankings\\RankingDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Rankings\\RankingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxAAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:47:38.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PlayerFailDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerFailDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerFailDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerFailDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerFailDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:46:08.746Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IMapServices.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IMapServices.cs",
+              "RelativeDocumentMoniker": "IServices\\Main\\IMapServices.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IMapServices.cs",
+              "RelativeToolTip": "IServices\\Main\\IMapServices.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAIA2wD4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T02:41:34.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PlayerWRDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerWRDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerWRDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerWRDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerWRDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:29:00.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PlayerSucceesDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerSucceesDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerSucceesDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerSucceesDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerSucceesDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:46:47.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PlayerStageDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerStageDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerStageDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerStageDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerStageDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:46:44.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "MapListDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapListDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Maps\\MapListDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapListDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Maps\\MapListDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:44:04.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MapDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Maps\\MapDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Maps\\MapDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Maps\\MapDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:43:20.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PopularMapDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\PopularMapDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\NewRecords\\PopularMapDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\PopularMapDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\NewRecords\\PopularMapDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:45:57.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PlayerInfoDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerInfoDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerInfoDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerInfoDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerInfoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvw8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:46:09.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "NewRecordDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\NewRecordDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\NewRecords\\NewRecordDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\NewRecordDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\NewRecords\\NewRecordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:45:50.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "NewMapDto.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\NewMapDto.cs",
+              "RelativeDocumentMoniker": "Model\\Dtos\\NewRecords\\NewMapDto.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\NewRecords\\NewMapDto.cs",
+              "RelativeToolTip": "Model\\Dtos\\NewRecords\\NewMapDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:45:36.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ServiceInfoCache.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Caches\\ServiceInfoCache.cs",
+              "RelativeDocumentMoniker": "Model\\Caches\\ServiceInfoCache.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Caches\\ServiceInfoCache.cs",
+              "RelativeToolTip": "Model\\Caches\\ServiceInfoCache.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:40:17.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "SteamController.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\SteamController.cs",
+              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\SteamController.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\SteamController.cs",
+              "RelativeToolTip": "SurfWebAutofac\\Controllers\\SteamController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAywCIAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:04:12.643Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "RankingController.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\RankingController.cs",
+              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\RankingController.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\RankingController.cs",
+              "RelativeToolTip": "SurfWebAutofac\\Controllers\\RankingController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:04:07.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\PlayerController.cs",
+              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\PlayerController.cs",
+              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\PlayerController.cs",
+              "RelativeToolTip": "SurfWebAutofac\\Controllers\\PlayerController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAUwD4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T02:03:51.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
               "Title": "appsettings.OpenSource.json",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\appsettings.OpenSource.json",
               "RelativeDocumentMoniker": "SurfWebAutofac\\appsettings.OpenSource.json",
@@ -380,12 +801,11 @@
               "RelativeToolTip": "SurfWebAutofac\\appsettings.OpenSource.json",
               "ViewState": "AgIAAEwAAAAAAAAAAAAcwHMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-05T05:28:49.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T05:28:49.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 32,
               "Title": "appsettings.Production.json",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\appsettings.Production.json",
               "RelativeDocumentMoniker": "SurfWebAutofac\\appsettings.Production.json",
@@ -393,12 +813,11 @@
               "RelativeToolTip": "SurfWebAutofac\\appsettings.Production.json",
               "ViewState": "AgIAAEwAAAAAAAAAAAAcwHMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-05T05:28:47.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T05:28:47.449Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 38,
               "Title": "NoCacheAttribute.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Caches\\AOP\\NoCacheAttribute.cs",
               "RelativeDocumentMoniker": "Common\\Caches\\AOP\\NoCacheAttribute.cs",
@@ -406,12 +825,11 @@
               "RelativeToolTip": "Common\\Caches\\AOP\\NoCacheAttribute.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T02:26:30.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T02:26:30.141Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 37,
               "Title": "CacheAttribute.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Caches\\AOP\\CacheAttribute.cs",
               "RelativeDocumentMoniker": "Common\\Caches\\AOP\\CacheAttribute.cs",
@@ -419,38 +837,11 @@
               "RelativeToolTip": "Common\\Caches\\AOP\\CacheAttribute.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T02:26:27.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T02:26:27.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MapServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\MapServices.cs",
-              "RelativeDocumentMoniker": "Services\\Main\\MapServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\MapServices.cs",
-              "RelativeToolTip": "Services\\Main\\MapServices.cs",
-              "ViewState": "AgIAAPMAAAAAAAAAAAAuwBIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T02:23:48.319Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MapServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\MapServices.cs",
-              "RelativeDocumentMoniker": "EFServices\\MapServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\MapServices.cs",
-              "RelativeToolTip": "EFServices\\MapServices.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAFgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:33:41.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 36,
               "Title": "CacheInterceptor.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Caches\\AOP\\CacheInterceptor.cs",
               "RelativeDocumentMoniker": "Common\\Caches\\AOP\\CacheInterceptor.cs",
@@ -458,12 +849,11 @@
               "RelativeToolTip": "Common\\Caches\\AOP\\CacheInterceptor.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAADwvx4AAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T02:03:52.166Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-05T02:03:52.166Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 34,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\appsettings.Development.json",
               "RelativeDocumentMoniker": "SurfWebAutofac\\appsettings.Development.json",
@@ -471,12 +861,11 @@
               "RelativeToolTip": "SurfWebAutofac\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-02T05:09:09.346Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:09:09.346Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 35,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Program.cs",
               "RelativeDocumentMoniker": "SurfWebAutofac\\Program.cs",
@@ -484,12 +873,11 @@
               "RelativeToolTip": "SurfWebAutofac\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:17:02.894Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:17:02.894Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 40,
               "Title": "SqlSugarSetup.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\Package\\SqlSugarSetup.cs",
               "RelativeDocumentMoniker": "Configurations\\Package\\SqlSugarSetup.cs",
@@ -497,12 +885,11 @@
               "RelativeToolTip": "Configurations\\Package\\SqlSugarSetup.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAlwA0AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T02:47:47.698Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-03T02:47:47.698Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 41,
               "Title": "DbConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\DbConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\DbConfiguration.cs",
@@ -510,38 +897,11 @@
               "RelativeToolTip": "Configurations\\DbConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T02:45:48.711Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-03T02:45:48.711Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PlayerCompleteServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerCompleteServices.cs",
-              "RelativeDocumentMoniker": "Services\\Main\\PlayerCompleteServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerCompleteServices.cs",
-              "RelativeToolTip": "Services\\Main\\PlayerCompleteServices.cs",
-              "ViewState": "AgIAALEAAAAAAAAAAAAAAA8AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T07:23:16.428Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PlayerServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerServices.cs",
-              "RelativeDocumentMoniker": "Services\\Main\\PlayerServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\PlayerServices.cs",
-              "RelativeToolTip": "Services\\Main\\PlayerServices.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T07:25:25.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 42,
               "Title": "SurfWebDbContext.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\SurfWebDbContext.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\SurfWebDbContext.cs",
@@ -549,12 +909,11 @@
               "RelativeToolTip": "Common\\Db\\EFCore\\SurfWebDbContext.cs",
               "ViewState": "AgIAACoAAAAAAAAAAADwvx4AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T03:14:27.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-03T03:14:27.356Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 43,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\ServiceCollectionExtensions.cs",
@@ -562,12 +921,11 @@
               "RelativeToolTip": "Common\\Logger\\ServiceCollectionExtensions.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAiwE0AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:52:09.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:52:09.763Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 39,
               "Title": "AutofacConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\AutofacSetup\\AutofacConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\AutofacSetup\\AutofacConfiguration.cs",
@@ -575,12 +933,11 @@
               "RelativeToolTip": "Configurations\\AutofacSetup\\AutofacConfiguration.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:14:22.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:14:22.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 44,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\SqlSugar\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "Common\\Db\\SqlSugar\\ServiceCollectionExtensions.cs",
@@ -588,12 +945,11 @@
               "RelativeToolTip": "Common\\Db\\SqlSugar\\ServiceCollectionExtensions.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAuwDIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T06:42:10.951Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T06:42:10.951Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 45,
               "Title": "LoggingInterceptor.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\AOP\\LoggingInterceptor.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\AOP\\LoggingInterceptor.cs",
@@ -601,12 +957,11 @@
               "RelativeToolTip": "Common\\Logger\\AOP\\LoggingInterceptor.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:44:13.285Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-02T05:44:13.285Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 47,
               "Title": "DefaultModuleRegister.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Autofac\\Register\\DefaultModuleRegister.cs",
               "RelativeDocumentMoniker": "Common\\Autofac\\Register\\DefaultModuleRegister.cs",
@@ -618,7 +973,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 46,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Autofac\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "Common\\Autofac\\ServiceCollectionExtensions.cs",
@@ -630,7 +985,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 49,
               "Title": "IConsoleLoggerSign.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Sign\\IConsoleLoggerSign.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Sign\\IConsoleLoggerSign.cs",
@@ -642,7 +997,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 48,
               "Title": "Common.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Common.csproj",
               "RelativeDocumentMoniker": "Common\\Common.csproj",
@@ -654,7 +1009,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 50,
               "Title": "Utils.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Utils\\Utils.csproj",
               "RelativeDocumentMoniker": "Utils\\Utils.csproj",
@@ -666,7 +1021,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 51,
               "Title": "Services.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Services.csproj",
               "RelativeDocumentMoniker": "Services\\Services.csproj",
@@ -678,7 +1033,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 52,
               "Title": "Model.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Model.csproj",
               "RelativeDocumentMoniker": "Model\\Model.csproj",
@@ -690,7 +1045,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 53,
               "Title": "Configurations.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\Configurations.csproj",
               "RelativeDocumentMoniker": "Configurations\\Configurations.csproj",
@@ -702,7 +1057,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 54,
               "Title": "EFServices.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\EFServices.csproj",
               "RelativeDocumentMoniker": "EFServices\\EFServices.csproj",
@@ -714,7 +1069,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 55,
               "Title": "LoggerConfig.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\LoggerConfig.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\LoggerConfig.cs",
@@ -726,7 +1081,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 56,
               "Title": "IServices.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\IServices.csproj",
               "RelativeDocumentMoniker": "IServices\\IServices.csproj",
@@ -738,7 +1093,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 57,
               "Title": "IServiceLoggerSign.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Sign\\IServiceLoggerSign.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Sign\\IServiceLoggerSign.cs",
@@ -750,7 +1105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 58,
               "Title": "ISeqLoggerSign.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Sign\\ISeqLoggerSign.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Sign\\ISeqLoggerSign.cs",
@@ -762,7 +1117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 59,
               "Title": "IFileLoggerSign.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Sign\\IFileLoggerSign.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Sign\\IFileLoggerSign.cs",
@@ -774,7 +1129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 60,
               "Title": "IDbLoggerSign.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Sign\\IDbLoggerSign.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Sign\\IDbLoggerSign.cs",
@@ -786,7 +1141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 61,
               "Title": "UniqueVisitorMiddleware.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\CustomMiddlewares\\UniqueVisitor\\UniqueVisitorMiddleware.cs",
               "RelativeDocumentMoniker": "Common\\CustomMiddlewares\\UniqueVisitor\\UniqueVisitorMiddleware.cs",
@@ -798,7 +1153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 62,
               "Title": "ApiResponse.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\CustomMiddlewares\\ApiResponse\\ApiResponse.cs",
               "RelativeDocumentMoniker": "Common\\CustomMiddlewares\\ApiResponse\\ApiResponse.cs",
@@ -810,7 +1165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 63,
               "Title": "DateTiemConverter.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\JsonConverters\\DateTiemConverter.cs",
               "RelativeDocumentMoniker": "Common\\JsonConverters\\DateTiemConverter.cs",
@@ -822,19 +1177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "BasicEntity.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\Base\\BasicEntity.cs",
-              "RelativeDocumentMoniker": "Common\\Db\\Base\\BasicEntity.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\Base\\BasicEntity.cs",
-              "RelativeToolTip": "Common\\Db\\Base\\BasicEntity.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:34:59.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 64,
               "Title": "WebApplicationExtensions.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\CustomMiddlewares\\UniqueVisitor\\WebApplicationExtensions.cs",
               "RelativeDocumentMoniker": "Common\\CustomMiddlewares\\UniqueVisitor\\WebApplicationExtensions.cs",
@@ -846,7 +1189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 65,
               "Title": "EFCoreSetup.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\Package\\EFCoreSetup.cs",
               "RelativeDocumentMoniker": "Configurations\\Package\\EFCoreSetup.cs",
@@ -858,7 +1201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 66,
               "Title": "WebApiConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\WebApiConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\WebApiConfiguration.cs",
@@ -870,19 +1213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "PlayerModel.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerModel.cs",
-              "RelativeDocumentMoniker": "Model\\Models\\Main\\PlayerModel.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerModel.cs",
-              "RelativeToolTip": "Model\\Models\\Main\\PlayerModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:11:34.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 69,
               "Title": "ITestServices.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\ITestServices.cs",
               "RelativeDocumentMoniker": "IServices\\ITestServices.cs",
@@ -894,31 +1225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "MapModel.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\MapModel.cs",
-              "RelativeDocumentMoniker": "Model\\Models\\Main\\MapModel.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\MapModel.cs",
-              "RelativeToolTip": "Model\\Models\\Main\\MapModel.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAUwEAAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:02:52.815Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "IPlayerCompleteServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerCompleteServices.cs",
-              "RelativeDocumentMoniker": "IServices\\Main\\IPlayerCompleteServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerCompleteServices.cs",
-              "RelativeToolTip": "IServices\\Main\\IPlayerCompleteServices.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAYwCYAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:01:32.234Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 70,
               "Title": "IBaseRepository.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\Repository\\IBaseRepository.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\Repository\\IBaseRepository.cs",
@@ -930,7 +1237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 68,
               "Title": "TestController.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\TestController.cs",
@@ -942,31 +1249,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "PlayerCompleteModel.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerCompleteModel.cs",
-              "RelativeDocumentMoniker": "Model\\Models\\Main\\PlayerCompleteModel.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Main\\PlayerCompleteModel.cs",
-              "RelativeToolTip": "Model\\Models\\Main\\PlayerCompleteModel.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAgwDkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:13:29.469Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "IPlayerServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerServices.cs",
-              "RelativeDocumentMoniker": "IServices\\Main\\IPlayerServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IPlayerServices.cs",
-              "RelativeToolTip": "IServices\\Main\\IPlayerServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T02:01:37.252Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 67,
               "Title": "TestServices.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\TestServices.cs",
               "RelativeDocumentMoniker": "EFServices\\TestServices.cs",
@@ -978,7 +1261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 71,
               "Title": "BaseRepository.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\Repository\\BaseRepository.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\Repository\\BaseRepository.cs",
@@ -990,19 +1273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "IMapServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IMapServices.cs",
-              "RelativeDocumentMoniker": "IServices\\Main\\IMapServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\IServices\\Main\\IMapServices.cs",
-              "RelativeToolTip": "IServices\\Main\\IMapServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwsAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T02:41:34.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 96,
               "Title": "20250804014951_InitialCreate.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Migrations\\20250804014951_InitialCreate.cs",
               "RelativeDocumentMoniker": "Common\\Migrations\\20250804014951_InitialCreate.cs",
@@ -1014,7 +1285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 72,
               "Title": "SnowflakeUtil.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Utils\\IdWorker\\SnowflakeUtil.cs",
               "RelativeDocumentMoniker": "Utils\\IdWorker\\SnowflakeUtil.cs",
@@ -1026,7 +1297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 73,
               "Title": "EFCoreModelBuilder.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\CustomModelBuilder\\EFCoreModelBuilder.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\CustomModelBuilder\\EFCoreModelBuilder.cs",
@@ -1038,7 +1309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 74,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\ServiceCollectionExtensions.cs",
@@ -1050,7 +1321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 75,
               "Title": "IEFCoreModelBuilder.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\CustomModelBuilder\\IEFCoreModelBuilder.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\CustomModelBuilder\\IEFCoreModelBuilder.cs",
@@ -1062,7 +1333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 76,
               "Title": "IEFCoreDbSeed.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\Seed\\IEFCoreDbSeed.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\Seed\\IEFCoreDbSeed.cs",
@@ -1074,7 +1345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 77,
               "Title": "EFCoreSeed.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\Seed\\EFCoreSeed.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\Seed\\EFCoreSeed.cs",
@@ -1086,7 +1357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 78,
               "Title": "DbConfig.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\EFCore\\DbConfig.cs",
               "RelativeDocumentMoniker": "Common\\Db\\EFCore\\DbConfig.cs",
@@ -1098,7 +1369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 79,
               "Title": "SqlsugarConfig.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\SqlSugar\\SqlsugarConfig.cs",
               "RelativeDocumentMoniker": "Common\\Db\\SqlSugar\\SqlsugarConfig.cs",
@@ -1110,7 +1381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 81,
               "Title": "LoggerConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\LoggerSetup\\LoggerConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\LoggerSetup\\LoggerConfiguration.cs",
@@ -1122,7 +1393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 80,
               "Title": "ServiceLoggerSinkExecute.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\LoggerSetup\\Sink\\ServiceLoggerSinkExecute.cs",
               "RelativeDocumentMoniker": "Configurations\\LoggerSetup\\Sink\\ServiceLoggerSinkExecute.cs",
@@ -1134,7 +1405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 82,
               "Title": "SurfWebAutofac.csproj",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\SurfWebAutofac.csproj",
               "RelativeDocumentMoniker": "SurfWebAutofac\\SurfWebAutofac.csproj",
@@ -1146,7 +1417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 83,
               "Title": "AutofacModuleRegister.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\AutofacSetup\\Register\\AutofacModuleRegister.cs",
               "RelativeDocumentMoniker": "Configurations\\AutofacSetup\\Register\\AutofacModuleRegister.cs",
@@ -1158,7 +1429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 84,
               "Title": "ServiceLoggerDto.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Dto\\ServiceLoggerDto.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Dto\\ServiceLoggerDto.cs",
@@ -1170,7 +1441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 85,
               "Title": "DbLoggerDto.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Logger\\Dto\\DbLoggerDto.cs",
               "RelativeDocumentMoniker": "Common\\Logger\\Dto\\DbLoggerDto.cs",
@@ -1182,19 +1453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "PlayerCompleteServices.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\PlayerCompleteServices.cs",
-              "RelativeDocumentMoniker": "EFServices\\PlayerCompleteServices.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\PlayerCompleteServices.cs",
-              "RelativeToolTip": "EFServices\\PlayerCompleteServices.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAABYwL4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T07:23:09.327Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 86,
               "Title": "DbSyncSequenceJob.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\QuartzSetup\\SequenceJobs\\DbSync\\DbSyncSequenceJob.cs",
               "RelativeDocumentMoniker": "Configurations\\QuartzSetup\\SequenceJobs\\DbSync\\DbSyncSequenceJob.cs",
@@ -1206,7 +1465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 90,
               "Title": "LogSqlSugarClient.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Common\\Db\\SqlSugar\\Repository\\Log\\SugarClient\\LogSqlSugarClient.cs",
               "RelativeDocumentMoniker": "Common\\Db\\SqlSugar\\Repository\\Log\\SugarClient\\LogSqlSugarClient.cs",
@@ -1218,7 +1477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 89,
               "Title": "DbLogModel.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Log\\DbLogModel.cs",
               "RelativeDocumentMoniker": "Model\\Models\\Log\\DbLogModel.cs",
@@ -1230,7 +1489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 88,
               "Title": "ServicesLogModel.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Models\\Log\\ServicesLogModel.cs",
               "RelativeDocumentMoniker": "Model\\Models\\Log\\ServicesLogModel.cs",
@@ -1242,7 +1501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 87,
               "Title": "QuartzConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\QuartzSetup\\QuartzConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\QuartzSetup\\QuartzConfiguration.cs",
@@ -1254,7 +1513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 91,
               "Title": "AutoMapperConfiguration.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\AutoMapperSetup\\AutoMapperConfiguration.cs",
               "RelativeDocumentMoniker": "Configurations\\AutoMapperSetup\\AutoMapperConfiguration.cs",
@@ -1266,7 +1525,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 92,
               "Title": "AutoMapperProfile.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Configurations\\AutoMapperSetup\\AutoMapperProfile.cs",
               "RelativeDocumentMoniker": "Configurations\\AutoMapperSetup\\AutoMapperProfile.cs",
@@ -1278,19 +1537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "PlayerCompleteRepository.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\ExtensionsRepository\\PlayerCompleteRepository.cs",
-              "RelativeDocumentMoniker": "Services\\Main\\ExtensionsRepository\\PlayerCompleteRepository.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Services\\Main\\ExtensionsRepository\\PlayerCompleteRepository.cs",
-              "RelativeToolTip": "Services\\Main\\ExtensionsRepository\\PlayerCompleteRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:41:23.587Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 93,
               "Title": "PlayerServices.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\PlayerServices.cs",
               "RelativeDocumentMoniker": "EFServices\\PlayerServices.cs",
@@ -1302,7 +1549,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 94,
               "Title": "BaseServices.cs",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\EFServices\\Base\\BaseServices.cs",
               "RelativeDocumentMoniker": "EFServices\\Base\\BaseServices.cs",
@@ -1314,7 +1561,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 95,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\appsettings.json",
               "RelativeDocumentMoniker": "SurfWebAutofac\\appsettings.json",
@@ -1323,30 +1570,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-08-02T05:09:06.257Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 79,
-              "Title": "MapController.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\MapController.cs",
-              "RelativeDocumentMoniker": "SurfWebAutofac\\Controllers\\MapController.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\SurfWebAutofac\\Controllers\\MapController.cs",
-              "RelativeToolTip": "SurfWebAutofac\\Controllers\\MapController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T05:09:04.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 80,
-              "Title": "PlayerWRDto.cs",
-              "DocumentMoniker": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerWRDto.cs",
-              "RelativeDocumentMoniker": "Model\\Dtos\\Players\\PlayerWRDto.cs",
-              "ToolTip": "D:\\Projects\\SurfWeb\\service\\SurfWebAutofac\\Model\\Dtos\\Players\\PlayerWRDto.cs",
-              "RelativeToolTip": "Model\\Dtos\\Players\\PlayerWRDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T07:29:00.076Z"
             }
           ]
         }
