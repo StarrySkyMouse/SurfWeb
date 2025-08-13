@@ -3,6 +3,7 @@ package com.surfweb.system.service;
 import com.surfweb.system.domain.PlayerModel;
 import com.surfweb.system.dto.players.PlayerFailDto;
 import com.surfweb.system.dto.players.PlayerInfoDto;
+import com.surfweb.system.dto.players.PlayerInfoListByAuthDto;
 import com.surfweb.system.dto.players.PlayerSucceesDto;
 import com.surfweb.common.enums.RecordTypeEnum;
 
@@ -44,7 +45,7 @@ public interface IPlayerServices {
     /**
      * 通过Auth获取(玩家Id,玩家名称)列表
      */
-    Map<Integer, PlayerIdNamePair> getPlayerInfoListByAuth(List<Integer> authList);
+    List<PlayerInfoListByAuthDto> getPlayerInfoListByAuth(List<Integer> authList);
 
     /**
      * 更新玩家信息
@@ -60,11 +61,4 @@ public interface IPlayerServices {
      * 通过玩家名称获取玩家信息
      */
     List<PlayerModel> getPlayersByNames(List<String> names);
-
-    // 辅助类型声明
-    class PlayerIdNamePair {
-        public long playerId;
-        public String playerName;
-        // 构造函数和getter/setter可自动生成
-    }
 }

@@ -33,7 +33,7 @@
         isDelete = 0
     </sql>
 
-    <select id="getFinallyDateTime" resultMap="java.util.Date">
+    <select id="getFinallyDateTime" resultType="java.util.Date">
         SELECT MAX(Date) AS DATE
         FROM playercomplete
         WHERE Type=0 OR TYPE=1
@@ -47,12 +47,68 @@
         SELECT Id,Auth,PlayerId,PlayerName,MapId,MapName,Type,Stage,Time,Date,Hide
         FROM playercomplete
         <where>
-            AND Type IN
+            Type IN
             <foreach collection="typeList" item="type" open="(" separator="," close=")">
                 #{type}
             </foreach>
             AND Date >= #{date}
         </where>
+    </select>
+
+
+    <select id="getOldPlayertimesData" parameterType="java.util.List" resultMap="PlayerCompleteModel">
+        SELECT Id,Auth,PlayerId,PlayerName,MapId,MapName,Type,Stage,Time,Date,Hide
+        FROM playercomplete
+        <where>
+--             最前面一个(和最后面)去除首个OR
+            <trim prefix="(" suffix=")" prefixOverrides="OR">
+                <foreach collection="list" item="item">
+                    OR (
+                        Auth = #{item.auth}
+                        AND MapName = #{item.map}
+                        AND (
+                            (#{item.value} = 0 AND Type = 0)
+                            OR
+                            (#{item.value} != 0 AND Type = 1)
+                        )
+                        AND (
+                            (#{item.value} = 0 AND Stage IS NULL)
+                            OR
+                            (#{item.value} != 0 AND Stage = #{item.value})
+                        )
+                    )
+                </foreach>
+            </trim>
+        </where>
+    </select>
+
+    <select id="getOldStagetimesData" parameterType="java.util.List" resultMap="PlayerCompleteModel">
+        SELECT Id,Auth,PlayerId,PlayerName,MapId,MapName,Type,Stage,Time,Date,Hide
+        FROM playercomplete
+        <where>
+            --             最前面一个(和最后面)去除首个OR
+            <trim prefix="(" suffix=")" prefixOverrides="OR">
+                <foreach collection="list" item="item">
+                    OR (
+                        Auth=#{auth}
+                        AND MapName=#{map}
+                        AND Type=2
+                        AND Stage=#{stage}
+                    )
+                </foreach>
+            </trim>
+        </where>
+    </select>
+
+    <select id="getRankingList_Integral" resultMap="RankingDto">
+        select 0 as type,id as playerId,name as playerName,Integral as value,concat((
+            select count(*)  from playercomplete B
+            where Hide=0 and B.PlayerId=A.Id and type =0
+        ),'/',(
+            select count(*) from `map`
+        )) as progress from player A
+        order by Integral desc
+        limit 10
     </select>
 
     <update id="disposeDataAssociation_Player">

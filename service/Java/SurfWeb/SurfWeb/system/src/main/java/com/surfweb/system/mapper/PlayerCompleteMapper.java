@@ -24,13 +24,10 @@ public interface PlayerCompleteMapper {
     void hideUnLikeData_IsTrue();
     void hideUnLikeData_IsFalse();
 
-    //todo:MyBatis待实现
     List<PlayerCompleteModel> getOldPlayertimesData(@Param("list") List<PlayertimesDataDto> list);
 
-    //todo:MyBatis待实现
     List<PlayerCompleteModel> getOldStagetimesData(@Param("list") List<PlayertimesDataDto> list);
 
-    //todo:MyBatis待实现
-    List<RankingDto> getRankingList(@Param("rankingType") RankingTypeEnum rankingType);
-
+    List<RankingDto> getRankingList_Integral();
+    List<RankingDto> getRankingList_Type(@Param("rankingType") RankingTypeEnum rankingType);
 }

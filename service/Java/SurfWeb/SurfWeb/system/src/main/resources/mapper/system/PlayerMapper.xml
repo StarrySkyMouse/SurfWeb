@@ -71,4 +71,247 @@
             #{name}
         </foreach>
     </select>
+
+    <select id="getPlayerSucceesCount" resultType="int">
+        SELECT COUNT(*)
+        FROM playercomplete A
+        INNER JOIN `map` B ON A.MapId = B.Id
+        WHERE A.PlayerId = #{id} AND A.type = #{recordType} AND B.Difficulty = #{difficulty}
+        GROUP BY A.MapId
+    </select>
+
+    <select id="getPlayerSucceesList" resultMap="PlayerSucceesDto">
+        SELECT  pc.,MapName,
+                (select Difficulty from map where map.Id=pc.MapId limit 1) as Difficulty,
+                (select Img from map where map.Id=pc.MapId limit 1) as Img,pc.Stage,pc.Time,pc.Date,-1 as gapTime
+        FROM playercomplete pc
+        JOIN (
+            SELECT A.MapId
+            FROM playercomplete A
+             INNER JOIN `map` B ON A.MapId = B.Id
+        WHERE A.PlayerId = #{id} AND A.type = #{recordType} AND B.Difficulty = #{difficulty}
+            GROUP BY A.MapId
+            ORDER BY MAX(A.`Date`)
+                LIMIT (#{pageIndex}-1)*10, 10
+        ) t ON pc.MapId = t.MapId and pc.PlayerId = #{id} AND pc.type = #{recordType}
+    </select>
+
+    <select id="getPlayerFailCount" resultType="int">
+        SELECT COUNT(*)
+        FROM (
+                SELECT
+                     m.Id,
+                     m.Number - IFNULL(pc.Number, 0) AS Number
+                 FROM (
+                          SELECT
+                              Id,
+                              CASE
+                                  WHEN #{recordType} = 1 THEN 1
+                                  WHEN #{recordType} = 2 THEN BonusNumber
+                                  ELSE StageNumber
+                                  END AS Number
+                          FROM map
+                          WHERE Difficulty = #{difficulty}
+                      ) m
+                          LEFT JOIN (
+                     SELECT
+                         MapId,
+                         COUNT(*) AS Number
+                     FROM playercomplete
+                     WHERE PlayerId = #{id} AND Type = #{recordType}
+                     GROUP BY MapId
+                 ) pc ON m.Id = pc.MapId
+             ) t
+        WHERE t.Number != 0
+    </select>
+
+    <select id="getPlayerFailList_Main" resultMap="PlayerFailDto">
+        select id as mapId,Name as mapName,difficulty,img from `map` m
+        where id not in(
+            select MapId from playercomplete p
+            where type=0 and PlayerId=#{id}
+        ) and Difficulty=#{difficulty}
+    </select>
+
+    <select id="getPlayerFailList_Bounty" resultMap="PlayerFailDto">
+        select Id as MapId,name as MapName,Difficulty,Img,seq as Stages FROM(
+            -- 递归公用表表达式
+            WITH RECURSIVE expanded AS (
+                -- 基础部分
+                SELECT Id, name, Difficulty, Img, BonusNumber AS Number, 1 AS seq
+                FROM map
+                WHERE BonusNumber > 0 -- and Difficulty = #{difficulty}
+                UNION all
+                -- 递归部分
+                --   expanded 里的每一行，如果 seq（当前序号）还小于 Number（BonusNumber），就再生成一行，序号加1
+                -- 这样会一直递归下去，直到 seq == Number 时不再生成新行
+                SELECT Id, name, Difficulty, Img, Number, seq + 1
+                FROM expanded
+                WHERE seq < Number
+            )
+            SELECT Id,seq
+            FROM expanded
+            ORDER BY Id, seq
+        ) DB1
+        where not exists (
+            select * from playercomplete p
+            where Type=1 and Stage=DB1.seq and p.PlayerId=#{id}
+        )
+    </select>
+
+    <select id="getPlayerFailList_Stage" resultMap="PlayerFailDto">
+        select Id as MapId,name as MapName,Difficulty,Img,seq as Stages FROM(
+            -- 递归公用表表达式
+            WITH RECURSIVE expanded AS (
+                -- 基础部分
+                SELECT Id, name, Difficulty, Img, StageNumber AS Number, 1 AS seq
+                FROM map
+                WHERE StageNumber > 0 -- and Difficulty = #{difficulty}
+                UNION all
+                -- 递归部分
+                --   expanded 里的每一行，如果 seq（当前序号）还小于 Number（BonusNumber），就再生成一行，序号加1
+                -- 这样会一直递归下去，直到 seq == Number 时不再生成新行
+                SELECT Id, name, Difficulty, Img, Number, seq + 1
+                FROM expanded
+                WHERE seq < Number
+            )
+            SELECT Id,seq
+            FROM expanded
+            ORDER BY Id, seq
+        ) DB1
+        where not exists (
+        select * from playercomplete p
+        where Type=2 and Stage=DB1.seq and p.PlayerId=#{id}
+        )
+    </select>
+
+    <select id="getPlayerPageList" resultMap="PlayerModel">
+        select Id,Name,Difficulty,Img,SurcessNumber,BonusNumber,StageNumber
+        from playercomplete
+    </select>
+
+    <select id="getPlayerInfoListByAuth" parameterType="java.util.List" resultMap="PlayerInfoListByAuthDto">
+        SELECT Id,Auth,Name
+        FROM player
+        <where>
+            Auth IN
+            <foreach collection="authList" item="auth" open="(" separator="," close=")">
+                #{auth}
+            </foreach>
+        </where>
+    </select>
+
+    <update id="updateStatsNumber">
+        -- 提前计算好公用结果集
+        WITH
+            succeesInfo AS (
+                SELECT PlayerId, COUNT(*) AS SucceesNumber
+                FROM playercomplete
+                WHERE MapId IS NOT NULL AND PlayerId IS NOT NULL AND Type = 0 AND Hide = 0
+                GROUP BY PlayerId
+            ),
+            wrInfo AS (
+                SELECT MapId, PlayerId
+                FROM playercomplete
+                WHERE MapId IS NOT NULL AND PlayerId IS NOT NULL AND Type = 0 AND Hide = 0
+                AND Time = (
+                    SELECT MIN(Time)
+                    FROM playercomplete
+                    WHERE MapId = playercomplete.MapId AND Type = 0 AND Hide = 0
+                )
+            ),
+            bwrInfo AS (
+                SELECT MapId, Stage, PlayerId
+                FROM playercomplete
+                WHERE MapId IS NOT NULL AND PlayerId IS NOT NULL AND Type = 2 AND Hide = 0
+                AND Time = (
+                    SELECT MIN(Time)
+                    FROM playercomplete
+                    WHERE MapId = playercomplete.MapId AND Stage = playercomplete.Stage AND Type = 2 AND Hide = 0
+                )
+            ),
+            swrInfo AS (
+                SELECT MapId, Stage, PlayerId
+                FROM playercomplete
+                WHERE MapId IS NOT NULL AND PlayerId IS NOT NULL AND Type = 3 AND Hide = 0
+                AND Time = (
+                    SELECT MIN(Time)
+                    FROM playercomplete
+                    WHERE MapId = playercomplete.MapId AND Stage = playercomplete.Stage AND Type = 3 AND Hide = 0
+                )
+            ),
+            all_players AS (
+                SELECT PlayerId FROM succeesInfo
+                UNION
+                SELECT PlayerId FROM wrInfo
+                UNION
+                SELECT PlayerId FROM bwrInfo
+                UNION
+                SELECT PlayerId FROM swrInfo
+            )
+        -- 通过LEFT JOIN 关联到 player 表聚合结果填回 player 表
+        UPDATE player p
+            LEFT JOIN succeesInfo s ON p.Id = s.PlayerId
+            LEFT JOIN (
+                SELECT PlayerId, COUNT(*) AS WRNumber FROM wrInfo GROUP BY PlayerId
+            ) w ON p.Id = w.PlayerId
+            LEFT JOIN (
+                SELECT PlayerId, COUNT(*) AS BWRNumber FROM bwrInfo GROUP BY PlayerId
+            ) b ON p.Id = b.PlayerId
+            LEFT JOIN (
+                SELECT PlayerId, COUNT(*) AS SWRNumber FROM swrInfo GROUP BY PlayerId
+            ) s2 ON p.Id = s2.PlayerId
+            set
+                -- 防止统计结果为 NULL
+                p.SucceesNumber = COALESCE(s.SucceesNumber, 0),
+                p.WRNumber = COALESCE(w.WRNumber, 0),
+                p.BWRNumber = COALESCE(b.BWRNumber, 0),
+                p.SWRNumber = COALESCE(s2.SWRNumber, 0)
+        WHERE p.Id IN (SELECT PlayerId FROM all_players)
+    </update>
+
+    <update id="changeInfo" parameterType="java.util.List">
+        UPDATE player
+        SET
+        auth = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.auth}
+        </foreach>
+        ELSE auth END,
+        name = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.name}
+        </foreach>
+        ELSE name END,
+        integral = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.integral}
+        </foreach>
+        ELSE integral END,
+        succeesNumber = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.succeesNumber}
+        </foreach>
+        ELSE succeesNumber END,
+        wrNumber = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.wrNumber}
+        </foreach>
+        ELSE wrNumber END,
+        bwrNumber = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.bwrNumber}
+        </foreach>
+        ELSE bwrNumber END,
+        swrNumber = CASE id
+        <foreach collection="changeList" item="item">
+            WHEN #{item.id} THEN #{item.swrNumber}
+        </foreach>
+        ELSE swrNumber END,
+        updateTime = NOW()
+        WHERE id IN
+        <foreach collection="changeList" item="item" open="(" separator="," close=")">
+            #{item.id}
+        </foreach>
+    </update>
 </mapper>
